@@ -201,15 +201,10 @@
                 <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900">Apa Yang Kami Tawarkan</h2>
                 <p class="text-gray-600 mt-4 max-w-2xl mx-auto text-lg">Keberhasilan panen Anda adalah prioritas kami. Pilih unit terbaik untuk mendukung pekerjaan Anda.</p>
             </div>
+            <!-- Produk Masih Static/Manual HTML untuk menjaga Layout Keras -->
             <div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- Produk 1 -->
                 <div class="bg-white rounded-2xl overflow-hidden shadow-md border group relative">
-                    <div class="admin-tools absolute top-3 right-3 z-30 hidden flex flex-col gap-2">
-                        <label class="cursor-pointer bg-brand hover:bg-brand-dark text-white px-2 py-1 rounded shadow text-[10px] font-bold">
-                            Ganti Foto <input type="file" accept="image/*" class="hidden" onchange="previewImage(event, this)">
-                        </label>
-                        <button onclick="editProductLink(this)" class="bg-blue-600 hover:bg-blue-700 text-white px-2 py-1 rounded shadow text-[10px] font-bold">Ganti Link</button>
-                    </div>
                     <div class="h-56 overflow-hidden">
                         <img src="https://www.ksasemesta.com/images/800x800/20997001/WhatsAppImage2025-10-14at11.20.392-yKSVNn5W93-j9YOtNVifjA.jpeg" alt="Pompa Irigasi" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                     </div>
@@ -221,12 +216,6 @@
                 </div>
                 <!-- Produk 2 -->
                 <div class="bg-white rounded-2xl overflow-hidden shadow-md border group relative">
-                    <div class="admin-tools absolute top-3 right-3 z-30 hidden flex flex-col gap-2">
-                        <label class="cursor-pointer bg-brand hover:bg-brand-dark text-white px-2 py-1 rounded shadow text-[10px] font-bold">
-                            Ganti Foto <input type="file" accept="image/*" class="hidden" onchange="previewImage(event, this)">
-                        </label>
-                        <button onclick="editProductLink(this)" class="bg-blue-600 hover:bg-blue-700 text-white px-2 py-1 rounded shadow text-[10px] font-bold">Ganti Link</button>
-                    </div>
                     <div class="h-56 overflow-hidden">
                         <img src="https://www.ksasemesta.com/images/800x800/24386675/SELEHECANOPY-N84sPfJR8TI8DhkeS34zyw.webp" alt="Traktor Roda 4" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                     </div>
@@ -238,12 +227,6 @@
                 </div>
                 <!-- Produk 3 -->
                 <div class="bg-white rounded-2xl overflow-hidden shadow-md border group relative">
-                    <div class="admin-tools absolute top-3 right-3 z-30 hidden flex flex-col gap-2">
-                        <label class="cursor-pointer bg-brand hover:bg-brand-dark text-white px-2 py-1 rounded shadow text-[10px] font-bold">
-                            Ganti Foto <input type="file" accept="image/*" class="hidden" onchange="previewImage(event, this)">
-                        </label>
-                        <button onclick="editProductLink(this)" class="bg-blue-600 hover:bg-blue-700 text-white px-2 py-1 rounded shadow text-[10px] font-bold">Ganti Link</button>
-                    </div>
                     <div class="h-56 overflow-hidden flex items-center justify-center bg-gray-100 p-4">
                         <img src="https://www.ksasemesta.com/images/800x800/17444583/drone-rB2cGzMN8HZXTWEFyBjMtQ.png" alt="Drone" class="w-full h-auto max-h-full object-contain group-hover:scale-110 transition-all">
                     </div>
@@ -255,12 +238,6 @@
                 </div>
                 <!-- Produk 4 -->
                 <div class="bg-white rounded-2xl overflow-hidden shadow-md border group relative">
-                    <div class="admin-tools absolute top-3 right-3 z-30 hidden flex flex-col gap-2">
-                        <label class="cursor-pointer bg-brand hover:bg-brand-dark text-white px-2 py-1 rounded shadow text-[10px] font-bold">
-                            Ganti Foto <input type="file" accept="image/*" class="hidden" onchange="previewImage(event, this)">
-                        </label>
-                        <button onclick="editProductLink(this)" class="bg-blue-600 hover:bg-blue-700 text-white px-2 py-1 rounded shadow text-[10px] font-bold">Ganti Link</button>
-                    </div>
                     <div class="h-56 overflow-hidden">
                         <img src="https://www.ksasemesta.com/images/800x800/24406811/WhatsAppImage2026-03-29at14.06.31-Aqon4-VeHDC3KrOVrTc9Bg.jpeg" alt="Implement" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                     </div>
@@ -327,7 +304,6 @@
             <div class="bg-white rounded-3xl shadow-xl p-8 md:p-12 border border-brand/20 max-w-4xl mx-auto">
                 <h3 class="text-xl font-bold text-gray-900 mb-6 border-b pb-4"><i class="fas fa-plus-circle text-accent mr-2"></i> Pendaftaran Unit Baru</h3>
                 <form onsubmit="submitGaransi(event)" class="space-y-6">
-                    <!-- Jenis Produk -->
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Jenis Produk</label>
                         <select id="g_jenis" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand outline-none bg-gray-50 text-gray-800 cursor-pointer">
@@ -336,27 +312,19 @@
                             <option value="drone" disabled>Drone Pertanian (Segera Hadir)</option>
                             <option value="implement" disabled>Implement Traktor (Segera Hadir)</option>
                         </select>
-                        <p class="text-xs text-gray-500 mt-2">*Fase awal pendaftaran garansi online ini difokuskan khusus untuk unit Pompa.</p>
                     </div>
-
-                    <!-- Spesifikasi Produk -->
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Spesifikasi / Tipe Produk</label>
                         <input type="text" id="g_spek" required placeholder="Contoh: Pompa Air Diesel 3 Inch" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand outline-none transition-shadow">
                     </div>
-
-                    <!-- CPCL Penerima -->
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">CPCL Penerima (Calon Petani Calon Lokasi)</label>
                         <input type="text" id="g_cpcl" required placeholder="Detail Nama Kelompok Tani / Instansi / Individu Lengkap" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand outline-none transition-shadow">
                     </div>
-
-                    <!-- Tanggal Daftar -->
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Tanggal Penerimaan / Pendaftaran</label>
                         <input type="date" id="g_tanggal" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand outline-none transition-shadow text-gray-700 cursor-pointer">
                     </div>
-
                     <div class="pt-4">
                         <button type="submit" id="g_submit_btn" class="w-full bg-brand text-white font-bold py-4 rounded-lg hover:bg-brand-dark transition-all shadow-lg text-lg flex items-center justify-center gap-2">
                             <i class="fas fa-shield-check"></i> Daftarkan Garansi
@@ -365,7 +333,7 @@
                 </form>
             </div>
 
-            <!-- Tabel Database Garansi (Disembunyikan dari Publik, Hanya Untuk Admin) -->
+            <!-- Tabel Database Garansi (Hanya Untuk Admin) -->
             <div id="admin-garansi-view" class="mt-16 bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-200 hidden">
                 <div class="p-6 bg-gray-900 text-white flex flex-col md:flex-row justify-between items-center gap-4">
                     <h3 class="font-bold text-xl flex items-center gap-3"><i class="fas fa-server text-brand"></i> Database Status Garansi (Khusus Admin)</h3>
@@ -381,11 +349,11 @@
                                 <th class="px-6 py-4 text-sm font-bold">CPCL Penerima</th>
                                 <th class="px-6 py-4 text-sm font-bold">Tanggal</th>
                                 <th class="px-6 py-4 text-sm font-bold text-blue-700">Kode Akses</th>
-                                <th class="px-6 py-4 text-sm font-bold text-center action-col hidden">Aksi (Admin)</th>
+                                <th class="px-6 py-4 text-sm font-bold text-center">Aksi</th>
                             </tr>
                         </thead>
                         <tbody id="garansi-table-body">
-                            <tr><td colspan="7" class="px-6 py-8 text-center text-gray-500 font-medium"><i class="fas fa-spinner fa-spin mr-2"></i> Menghubungkan ke Database...</td></tr>
+                            <tr><td colspan="7" class="px-6 py-8 text-center text-gray-500 font-medium">Menghubungkan ke Database...</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -394,7 +362,7 @@
         </div>
     </section>
 
-    <!-- Galeri Kegiatan (Admin Mode Ready) -->
+    <!-- Galeri Kegiatan Dinamis (CMS) -->
     <section id="galeri" class="py-24 bg-gray-900 text-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
@@ -404,165 +372,85 @@
                 </div>
                 <div class="admin-tools hidden">
                     <button onclick="addGalleryItem()" class="bg-accent hover:bg-accent-dark text-gray-900 px-6 py-3 rounded-full font-bold flex items-center gap-2 shadow-xl">
-                        <i class="fas fa-plus-circle"></i> Tambah Foto Kegiatan
+                        <i class="fas fa-plus-circle"></i> Tambah Kotak Foto
                     </button>
                 </div>
             </div>
             
+            <!-- Grid Galeri akan diisi otomatis oleh Firebase -->
             <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div class="relative h-64 rounded-xl overflow-hidden group bg-gray-800">
-                    <div class="admin-tools absolute top-3 right-3 z-30 hidden">
-                        <label class="cursor-pointer bg-brand hover:bg-brand-dark text-white px-3 py-1.5 rounded-lg shadow-lg text-xs font-bold border border-white/20">
-                            Upload <input type="file" accept="image/*" class="hidden" onchange="previewImage(event, this)">
-                        </label>
-                    </div>
-                    <img src="https://www.ksasemesta.com/images/800x800/24386675/SELEHECANOPY-N84sPfJR8TI8DhkeS34zyw.webp" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent p-5 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-opacity">
-                        <h3 class="font-bold text-sm content-editable" contenteditable="false">Serah Terima Unit Traktor</h3>
-                    </div>
-                </div>
-                <!-- Frame 2 -->
-                <div class="relative h-64 rounded-xl overflow-hidden group bg-gray-800">
-                    <div class="admin-tools absolute top-3 right-3 z-30 hidden">
-                        <label class="cursor-pointer bg-brand hover:bg-brand-dark text-white px-3 py-1.5 rounded-lg shadow-lg text-xs font-bold border border-white/20">
-                            Upload <input type="file" accept="image/*" class="hidden" onchange="previewImage(event, this)">
-                        </label>
-                    </div>
-                    <img src="https://www.ksasemesta.com/images/1024/24406589/AEP0201811-G_Yl12fW-HdoafDd8sXvvQ.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 object-top">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent p-5 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-opacity">
-                        <h3 class="font-bold text-sm text-white content-editable" contenteditable="false">Tim Lapangan KSA Semesta</h3>
-                    </div>
-                </div>
+                <div class="col-span-full py-10 text-center text-gray-500"><i class="fas fa-spinner fa-spin mr-2"></i> Memuat Galeri...</div>
             </div>
             <p id="admin-notice" class="mt-8 text-center text-gray-500 italic text-sm">Gunakan password admin di bagian bawah untuk akses edit.</p>
         </div>
     </section>
 
-    <!-- Mitra (Admin Mode Ready for Upload) -->
+    <!-- Mitra Dinamis (CMS) -->
     <section class="py-16 bg-white border-b">
         <div class="max-w-7xl mx-auto px-4 text-center">
             <div class="flex flex-col md:flex-row justify-center items-end mb-8 gap-4">
                 <h3 class="text-lg font-bold text-gray-900 uppercase tracking-widest">Mitra Kerjasama</h3>
                 <div class="admin-tools hidden">
                     <button onclick="addPartnerItem()" class="bg-brand hover:bg-brand-dark text-white px-4 py-1.5 rounded-full text-[10px] font-bold shadow-md">
-                        <i class="fas fa-plus"></i> Tambah Mitra
+                        <i class="fas fa-plus"></i> Tambah Kotak Mitra
                     </button>
                 </div>
             </div>
             
-            <div id="partner-grid" class="flex flex-wrap justify-center items-center gap-12 opacity-40 grayscale hover:grayscale-0 transition-all duration-500">
-                <!-- Partner 1 -->
-                <div class="relative group">
-                    <div class="admin-tools absolute -top-4 -right-4 z-30 hidden">
-                        <label class="cursor-pointer bg-brand hover:bg-brand-dark text-white px-2 py-1 rounded shadow text-[8px] font-bold">
-                            Ganti Logo <input type="file" accept="image/*" class="hidden" onchange="previewImage(event, this)">
-                        </label>
-                    </div>
-                    <img src="https://via.placeholder.com/150x60/eee/333?text=Logo+Mitra+1" alt="Partner 1" class="h-8 md:h-10 object-contain">
-                </div>
-                <!-- Partner 2 -->
-                <div class="relative group">
-                    <div class="admin-tools absolute -top-4 -right-4 z-30 hidden">
-                        <label class="cursor-pointer bg-brand hover:bg-brand-dark text-white px-2 py-1 rounded shadow text-[8px] font-bold">
-                            Ganti Logo <input type="file" accept="image/*" class="hidden" onchange="previewImage(event, this)">
-                        </label>
-                    </div>
-                    <img src="https://via.placeholder.com/150x60/eee/333?text=Logo+Mitra+2" alt="Partner 2" class="h-8 md:h-10 object-contain">
-                </div>
-                <!-- Partner 3 -->
-                <div class="relative group">
-                    <div class="admin-tools absolute -top-4 -right-4 z-30 hidden">
-                        <label class="cursor-pointer bg-brand hover:bg-brand-dark text-white px-2 py-1 rounded shadow text-[8px] font-bold">
-                            Ganti Logo <input type="file" accept="image/*" class="hidden" onchange="previewImage(event, this)">
-                        </label>
-                    </div>
-                    <img src="https://via.placeholder.com/150x60/eee/333?text=Logo+Mitra+3" alt="Partner 3" class="h-8 md:h-10 object-contain">
-                </div>
+            <!-- Grid Mitra akan diisi otomatis oleh Firebase -->
+            <div id="partner-grid" class="flex flex-wrap justify-center items-center gap-12 opacity-80 hover:opacity-100 transition-all duration-500">
+                <div class="w-full py-4 text-center text-gray-400"><i class="fas fa-spinner fa-spin mr-2"></i> Memuat Mitra...</div>
             </div>
         </div>
     </section>
 
-    <!-- Kontak - VERSI PREMIUM KOKOH -->
+    <!-- Kontak -->
     <section id="kontak" class="py-24 bg-white relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100 flex flex-col lg:flex-row">
-                
-                <!-- Info Kontak (Lat Gelap Premium) -->
                 <div class="bg-gray-900 text-white lg:w-5/12 p-10 lg:p-14 relative overflow-hidden">
                     <div class="absolute -top-24 -right-24 w-64 h-64 bg-brand rounded-full opacity-20 blur-3xl"></div>
                     <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-brand to-accent"></div>
-                    
                     <h3 class="text-3xl font-bold mb-8 relative z-10">Hubungi Kami</h3>
                     <p class="text-gray-300 mb-10 text-lg relative z-10 leading-relaxed">Dapatkan konsultasi khusus dan penawaran harga terbaik yang disesuaikan dengan kebutuhan bisnis pertanian Anda.</p>
-                    
                     <div class="space-y-8 relative z-10">
                         <div class="flex items-start">
-                            <div class="flex-shrink-0 w-12 h-12 bg-white/10 rounded-full flex items-center justify-center text-brand text-xl mr-4">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-lg mb-1">Alamat Kantor</h4>
-                                <p class="text-gray-400 leading-relaxed text-sm">Jl. Mekar Wangi, Dangdang Cisauk<br>Kabupaten Tangerang, 15324</p>
-                            </div>
+                            <div class="flex-shrink-0 w-12 h-12 bg-white/10 rounded-full flex items-center justify-center text-brand text-xl mr-4"><i class="fas fa-map-marker-alt"></i></div>
+                            <div><h4 class="font-semibold text-lg mb-1">Alamat Kantor</h4><p class="text-gray-400 leading-relaxed text-sm">Jl. Mekar Wangi, Dangdang Cisauk<br>Kabupaten Tangerang, 15324</p></div>
                         </div>
                         <div class="flex items-start">
-                            <div class="flex-shrink-0 w-12 h-12 bg-white/10 rounded-full flex items-center justify-center text-brand text-xl mr-4">
-                                <i class="fas fa-phone-alt"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-lg mb-1">Telepon & WA</h4>
-                                <p class="text-gray-400 text-sm">+62 851 5097 3789</p>
-                            </div>
+                            <div class="flex-shrink-0 w-12 h-12 bg-white/10 rounded-full flex items-center justify-center text-brand text-xl mr-4"><i class="fas fa-phone-alt"></i></div>
+                            <div><h4 class="font-semibold text-lg mb-1">Telepon & WA</h4><p class="text-gray-400 text-sm">+62 851 5097 3789</p></div>
                         </div>
                         <div class="flex items-start">
-                            <div class="flex-shrink-0 w-12 h-12 bg-white/10 rounded-full flex items-center justify-center text-brand text-xl mr-4">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-lg mb-1">Email</h4>
-                                <p class="text-gray-400 text-sm">kalimajasuryaalam@gmail.com</p>
-                            </div>
+                            <div class="flex-shrink-0 w-12 h-12 bg-white/10 rounded-full flex items-center justify-center text-brand text-xl mr-4"><i class="fas fa-envelope"></i></div>
+                            <div><h4 class="font-semibold text-lg mb-1">Email</h4><p class="text-gray-400 text-sm">kalimajasuryaalam@gmail.com</p></div>
                         </div>
                     </div>
                 </div>
-
-                <!-- Form Kontak -->
                 <div class="lg:w-7/12 p-10 lg:p-14 bg-white">
                     <h3 class="text-2xl font-bold text-gray-900 mb-6">Kirim Pesan Langsung</h3>
                     <form onsubmit="event.preventDefault(); alert('Terima kasih! Pesan Anda telah terkirim.');" class="space-y-6">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Nama Lengkap</label>
-                                <input type="text" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand focus:border-brand outline-none transition-shadow" placeholder="Nama Anda">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Nomor Telepon</label>
-                                <input type="tel" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand focus:border-brand outline-none transition-shadow" placeholder="08xxxxxxx">
-                            </div>
+                            <div><label class="block text-sm font-medium text-gray-700 mb-2">Nama Lengkap</label><input type="text" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand outline-none" placeholder="Nama Anda"></div>
+                            <div><label class="block text-sm font-medium text-gray-700 mb-2">Nomor Telepon</label><input type="tel" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand outline-none" placeholder="08xxxxxxx"></div>
                         </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Pesan Anda</label>
-                            <textarea rows="4" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand focus:border-brand outline-none transition-shadow resize-none" placeholder="Ceritakan kebutuhan unit Anda..."></textarea>
-                        </div>
-                        <button type="submit" class="w-full bg-brand text-white font-bold py-4 rounded-lg hover:bg-brand-dark transition-all shadow-lg text-lg">
-                            Kirim Pesan Sekarang <i class="fas fa-paper-plane ml-2"></i>
-                        </button>
+                        <div><label class="block text-sm font-medium text-gray-700 mb-2">Pesan Anda</label><textarea rows="4" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand outline-none resize-none" placeholder="Ceritakan kebutuhan unit Anda..."></textarea></div>
+                        <button type="submit" class="w-full bg-brand text-white font-bold py-4 rounded-lg hover:bg-brand-dark transition-all shadow-lg text-lg">Kirim Pesan Sekarang <i class="fas fa-paper-plane ml-2"></i></button>
                     </form>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer - VERSI KOKOH 3 KOLOM -->
+    <!-- Footer -->
     <footer class="bg-gray-900 text-gray-300 py-16 border-t border-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
-                <!-- Kolom 1: Brand -->
                 <div>
                     <h3 class="text-xl font-bold text-white mb-6">PT Kalimaja Surya Alam</h3>
                     <p class="text-sm text-gray-400 leading-relaxed">Solusi Total Mekanisasi Pertanian. Mewujudkan pertanian Indonesia yang modern, efisien, dan berdaya saing global melalui teknologi yang andal.</p>
                 </div>
-                <!-- Kolom 2: Navigasi & Admin -->
                 <div>
                     <h4 class="text-lg font-bold text-white mb-6">Tautan Cepat</h4>
                     <ul class="space-y-3 text-sm">
@@ -577,7 +465,6 @@
                         <i class="fas fa-user-shield"></i> Akses Admin Perusahaan
                     </button>
                 </div>
-                <!-- Kolom 3: Media Sosial -->
                 <div>
                     <h4 class="text-lg font-bold text-white mb-6">Ikuti Kami</h4>
                     <div class="flex space-x-5 text-2xl">
@@ -586,112 +473,18 @@
                         <a href="#" class="hover:text-brand transition-colors"><i class="fab fa-youtube"></i></a>
                         <a href="#" class="hover:text-brand transition-colors"><i class="fab fa-linkedin-in"></i></a>
                     </div>
-                    <p class="mt-8 text-xs text-gray-500">Kunjungi media sosial kami untuk update terbaru pengiriman unit dan kegiatan lapangan.</p>
                 </div>
             </div>
-            <div class="text-center text-xs text-gray-600 border-t border-gray-800 pt-8">
-                &copy; 2026 PT Kalimaja Surya Alam. Seluruh Hak Cipta Dilindungi.
-            </div>
+            <div class="text-center text-xs text-gray-600 border-t border-gray-800 pt-8">&copy; 2026 PT Kalimaja Surya Alam. Seluruh Hak Cipta Dilindungi.</div>
         </div>
     </footer>
 
-    <!-- SCRIPT TAMPILAN & ADMIN -->
-    <script>
-        window.isAdmin = false;
-
-        function toggleAdminMode() {
-            const pass = prompt("Hanya Admin KSA: Masukkan Password Keamanan");
-            if (pass === "Yakin537@") {
-                window.isAdmin = true;
-                alert("Login Berhasil! Akses Edit & Akses Hapus Database Garansi terbuka.");
-                document.querySelectorAll('.admin-tools').forEach(el => el.classList.remove('hidden'));
-                document.querySelectorAll('.action-col').forEach(el => el.classList.remove('hidden')); 
-                document.querySelectorAll('.content-editable').forEach(el => el.contentEditable = "true");
-                
-                const garansiView = document.getElementById('admin-garansi-view');
-                if(garansiView) garansiView.classList.remove('hidden');
-
-                const notice = document.getElementById('admin-notice');
-                if (notice) {
-                    notice.innerText = "Mode Edit Aktif: Anda memegang kendali penuh (Admin).";
-                    notice.classList.add('text-brand');
-                }
-                const btn = document.getElementById('admin-btn');
-                if (btn) {
-                    btn.innerHTML = '<i class="fas fa-check-circle"></i> Mode Admin Aktif';
-                    btn.classList.add('text-brand');
-                }
-                
-                if (typeof window.refreshGaransiTable === 'function') {
-                    window.refreshGaransiTable();
-                }
-            } else if (pass !== null) {
-                alert("Password Salah! Akses Ditolak.");
-            }
-        }
-
-        function editProductLink(btn) {
-            const card = btn.closest('.relative');
-            const linkTag = card.querySelector('.product-link');
-            const currentUrl = linkTag.getAttribute('href');
-            const newUrl = prompt("Masukkan Link Baru (URL) untuk tombol Lihat Detail:", currentUrl);
-            if (newUrl !== null && newUrl !== "") {
-                linkTag.setAttribute('href', newUrl);
-                alert("Link berhasil diperbarui!");
-            }
-        }
-
-        function addGalleryItem() {
-            const grid = document.getElementById('gallery-grid');
-            const newItem = document.createElement('div');
-            newItem.className = "relative h-64 rounded-xl overflow-hidden group bg-gray-800 border-2 border-brand/50";
-            newItem.innerHTML = `
-                <div class="admin-tools absolute top-3 right-3 z-30">
-                    <label class="cursor-pointer bg-brand hover:bg-brand-dark text-white px-3 py-1.5 rounded-lg shadow-lg text-xs font-bold border border-white/20">
-                        Upload <input type="file" accept="image/*" class="hidden" onchange="previewImage(event, this)">
-                    </label>
-                </div>
-                <img src="https://via.placeholder.com/800x800/222/555?text=Klik+Upload" class="w-full h-full object-cover">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent flex flex-col justify-end p-5">
-                    <h3 class="font-bold text-sm text-white content-editable" contenteditable="true">Judul Kegiatan...</h3>
-                </div>
-            `;
-            grid.appendChild(newItem);
-        }
-
-        function addPartnerItem() {
-            const grid = document.getElementById('partner-grid');
-            const newItem = document.createElement('div');
-            newItem.className = "relative group";
-            newItem.innerHTML = `
-                <div class="admin-tools absolute -top-4 -right-4 z-30">
-                    <label class="cursor-pointer bg-brand hover:bg-brand-dark text-white px-2 py-1 rounded shadow text-[8px] font-bold">
-                        Ganti Logo <input type="file" accept="image/*" class="hidden" onchange="previewImage(event, this)">
-                    </label>
-                </div>
-                <img src="https://via.placeholder.com/150x60/eee/333?text=Logo+Baru" class="h-8 md:h-10 object-contain">
-            `;
-            grid.appendChild(newItem);
-        }
-
-        function previewImage(event, input) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const img = input.closest('.relative').querySelector('img');
-                    img.src = e.target.result;
-                }
-                reader.readAsDataURL(file);
-            }
-        }
-    </script>
-
-    <!-- FIREBASE DATABASE SCRIPT (Penyimpanan Real-time Garansi) -->
+    <!-- SCRIPT TAMPILAN & FIREBASE (Terintegrasi) -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, doc, updateDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-storage.js";
 
         // Konfigurasi Asli Milik KSA Pertanian
         const firebaseConfig = {
@@ -707,197 +500,294 @@
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
+        const storage = getStorage(app);
 
-        // Path folder database garansi milik Bos
-        const colRef = collection(db, 'garansi');
+        // Mode Admin Global
+        window.isAdmin = false;
 
         let currentUser = null;
         let currentGaransiData = [];
+        let currentGalleryData = [];
+        let currentPartnerData = [];
 
-        // Hubungkan secara otomatis dan anonim ke server KSA
+        // Hubungkan ke server KSA
         const initAuth = async () => {
-            try {
-                await signInAnonymously(auth);
-            } catch (err) {
-                console.error("Gagal login anonim:", err);
-                if (err.code === 'auth/operation-not-allowed') {
-                    alert("ERROR FIREBASE: Anda belum mengaktifkan 'Anonymous Sign-in' di menu Authentication Firebase Console Anda.");
-                }
-            }
+            try { await signInAnonymously(auth); } catch (err) { console.error("Gagal login:", err); }
         };
         initAuth();
 
         onAuthStateChanged(auth, (user) => {
             currentUser = user;
             if (user) {
-                fetchGaransi(); 
+                fetchDynamicData(); 
             }
         });
 
-        function fetchGaransi() {
-            if (!currentUser) return;
-            
-            onSnapshot(colRef, (snapshot) => {
+        // ==========================================
+        // SISTEM FETCH DATA (Garansi, Galeri, Mitra)
+        // ==========================================
+        function fetchDynamicData() {
+            // 1. Fetch Garansi
+            onSnapshot(collection(db, 'garansi'), (snapshot) => {
                 const data = [];
-                snapshot.forEach((docItem) => {
-                    data.push({ id: docItem.id, ...docItem.data() });
-                });
-                
+                snapshot.forEach(d => data.push({ id: d.id, ...d.data() }));
                 data.sort((a, b) => b.timestamp - a.timestamp);
                 currentGaransiData = data;
                 renderGaransiTable(data);
-            }, (error) => {
-                console.error("Gagal mengambil tabel data:", error);
-                // Notifikasi Jika Rules Firebase Masih Salah (Permission Denied)
-                if (error.code === 'permission-denied') {
-                    const tbody = document.getElementById('garansi-table-body');
-                    if (tbody) {
-                        tbody.innerHTML = `<tr><td colspan="7" class="px-6 py-8 text-center text-red-600 bg-red-50 font-medium border border-red-200">
-                            <i class="fas fa-lock mb-2 text-3xl"></i><br>
-                            <strong>Akses Database Ditolak oleh Firebase</strong><br><br>
-                            Pastikan Anda sudah mengubah aturan/Rules di Firestore Database Anda menjadi:<br>
-                            <code>allow read, write: if true;</code>
-                        </td></tr>`;
-                    }
-                }
+            });
+
+            // 2. Fetch Galeri
+            onSnapshot(collection(db, 'gallery'), (snapshot) => {
+                const data = [];
+                snapshot.forEach(d => data.push({ id: d.id, ...d.data() }));
+                data.sort((a, b) => a.timestamp - b.timestamp); // Sort by old to new
+                currentGalleryData = data;
+                renderGalleryGrid(data);
+            });
+
+            // 3. Fetch Mitra
+            onSnapshot(collection(db, 'partners'), (snapshot) => {
+                const data = [];
+                snapshot.forEach(d => data.push({ id: d.id, ...d.data() }));
+                data.sort((a, b) => a.timestamp - b.timestamp);
+                currentPartnerData = data;
+                renderPartnerGrid(data);
             });
         }
 
-        window.refreshGaransiTable = () => renderGaransiTable(currentGaransiData);
+        // ==========================================
+        // RENDER UI (Menampilkan HTML dari Database)
+        // ==========================================
         
+        window.refreshUI = function() {
+            renderGaransiTable(currentGaransiData);
+            renderGalleryGrid(currentGalleryData);
+            renderPartnerGrid(currentPartnerData);
+        };
+
         function renderGaransiTable(data) {
             const tbody = document.getElementById('garansi-table-body');
             if (!tbody) return;
-            
             if (data.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="7" class="px-6 py-8 text-center text-gray-500 font-medium">Belum ada unit yang didaftarkan garansinya.</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="7" class="px-6 py-8 text-center text-gray-500 font-medium">Belum ada unit yang didaftarkan.</td></tr>';
                 return;
             }
-
             let html = '';
             data.forEach((item, index) => {
-                const jenisProduk = item.jenis === 'pompa' ? 'Pompa Irigasi' : item.jenis;
                 html += `
-                <tr class="border-b border-gray-200 hover:bg-green-50 transition-colors">
-                    <td class="px-6 py-4 text-sm font-semibold">${index + 1}</td>
-                    <td class="px-6 py-4 font-bold text-brand uppercase tracking-wide">${jenisProduk}</td>
-                    <td class="px-6 py-4 text-sm text-gray-800 font-medium">${item.spek}</td>
-                    <td class="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">${item.cpcl}</td>
-                    <td class="px-6 py-4 text-sm font-semibold text-gray-600 whitespace-nowrap">${item.tanggal}</td>
-                    <td class="px-6 py-4 text-sm font-mono font-bold text-blue-700 tracking-wider">${item.kodeAkses || '-'}</td>
-                    <!-- Tombol Hapus (Hanya Admin) -->
-                    <td class="px-6 py-4 text-center action-col ${window.isAdmin ? '' : 'hidden'}">
-                        <button onclick="deleteGaransi('${item.id}')" class="text-red-600 hover:text-white bg-red-50 hover:bg-red-600 border border-red-200 font-bold px-3 py-1.5 rounded transition-colors text-xs shadow-sm" title="Hapus Permanen">
-                            <i class="fas fa-trash-alt"></i>
-                        </button>
+                <tr class="border-b border-gray-200 hover:bg-green-50">
+                    <td class="px-6 py-4">${index + 1}</td>
+                    <td class="px-6 py-4 font-bold text-brand uppercase">${item.jenis}</td>
+                    <td class="px-6 py-4">${item.spek}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">${item.cpcl}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">${item.tanggal}</td>
+                    <td class="px-6 py-4 font-mono font-bold text-blue-700">${item.kodeAkses || '-'}</td>
+                    <td class="px-6 py-4 text-center ${window.isAdmin ? '' : 'hidden'}">
+                        <button onclick="deleteDataDoc('garansi', '${item.id}')" class="text-red-600 bg-red-50 hover:bg-red-600 hover:text-white px-3 py-1.5 rounded"><i class="fas fa-trash-alt"></i></button>
                     </td>
-                </tr>
-                `;
+                </tr>`;
             });
             tbody.innerHTML = html;
         }
 
-        // FUNGSI CEK STATUS GARANSI VIA KODE
-        window.cekGaransi = function(event) {
-            event.preventDefault();
-            const inputKode = document.getElementById('c_kode').value.trim().toUpperCase();
-            const resultDiv = document.getElementById('cek-result');
-
-            if (currentGaransiData.length === 0) {
-                resultDiv.innerHTML = '<div class="text-sm text-gray-500 mt-3 p-3 bg-gray-50 rounded-lg"><i class="fas fa-spinner fa-spin mr-2"></i> Sistem sedang memuat database. Harap tunggu sebentar...</div>';
+        function renderGalleryGrid(data) {
+            const grid = document.getElementById('gallery-grid');
+            if (!grid) return;
+            if (data.length === 0) {
+                grid.innerHTML = `<div class="col-span-full py-10 text-center text-gray-500 italic">Belum ada foto galeri. ${window.isAdmin ? 'Klik Tambah Kotak Foto untuk mulai.' : ''}</div>`;
                 return;
             }
-
-            const found = currentGaransiData.find(item => item.kodeAkses && item.kodeAkses.toUpperCase() === inputKode);
-
-            if (found) {
-                const jenisProduk = found.jenis === 'pompa' ? 'Pompa Irigasi' : found.jenis;
-                resultDiv.innerHTML = `
-                    <div class="bg-green-50 border border-green-200 p-5 rounded-xl mt-4 text-left shadow-inner">
-                        <h4 class="font-bold text-green-800 mb-3 border-b border-green-200 pb-2"><i class="fas fa-check-circle text-green-600 mr-1"></i> STATUS: AKTIF (TERDAFTAR)</h4>
-                        <div class="grid grid-cols-2 gap-3 text-sm text-green-900">
-                            <div><span class="opacity-70 text-xs">Unit/Produk:</span><br><strong class="uppercase">${jenisProduk}</strong></div>
-                            <div><span class="opacity-70 text-xs">Spesifikasi/Tipe:</span><br><strong>${found.spek}</strong></div>
-                            <div class="col-span-2"><span class="opacity-70 text-xs">CPCL/Pemilik:</span><br><strong>${found.cpcl}</strong></div>
-                            <div class="col-span-2"><span class="opacity-70 text-xs">Tanggal Registrasi:</span><br><strong>${found.tanggal}</strong></div>
-                        </div>
+            let html = '';
+            data.forEach(item => {
+                const imgUrl = item.imageUrl || 'https://via.placeholder.com/800x800/222/555?text=Klik+Upload';
+                html += `
+                <div class="relative h-64 rounded-xl overflow-hidden group bg-gray-800 shadow-md">
+                    <!-- Alat Admin -->
+                    <div class="absolute top-3 right-3 z-30 ${window.isAdmin ? 'flex' : 'hidden'} flex-col gap-2">
+                        <label class="cursor-pointer bg-brand hover:bg-brand-dark text-white px-3 py-1.5 rounded shadow text-xs font-bold border border-white/20">
+                            Upload <input type="file" accept="image/*" class="hidden" onchange="uploadImageToStorage(event, 'gallery', '${item.id}')">
+                        </label>
+                        <button onclick="deleteDataDoc('gallery', '${item.id}')" class="bg-red-600 hover:bg-red-700 text-white px-3 py-1.5 rounded shadow text-xs font-bold">Hapus</button>
                     </div>
-                `;
-            } else {
-                resultDiv.innerHTML = `
-                    <div class="bg-red-50 border border-red-200 p-4 rounded-xl mt-4 text-left shadow-inner">
-                        <p class="text-sm text-red-700 font-bold"><i class="fas fa-exclamation-triangle mr-1"></i> KODE AKSES TIDAK VALID</p>
-                        <p class="text-xs text-red-500 mt-1">Pastikan kode yang Anda ketik benar (contoh: KSA-ABC12). Data tidak ditemukan dalam sistem kami.</p>
+                    
+                    <!-- Loading Overlay -->
+                    <div id="loading-gallery-${item.id}" class="absolute inset-0 bg-black/80 hidden flex-col items-center justify-center z-40 text-white">
+                        <i class="fas fa-spinner fa-spin text-3xl text-brand mb-2"></i>
+                        <span id="progress-gallery-${item.id}" class="text-xs font-bold">0%</span>
                     </div>
-                `;
+
+                    <img src="${imgUrl}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent p-5 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-opacity">
+                        <h3 class="font-bold text-sm text-white outline-none" ${window.isAdmin ? 'contenteditable="true"' : ''} onblur="updateTitleDoc('gallery', '${item.id}', this.innerText)">${item.title || 'Judul Kegiatan...'}</h3>
+                    </div>
+                </div>`;
+            });
+            grid.innerHTML = html;
+        }
+
+        function renderPartnerGrid(data) {
+            const grid = document.getElementById('partner-grid');
+            if (!grid) return;
+            if (data.length === 0) {
+                grid.innerHTML = `<div class="w-full py-4 text-center text-gray-400 italic">Belum ada logo mitra terdaftar.</div>`;
+                return;
+            }
+            let html = '';
+            data.forEach(item => {
+                const imgUrl = item.imageUrl || 'https://via.placeholder.com/150x60/eee/333?text=Logo+Baru';
+                html += `
+                <div class="relative group p-2">
+                    <div class="absolute -top-4 -right-4 z-30 ${window.isAdmin ? 'flex' : 'hidden'} flex-col gap-1">
+                        <label class="cursor-pointer bg-brand hover:bg-brand-dark text-white px-2 py-1 rounded shadow text-[8px] font-bold">
+                            Upload <input type="file" accept="image/*" class="hidden" onchange="uploadImageToStorage(event, 'partners', '${item.id}')">
+                        </label>
+                        <button onclick="deleteDataDoc('partners', '${item.id}')" class="bg-red-600 hover:bg-red-700 text-white px-2 py-1 rounded shadow text-[8px] font-bold">Del</button>
+                    </div>
+                    
+                    <div id="loading-partners-${item.id}" class="absolute inset-0 bg-white/90 hidden flex-col items-center justify-center z-40">
+                        <i class="fas fa-spinner fa-spin text-brand"></i>
+                    </div>
+
+                    <img src="${imgUrl}" class="h-8 md:h-10 object-contain">
+                </div>`;
+            });
+            grid.innerHTML = html;
+        }
+
+        // ==========================================
+        // FUNGSI ADMIN (Login, Upload, Tambah, Hapus)
+        // ==========================================
+        window.toggleAdminMode = function() {
+            const pass = prompt("Hanya Admin KSA: Masukkan Password Keamanan");
+            if (pass === "Yakin537@") {
+                window.isAdmin = true;
+                alert("Mode Full CMS Aktif!\nAnda kini bisa mengunggah foto Galeri & Mitra permanen ke database.");
+                
+                document.querySelectorAll('.admin-tools').forEach(el => el.classList.remove('hidden'));
+                const garansiView = document.getElementById('admin-garansi-view');
+                if(garansiView) garansiView.classList.remove('hidden');
+
+                const notice = document.getElementById('admin-notice');
+                if (notice) notice.innerText = "Mode Edit & Upload Database Permanen Aktif.";
+                const btn = document.getElementById('admin-btn');
+                if (btn) btn.innerHTML = '<i class="fas fa-check-circle"></i> Mode Admin Aktif';
+                
+                window.refreshUI(); // Render ulang agar tombol hapus / upload muncul di konten db
+            } else if (pass !== null) {
+                alert("Password Salah! Akses Ditolak.");
             }
         };
 
-        // Fungsi Kustomer Daftar Garansi Baru
-        window.submitGaransi = async function(event) {
-            event.preventDefault();
-            if (!currentUser) {
-                alert("Sistem belum siap atau belum terhubung ke database. Harap tunggu sebentar.");
-                return;
+        window.addGalleryItem = async function() {
+            if(!window.isAdmin) return;
+            try {
+                await addDoc(collection(db, 'gallery'), { imageUrl: '', title: 'Judul Baru (Klik Edit)', timestamp: Date.now() });
+            } catch(e) { alert("Gagal menambah kotak. Pastikan Rules Firestore mengizinkan Write."); }
+        };
+
+        window.addPartnerItem = async function() {
+            if(!window.isAdmin) return;
+            try {
+                await addDoc(collection(db, 'partners'), { imageUrl: '', timestamp: Date.now() });
+            } catch(e) { alert("Gagal menambah mitra."); }
+        };
+
+        window.deleteDataDoc = async function(colName, docId) {
+            if(!window.isAdmin) return;
+            if(confirm("Yakin menghapus item ini permanen dari Database?")) {
+                try {
+                    await deleteDoc(doc(db, colName, docId));
+                } catch(e) { alert("Gagal menghapus."); }
             }
+        };
 
-            const jenis = document.getElementById('g_jenis').value;
-            const spek = document.getElementById('g_spek').value;
-            const cpcl = document.getElementById('g_cpcl').value;
-            const tanggal = document.getElementById('g_tanggal').value;
-            const btn = document.getElementById('g_submit_btn');
+        window.updateTitleDoc = async function(colName, docId, newTitle) {
+            if(!window.isAdmin) return;
+            try {
+                await updateDoc(doc(db, colName, docId), { title: newTitle });
+            } catch(e) { console.error("Gagal update judul:", e); }
+        };
 
-            // Generate Kode Akses Unik
-            const randomStr = Math.random().toString(36).substring(2, 8).toUpperCase();
-            const accessCode = 'KSA-' + randomStr;
+        // FUNGSI INTI: UPLOAD FILE GAMBAR KE FIREBASE STORAGE
+        window.uploadImageToStorage = async function(event, colName, docId) {
+            const file = event.target.files[0];
+            if (!file) return;
+            if (!window.isAdmin) return alert("Akses Ditolak.");
 
-            btn.disabled = true;
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Menyimpan ke Database...';
+            const loadingDiv = document.getElementById(`loading-${colName}-${docId}`);
+            const progressTxt = document.getElementById(`progress-${colName}-${docId}`);
+            if(loadingDiv) loadingDiv.classList.remove('hidden');
 
             try {
-                await addDoc(colRef, {
-                    jenis,
-                    spek,
-                    cpcl,
-                    tanggal,
+                const filename = `${colName}/${Date.now()}_${file.name}`;
+                const sRef = storageRef(storage, filename);
+                const uploadTask = uploadBytesResumable(sRef, file);
+
+                uploadTask.on('state_changed', 
+                    (snapshot) => {
+                        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                        if(progressTxt) progressTxt.innerText = Math.round(progress) + '%';
+                    }, 
+                    (error) => {
+                        console.error(error);
+                        alert("Gagal Unggah! Pastikan Aturan Firebase Storage sudah 'allow read, write: if true;'");
+                        if(loadingDiv) loadingDiv.classList.add('hidden');
+                    }, 
+                    async () => {
+                        const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+                        await updateDoc(doc(db, colName, docId), { imageUrl: downloadURL });
+                        if(loadingDiv) loadingDiv.classList.add('hidden');
+                    }
+                );
+            } catch (e) {
+                console.error(e);
+                alert("Terjadi kesalahan sistem saat unggah gambar.");
+                if(loadingDiv) loadingDiv.classList.add('hidden');
+            }
+        };
+
+        // ==========================================
+        // FUNGSI GARANSI
+        // ==========================================
+        window.submitGaransi = async function(event) {
+            event.preventDefault();
+            if (!currentUser) return alert("Belum terkoneksi ke server.");
+
+            const btn = document.getElementById('g_submit_btn');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Menyimpan...';
+
+            try {
+                const accessCode = 'KSA-' + Math.random().toString(36).substring(2, 8).toUpperCase();
+                await addDoc(collection(db, 'garansi'), {
+                    jenis: document.getElementById('g_jenis').value,
+                    spek: document.getElementById('g_spek').value,
+                    cpcl: document.getElementById('g_cpcl').value,
+                    tanggal: document.getElementById('g_tanggal').value,
                     kodeAkses: accessCode,
                     timestamp: Date.now()
                 });
-                
-                alert("SUKSES!\n\nUnit Anda telah resmi terdaftar di sistem Purna Jual KSA Semesta.\n\nKODE AKSES ANDA: " + accessCode + "\n\n*PENTING: Harap catat dan simpan KODE AKSES ini baik-baik. Anda membutuhkannya untuk mengecek status garansi sewaktu-waktu tanpa perlu login.");
-                
+                alert(`SUKSES!\n\nKODE AKSES ANDA: ${accessCode}\nHarap simpan kode ini baik-baik untuk cek status garansi.`);
                 event.target.reset(); 
-            } catch (e) {
-                console.error(e);
-                if (e.code === 'permission-denied') {
-                    alert("GAGAL MENYIMPAN: Akses Firebase ditolak. Pastikan Rules Firestore Anda sudah diatur menjadi 'allow read, write: if true;' di Console Firebase.");
-                } else {
-                    alert("Maaf, terjadi kesalahan saat mengirim data. Silakan coba lagi.");
-                }
-            } finally {
+            } catch (e) { alert("Gagal mengirim garansi."); } finally {
                 btn.disabled = false;
                 btn.innerHTML = '<i class="fas fa-shield-check"></i> Daftarkan Garansi';
             }
         };
 
-        // FUNGSI HAPUS GARANSI (HANYA ADMIN)
-        window.deleteGaransi = async function(docId) {
-            if (!window.isAdmin) {
-                alert("AKSES DITOLAK! Hanya Manajemen KSA yang diizinkan menghapus data dari server.");
-                return;
-            }
-            if (confirm("PERHATIAN!\n\nApakah Anda Yakin ingin menghapus dokumen garansi ini secara permanen dari Database?")) {
-                try {
-                    const docRef = doc(db, 'garansi', docId);
-                    await deleteDoc(docRef);
-                } catch (error) {
-                    console.error(error);
-                    if (error.code === 'permission-denied') {
-                        alert("GAGAL MENGHAPUS: Akses ditolak. Silakan ubah 'Rules' Firestore Anda menjadi 'allow read, write: if true;' di Firebase Console.");
-                    } else {
-                        alert("Gagal menghapus data dari server.");
-                    }
-                }
+        window.cekGaransi = function(event) {
+            event.preventDefault();
+            const inputKode = document.getElementById('c_kode').value.trim().toUpperCase();
+            const resultDiv = document.getElementById('cek-result');
+
+            const found = currentGaransiData.find(item => item.kodeAkses && item.kodeAkses.toUpperCase() === inputKode);
+            if (found) {
+                resultDiv.innerHTML = `<div class="bg-green-50 p-5 rounded-xl mt-4 text-green-900 border border-green-200">
+                    <h4 class="font-bold mb-2"><i class="fas fa-check-circle"></i> AKTIF (TERDAFTAR)</h4>
+                    <p class="text-sm">Produk: ${found.jenis} | Spek: ${found.spek}<br>Milik: ${found.cpcl}<br>Terdaftar: ${found.tanggal}</p>
+                </div>`;
+            } else {
+                resultDiv.innerHTML = `<div class="bg-red-50 p-4 rounded-xl mt-4 text-red-700 border border-red-200 text-sm">Kode tidak valid atau tidak ditemukan.</div>`;
             }
         };
     </script>
