@@ -505,20 +505,23 @@
         // Mode Admin Global
         window.isAdmin = false;
 
-        let currentUser = null;
         let currentGaransiData = [];
         let currentGalleryData = [];
         let currentPartnerData = [];
+        let isFetched = false;
 
-        // Hubungkan ke server KSA
+        // Hubungkan ke server KSA (Mencoba login anonim, namun jika gagal tidak memblokir akses ke database jika Rules = public)
         const initAuth = async () => {
-            try { await signInAnonymously(auth); } catch (err) { console.error("Gagal login:", err); }
+            try { await signInAnonymously(auth); } catch (err) { console.error("Info: Login Anonim Gagal atau Belum Diaktifkan di Firebase Anda.", err); }
         };
         initAuth();
 
+        // Paksa ambil data tanpa harus menunggu login selesai (karena kunci bapak adalah: allow read, write: if true)
+        fetchDynamicData();
+
         onAuthStateChanged(auth, (user) => {
-            currentUser = user;
-            if (user) {
+            if (!isFetched) {
+                isFetched = true;
                 fetchDynamicData(); 
             }
         });
@@ -534,6 +537,15 @@
                 data.sort((a, b) => b.timestamp - a.timestamp);
                 currentGaransiData = data;
                 renderGaransiTable(data);
+            }, (error) => {
+                console.error("Error Garansi:", error);
+                const tbody = document.getElementById('garansi-table-body');
+                if (tbody) tbody.innerHTML = `<tr><td colspan="7" class="px-6 py-8 text-center text-red-600 bg-red-50 font-medium border border-red-200">
+                    <i class="fas fa-lock mb-2 text-3xl"></i><br>
+                    <strong>Akses Database Ditolak oleh Firebase</strong><br><br>
+                    Pastikan Anda sudah mengubah aturan/Rules di Firestore Database Anda menjadi:<br>
+                    <code>allow read, write: if true;</code>
+                </td></tr>`;
             });
 
             // 2. Fetch Galeri
@@ -543,6 +555,10 @@
                 data.sort((a, b) => a.timestamp - b.timestamp); // Sort by old to new
                 currentGalleryData = data;
                 renderGalleryGrid(data);
+            }, (error) => {
+                console.error("Error Galeri:", error);
+                const grid = document.getElementById('gallery-grid');
+                if (grid) grid.innerHTML = '<div class="col-span-full py-10 text-center text-red-500 font-bold"><i class="fas fa-exclamation-triangle mr-2"></i>Koneksi Galeri Ditolak Firebase. Cek Rules Firestore Anda.</div>';
             });
 
             // 3. Fetch Mitra
@@ -552,6 +568,10 @@
                 data.sort((a, b) => a.timestamp - b.timestamp);
                 currentPartnerData = data;
                 renderPartnerGrid(data);
+            }, (error) => {
+                console.error("Error Mitra:", error);
+                const grid = document.getElementById('partner-grid');
+                if (grid) grid.innerHTML = '<div class="w-full py-4 text-center text-red-500 font-bold"><i class="fas fa-exclamation-triangle mr-2"></i>Koneksi Mitra Ditolak. Cek Rules Firestore Anda.</div>';
             });
         }
 
@@ -682,14 +702,14 @@
             if(!window.isAdmin) return;
             try {
                 await addDoc(collection(db, 'gallery'), { imageUrl: '', title: 'Judul Baru (Klik Edit)', timestamp: Date.now() });
-            } catch(e) { alert("Gagal menambah kotak. Pastikan Rules Firestore mengizinkan Write."); }
+            } catch(e) { alert("Gagal menambah kotak Galeri. Pastikan Rules Firestore mengizinkan 'allow write: if true;'."); }
         };
 
         window.addPartnerItem = async function() {
             if(!window.isAdmin) return;
             try {
                 await addDoc(collection(db, 'partners'), { imageUrl: '', timestamp: Date.now() });
-            } catch(e) { alert("Gagal menambah mitra."); }
+            } catch(e) { alert("Gagal menambah kotak Mitra. Pastikan Rules Firestore mengizinkan 'allow write: if true;'."); }
         };
 
         window.deleteDataDoc = async function(colName, docId) {
@@ -697,7 +717,7 @@
             if(confirm("Yakin menghapus item ini permanen dari Database?")) {
                 try {
                     await deleteDoc(doc(db, colName, docId));
-                } catch(e) { alert("Gagal menghapus."); }
+                } catch(e) { alert("Gagal menghapus. Pastikan Rules Firestore mengizinkan Delete."); }
             }
         };
 
@@ -729,19 +749,25 @@
                         if(progressTxt) progressTxt.innerText = Math.round(progress) + '%';
                     }, 
                     (error) => {
-                        console.error(error);
-                        alert("Gagal Unggah! Pastikan Aturan Firebase Storage sudah 'allow read, write: if true;'");
+                        console.error("Storage Error:", error);
+                        alert("Gagal Unggah Foto!\n\nPastikan Anda sudah mengubah Aturan (Rules) Firebase STORAGE menjadi:\nallow read, write: if true;");
                         if(loadingDiv) loadingDiv.classList.add('hidden');
                     }, 
                     async () => {
-                        const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
-                        await updateDoc(doc(db, colName, docId), { imageUrl: downloadURL });
-                        if(loadingDiv) loadingDiv.classList.add('hidden');
+                        try {
+                            const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+                            await updateDoc(doc(db, colName, docId), { imageUrl: downloadURL });
+                        } catch (e) {
+                            console.error("Firestore Update Error:", e);
+                            alert("Foto berhasil diunggah, tapi gagal dihubungkan ke Database. Pastikan Aturan (Rules) FIRESTORE DATABASE Anda adalah:\nallow read, write: if true;");
+                        } finally {
+                            if(loadingDiv) loadingDiv.classList.add('hidden');
+                        }
                     }
                 );
             } catch (e) {
                 console.error(e);
-                alert("Terjadi kesalahan sistem saat unggah gambar.");
+                alert("Terjadi kesalahan sistem saat memulai unggah gambar.");
                 if(loadingDiv) loadingDiv.classList.add('hidden');
             }
         };
@@ -751,25 +777,37 @@
         // ==========================================
         window.submitGaransi = async function(event) {
             event.preventDefault();
-            if (!currentUser) return alert("Belum terkoneksi ke server.");
 
             const btn = document.getElementById('g_submit_btn');
+            const jenis = document.getElementById('g_jenis').value;
+            const spek = document.getElementById('g_spek').value;
+            const cpcl = document.getElementById('g_cpcl').value;
+            const tanggal = document.getElementById('g_tanggal').value;
+
+            // Generate Kode Akses Unik
+            const randomStr = Math.random().toString(36).substring(2, 8).toUpperCase();
+            const accessCode = 'KSA-' + randomStr;
+
             btn.disabled = true;
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Menyimpan...';
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Menyimpan ke Database...';
 
             try {
-                const accessCode = 'KSA-' + Math.random().toString(36).substring(2, 8).toUpperCase();
                 await addDoc(collection(db, 'garansi'), {
-                    jenis: document.getElementById('g_jenis').value,
-                    spek: document.getElementById('g_spek').value,
-                    cpcl: document.getElementById('g_cpcl').value,
-                    tanggal: document.getElementById('g_tanggal').value,
+                    jenis,
+                    spek,
+                    cpcl,
+                    tanggal,
                     kodeAkses: accessCode,
                     timestamp: Date.now()
                 });
-                alert(`SUKSES!\n\nKODE AKSES ANDA: ${accessCode}\nHarap simpan kode ini baik-baik untuk cek status garansi.`);
+                
+                alert("SUKSES!\n\nUnit Anda telah resmi terdaftar di sistem Purna Jual KSA Semesta.\n\nKODE AKSES ANDA: " + accessCode + "\n\n*PENTING: Harap catat dan simpan KODE AKSES ini baik-baik. Anda membutuhkannya untuk mengecek status garansi sewaktu-waktu tanpa perlu login.");
+                
                 event.target.reset(); 
-            } catch (e) { alert("Gagal mengirim garansi."); } finally {
+            } catch (e) {
+                console.error(e);
+                alert("GAGAL MENYIMPAN: Akses Firebase ditolak. Pastikan Rules Firestore Anda sudah diatur menjadi 'allow read, write: if true;' di Console Firebase.");
+            } finally {
                 btn.disabled = false;
                 btn.innerHTML = '<i class="fas fa-shield-check"></i> Daftarkan Garansi';
             }
@@ -780,14 +818,20 @@
             const inputKode = document.getElementById('c_kode').value.trim().toUpperCase();
             const resultDiv = document.getElementById('cek-result');
 
+            if (currentGaransiData.length === 0) {
+                resultDiv.innerHTML = '<div class="text-sm text-gray-500 mt-3 p-3 bg-gray-50 rounded-lg"><i class="fas fa-spinner fa-spin mr-2"></i> Sistem sedang memuat database atau Akses Ditolak Firebase. Cek koneksi & Rules Anda.</div>';
+                return;
+            }
+
             const found = currentGaransiData.find(item => item.kodeAkses && item.kodeAkses.toUpperCase() === inputKode);
+
             if (found) {
-                resultDiv.innerHTML = `<div class="bg-green-50 p-5 rounded-xl mt-4 text-green-900 border border-green-200">
+                resultDiv.innerHTML = `<div class="bg-green-50 p-5 rounded-xl mt-4 text-green-900 border border-green-200 shadow-inner">
                     <h4 class="font-bold mb-2"><i class="fas fa-check-circle"></i> AKTIF (TERDAFTAR)</h4>
                     <p class="text-sm">Produk: ${found.jenis} | Spek: ${found.spek}<br>Milik: ${found.cpcl}<br>Terdaftar: ${found.tanggal}</p>
                 </div>`;
             } else {
-                resultDiv.innerHTML = `<div class="bg-red-50 p-4 rounded-xl mt-4 text-red-700 border border-red-200 text-sm">Kode tidak valid atau tidak ditemukan.</div>`;
+                resultDiv.innerHTML = `<div class="bg-red-50 p-4 rounded-xl mt-4 text-red-700 border border-red-200 text-sm shadow-inner"><i class="fas fa-exclamation-triangle mr-1"></i> Kode tidak valid atau data tidak ditemukan.</div>`;
             }
         };
     </script>
