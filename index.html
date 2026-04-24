@@ -26,6 +26,7 @@
                     },
                     animation: {
                         'slide-bg': 'slide 25s infinite linear',
+                        'fade-in': 'fadeIn 0.5s ease-out forwards',
                     },
                     keyframes: {
                         slide: {
@@ -38,6 +39,10 @@
                             '75%': { transform: 'translateX(-300%)' },
                             '95%': { transform: 'translateX(-300%)' },
                             '100%': { transform: 'translateX(-400%)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(-10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
                         }
                     }
                 }
@@ -61,15 +66,6 @@
             height: 100%;
             background-size: cover;
             background-position: center;
-        }
-
-        @keyframes slide {
-            0%, 15% { transform: translateX(0); }
-            20%, 35% { transform: translateX(-20%); }
-            40%, 55% { transform: translateX(-40%); }
-            60%, 75% { transform: translateX(-60%); }
-            80%, 95% { transform: translateX(-80%); }
-            100% { transform: translateX(0); }
         }
     </style>
 </head>
@@ -114,21 +110,14 @@
 
     <!-- Hero Section dengan Sliding Background -->
     <section id="beranda" class="relative pt-20 pb-32 min-h-[90vh] flex items-center overflow-hidden">
-        <!-- Slider Container -->
         <div class="absolute inset-0 z-0">
             <div class="hero-slider-container">
-                <!-- Slide 1: Traktor -->
                 <div class="hero-slide" style="background-image: url('https://www.ksasemesta.com/images/1920/24386990/fultimediting-ebzzUZr8zCQMfLPLhOgXlQ.png');"></div>
-                <!-- Slide 2: Team -->
                 <div class="hero-slide" style="background-image: url('https://www.ksasemesta.com/images/1024/24406589/AEP0201811-G_Yl12fW-HdoafDd8sXvvQ.jpg');"></div>
-                <!-- Slide 3: Pompa -->
                 <div class="hero-slide" style="background-image: url('https://www.ksasemesta.com/images/800x800/20997001/WhatsAppImage2025-10-14at11.20.392-yKSVNn5W93-j9YOtNVifjA.jpeg');"></div>
-                <!-- Slide 4: Implement -->
                 <div class="hero-slide" style="background-image: url('https://www.ksasemesta.com/images/800x800/24406811/WhatsAppImage2026-03-29at14.06.31-Aqon4-VeHDC3KrOVrTc9Bg.jpeg');"></div>
-                <!-- Slide 5: Field Action -->
                 <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1592982537447-6f2a6a0c5c10?q=80&w=2070&auto=format&fit=crop');"></div>
             </div>
-            <!-- Dark Overlay -->
             <div class="absolute inset-0 bg-gradient-to-r from-gray-900/90 to-gray-800/60"></div>
         </div>
         
@@ -285,6 +274,126 @@
         </div>
     </section>
 
+    <!-- Layanan -->
+    <section id="layanan" class="py-24 bg-gray-50 border-y">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-extrabold text-gray-900 mb-16">Layanan Terbaik Dari Kami</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+                    <div class="w-14 h-14 bg-brand rounded-xl text-white flex items-center justify-center text-2xl mb-6 mx-auto shadow-md"><i class="fas fa-chalkboard-teacher"></i></div>
+                    <h3 class="text-xl font-bold mb-4">Konsultasi & Pelatihan</h3>
+                    <p class="text-gray-600 text-sm">Pelatihan teknis terpadu agar mekanisasi Anda berjalan optimal.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+                    <div class="w-14 h-14 bg-accent rounded-xl text-white flex items-center justify-center text-2xl mb-6 mx-auto shadow-md"><i class="fas fa-wrench"></i></div>
+                    <h3 class="text-xl font-bold mb-4">Repair & Service</h3>
+                    <p class="text-gray-600 text-sm">Teknisi ahli yang siap memberikan perawatan berkala secara cepat.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+                    <div class="w-14 h-14 bg-gray-800 rounded-xl text-white flex items-center justify-center text-2xl mb-6 mx-auto shadow-md"><i class="fas fa-cogs"></i></div>
+                    <h3 class="text-xl font-bold mb-4">Suku Cadang Asli</h3>
+                    <p class="text-gray-600 text-sm">Penyediaan suku cadang lengkap untuk kelancaran operasional.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registrasi & Cek Garansi Section -->
+    <section id="garansi" class="py-24 bg-brand/5 relative">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h4 class="text-brand font-bold uppercase tracking-wider mb-2">Layanan Purna Jual</h4>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900">Portal Garansi KSA Semesta</h2>
+            </div>
+
+            <!-- PORTAL CEK STATUS (Tanpa Akun) -->
+            <div class="bg-white rounded-3xl shadow-xl p-8 mb-10 border border-brand/20 max-w-4xl mx-auto flex flex-col md:flex-row gap-8 items-center relative overflow-hidden">
+                <div class="absolute -top-10 -right-10 w-32 h-32 bg-accent rounded-full opacity-10 blur-2xl"></div>
+                <div class="md:w-5/12 z-10">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2 flex items-center gap-2"><i class="fas fa-search text-brand"></i> Cek Status</h3>
+                    <p class="text-gray-600 text-sm">Masukkan <strong class="text-gray-900">Kode Akses</strong> yang Anda terima saat pendaftaran untuk melihat Kartu Garansi Digital Anda.</p>
+                </div>
+                <div class="md:w-7/12 w-full z-10">
+                    <form onsubmit="cekGaransi(event)" class="flex gap-2">
+                        <input type="text" id="c_kode" required placeholder="Ketik Kode (Misal: KSA-ABC12)" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand outline-none transition-shadow font-mono uppercase text-sm font-bold placeholder:font-sans placeholder:font-normal">
+                        <button type="submit" class="bg-gray-900 text-white px-6 py-3 rounded-lg font-bold hover:bg-gray-800 transition-all shadow-md"><i class="fas fa-chevron-right"></i></button>
+                    </form>
+                    <!-- Hasil Cek Tampil Di Sini -->
+                    <div id="cek-result" class="w-full mt-2"></div>
+                </div>
+            </div>
+
+            <!-- FORM REGISTRASI GARANSI BARU -->
+            <div class="bg-white rounded-3xl shadow-xl p-8 md:p-12 border border-brand/20 max-w-4xl mx-auto">
+                <h3 class="text-xl font-bold text-gray-900 mb-6 border-b pb-4"><i class="fas fa-plus-circle text-accent mr-2"></i> Pendaftaran Unit Baru</h3>
+                <form onsubmit="submitGaransi(event)" class="space-y-6">
+                    <!-- Jenis Produk -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Jenis Produk</label>
+                        <select id="g_jenis" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand outline-none bg-gray-50 text-gray-800 cursor-pointer">
+                            <option value="pompa" selected>Pompa Irigasi</option>
+                            <option value="traktor" disabled>Traktor Roda 4 (Segera Hadir)</option>
+                            <option value="drone" disabled>Drone Pertanian (Segera Hadir)</option>
+                            <option value="implement" disabled>Implement Traktor (Segera Hadir)</option>
+                        </select>
+                        <p class="text-xs text-gray-500 mt-2">*Fase awal pendaftaran garansi online ini difokuskan khusus untuk unit Pompa.</p>
+                    </div>
+
+                    <!-- Spesifikasi Produk -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Spesifikasi / Tipe Produk</label>
+                        <input type="text" id="g_spek" required placeholder="Contoh: Pompa Air Diesel 3 Inch" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand outline-none transition-shadow">
+                    </div>
+
+                    <!-- CPCL Penerima -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">CPCL Penerima (Calon Petani Calon Lokasi)</label>
+                        <input type="text" id="g_cpcl" required placeholder="Detail Nama Kelompok Tani / Instansi / Individu Lengkap" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand outline-none transition-shadow">
+                    </div>
+
+                    <!-- Tanggal Daftar -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Tanggal Penerimaan / Pendaftaran</label>
+                        <input type="date" id="g_tanggal" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand outline-none transition-shadow text-gray-700 cursor-pointer">
+                    </div>
+
+                    <div class="pt-4">
+                        <button type="submit" id="g_submit_btn" class="w-full bg-brand text-white font-bold py-4 rounded-lg hover:bg-brand-dark transition-all shadow-lg text-lg flex items-center justify-center gap-2">
+                            <i class="fas fa-shield-check"></i> Daftarkan Garansi
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Tabel Database Garansi (Disembunyikan dari Publik, Hanya Untuk Admin) -->
+            <div id="admin-garansi-view" class="mt-16 bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-200 hidden">
+                <div class="p-6 bg-gray-900 text-white flex flex-col md:flex-row justify-between items-center gap-4">
+                    <h3 class="font-bold text-xl flex items-center gap-3"><i class="fas fa-server text-brand"></i> Database Status Garansi (Khusus Admin)</h3>
+                    <span class="text-sm bg-brand/20 text-brand-light px-4 py-1.5 rounded-full font-semibold border border-brand/50"><i class="fas fa-circle text-[8px] animate-pulse mr-1"></i> Live Update</span>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-gray-100 text-gray-700 border-b-2 border-gray-200 whitespace-nowrap">
+                                <th class="px-6 py-4 text-sm font-bold">No</th>
+                                <th class="px-6 py-4 text-sm font-bold">Produk</th>
+                                <th class="px-6 py-4 text-sm font-bold">Spesifikasi / Tipe</th>
+                                <th class="px-6 py-4 text-sm font-bold">CPCL Penerima</th>
+                                <th class="px-6 py-4 text-sm font-bold">Tanggal</th>
+                                <th class="px-6 py-4 text-sm font-bold text-blue-700">Kode Akses</th>
+                                <th class="px-6 py-4 text-sm font-bold text-center action-col hidden">Aksi (Admin)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="garansi-table-body">
+                            <tr><td colspan="7" class="px-6 py-8 text-center text-gray-500 font-medium"><i class="fas fa-spinner fa-spin mr-2"></i> Menghubungkan ke Database...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
     <!-- Galeri Kegiatan (Admin Mode Ready) -->
     <section id="galeri" class="py-24 bg-gray-900 text-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -326,147 +435,6 @@
                 </div>
             </div>
             <p id="admin-notice" class="mt-8 text-center text-gray-500 italic text-sm">Gunakan password admin di bagian bawah untuk akses edit.</p>
-        </div>
-    </section>
-
-    <!-- Layanan -->
-    <section id="layanan" class="py-24 bg-gray-50 border-y">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl font-extrabold text-gray-900 mb-16">Layanan Terbaik Dari Kami</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
-                    <div class="w-14 h-14 bg-brand rounded-xl text-white flex items-center justify-center text-2xl mb-6 mx-auto shadow-md"><i class="fas fa-chalkboard-teacher"></i></div>
-                    <h3 class="text-xl font-bold mb-4">Konsultasi & Pelatihan</h3>
-                    <p class="text-gray-600 text-sm">Pelatihan teknis terpadu agar mekanisasi Anda berjalan optimal.</p>
-                </div>
-                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
-                    <div class="w-14 h-14 bg-accent rounded-xl text-white flex items-center justify-center text-2xl mb-6 mx-auto shadow-md"><i class="fas fa-wrench"></i></div>
-                    <h3 class="text-xl font-bold mb-4">Repair & Service</h3>
-                    <p class="text-gray-600 text-sm">Teknisi ahli yang siap memberikan perawatan berkala secara cepat.</p>
-                </div>
-                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
-                    <div class="w-14 h-14 bg-gray-800 rounded-xl text-white flex items-center justify-center text-2xl mb-6 mx-auto shadow-md"><i class="fas fa-cogs"></i></div>
-                    <h3 class="text-xl font-bold mb-4">Suku Cadang Asli</h3>
-                    <p class="text-gray-600 text-sm">Penyediaan suku cadang lengkap untuk kelancaran operasional.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Registrasi Garansi Section -->
-    <section id="garansi" class="py-24 bg-brand/5 relative">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h4 class="text-brand font-bold uppercase tracking-wider mb-2">Layanan Purna Jual</h4>
-                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900">Aktivasi Garansi Produk</h2>
-                <p class="text-gray-600 mt-4 text-lg">Daftarkan produk KSA Semesta yang Anda terima secara mandiri untuk mengaktifkan masa garansi resmi.</p>
-            </div>
-
-            <!-- Box Utama Garansi -->
-            <div class="bg-white rounded-3xl shadow-xl p-8 md:p-12 border border-brand/20 max-w-4xl mx-auto">
-                
-                <!-- Tab Menu (Daftar vs Cek) -->
-                <div class="flex flex-col sm:flex-row justify-center mb-10 border-b border-gray-200">
-                    <button type="button" onclick="toggleGaransiTab('daftar')" id="tab-daftar" class="px-6 py-3 font-bold text-brand border-b-2 border-brand transition-all">Pendaftaran Baru</button>
-                    <button type="button" onclick="toggleGaransiTab('cek')" id="tab-cek" class="px-6 py-3 font-bold text-gray-500 hover:text-brand border-b-2 border-transparent transition-all">Cek Status Garansi</button>
-                </div>
-
-                <!-- 1. Form Registrasi (Aktif secara default) -->
-                <form id="form-daftar-garansi" onsubmit="submitGaransi(event)" class="space-y-6">
-                    <!-- Jenis Produk -->
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Jenis Produk</label>
-                        <select id="g_jenis" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand outline-none bg-gray-50 text-gray-800 cursor-pointer">
-                            <option value="pompa" selected>Pompa Irigasi</option>
-                            <option value="traktor" disabled>Traktor Roda 4 (Segera Hadir)</option>
-                            <option value="drone" disabled>Drone Pertanian (Segera Hadir)</option>
-                            <option value="implement" disabled>Implement Traktor (Segera Hadir)</option>
-                        </select>
-                        <p class="text-xs text-gray-500 mt-2">*Fase awal pendaftaran garansi online ini difokuskan khusus untuk unit Pompa.</p>
-                    </div>
-
-                    <!-- Spesifikasi Produk -->
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Spesifikasi / Tipe Produk</label>
-                        <input type="text" id="g_spek" required placeholder="Contoh: Pompa Air Diesel 3 Inch" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand outline-none transition-shadow">
-                    </div>
-
-                    <!-- CPCL Penerima -->
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">CPCL Penerima (Calon Petani Calon Lokasi)</label>
-                        <input type="text" id="g_cpcl" required placeholder="Detail Nama Kelompok Tani / Instansi / Individu Lengkap" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand outline-none transition-shadow">
-                    </div>
-
-                    <!-- Tanggal Daftar -->
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Tanggal Penerimaan / Pendaftaran</label>
-                        <input type="date" id="g_tanggal" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand outline-none transition-shadow text-gray-700 cursor-pointer">
-                    </div>
-
-                    <div class="pt-4">
-                        <button type="submit" id="g_submit_btn" class="w-full bg-brand text-white font-bold py-4 rounded-lg hover:bg-brand-dark transition-all shadow-lg text-lg flex items-center justify-center gap-2">
-                            <i class="fas fa-shield-check"></i> Daftarkan Garansi
-                        </button>
-                    </div>
-                </form>
-
-                <!-- 2. Pesan Sukses & Kode Akses (Disembunyikan secara default) -->
-                <div id="success-message" class="hidden text-center py-8">
-                    <div class="w-20 h-20 bg-green-100 text-green-500 rounded-full flex items-center justify-center text-4xl mx-auto mb-6">
-                        <i class="fas fa-check"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Pendaftaran Berhasil!</h3>
-                    <p class="text-gray-600 mb-6">Terima kasih, produk Anda telah tercatat di sistem kami. Ini adalah Kode Akses Anda:</p>
-                    <div class="bg-gray-100 p-6 rounded-xl inline-block border-2 border-dashed border-gray-400 mb-6 shadow-inner">
-                        <span id="display-access-code" class="text-4xl md:text-5xl font-black text-brand tracking-widest">KSA-XXXX</span>
-                    </div>
-                    <p class="text-red-500 font-bold text-sm md:text-base mb-8"><i class="fas fa-exclamation-triangle"></i> HARAP SIMPAN KODE INI untuk mengecek status garansi Anda nanti.</p>
-                    <button type="button" onclick="toggleGaransiTab('cek')" class="bg-gray-900 text-white px-8 py-3 rounded-lg font-bold hover:bg-gray-800 transition-all shadow-lg">Cek Status Saya Sekarang</button>
-                </div>
-
-                <!-- 3. Form Cek Garansi (Disembunyikan secara default) -->
-                <form id="form-cek-garansi" onsubmit="cekGaransi(event)" class="hidden space-y-6">
-                    <div class="text-center mb-6">
-                        <p class="text-gray-600">Masukkan <strong>Kode Akses</strong> yang Anda dapatkan saat pendaftaran untuk melihat informasi garansi Anda.</p>
-                    </div>
-                    <div>
-                        <input type="text" id="input_kode_akses" required placeholder="Contoh: KSA-A1B2C" class="w-full px-4 py-4 text-center text-xl md:text-2xl font-bold rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand outline-none transition-shadow uppercase tracking-widest text-brand">
-                    </div>
-                    <button type="submit" class="w-full bg-brand text-white font-bold py-4 rounded-lg hover:bg-brand-dark transition-all shadow-lg text-lg flex items-center justify-center gap-2">
-                        <i class="fas fa-search"></i> Cek Data Garansi
-                    </button>
-                    <!-- Hasil Cek akan Tampil Disini -->
-                    <div id="cek-result" class="mt-6"></div>
-                </form>
-
-            </div>
-
-            <!-- Tabel Database Garansi (Disembunyikan dari Publik, Hanya Untuk Admin) -->
-            <div id="admin-garansi-view" class="mt-16 bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-200 hidden">
-                <div class="p-6 bg-gray-900 text-white flex flex-col md:flex-row justify-between items-center gap-4">
-                    <h3 class="font-bold text-xl flex items-center gap-3"><i class="fas fa-server text-brand"></i> Database Status Garansi (Khusus Admin)</h3>
-                    <span class="text-sm bg-brand/20 text-brand-light px-4 py-1.5 rounded-full font-semibold border border-brand/50"><i class="fas fa-circle text-[8px] animate-pulse mr-1"></i> Live Update</span>
-                </div>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse">
-                        <thead>
-                            <tr class="bg-gray-100 text-gray-700 border-b-2 border-gray-200">
-                                <th class="px-6 py-4 text-sm font-bold">No</th>
-                                <th class="px-6 py-4 text-sm font-bold text-brand">Kode Akses</th>
-                                <th class="px-6 py-4 text-sm font-bold">Produk</th>
-                                <th class="px-6 py-4 text-sm font-bold">Spesifikasi / Tipe</th>
-                                <th class="px-6 py-4 text-sm font-bold">CPCL Penerima</th>
-                                <th class="px-6 py-4 text-sm font-bold">Tanggal</th>
-                                <th class="px-6 py-4 text-sm font-bold text-center action-col hidden">Aksi (Admin)</th>
-                            </tr>
-                        </thead>
-                        <tbody id="garansi-table-body">
-                            <tr><td colspan="6" class="px-6 py-8 text-center text-gray-500 font-medium"><i class="fas fa-spinner fa-spin mr-2"></i> Menghubungkan ke Database...</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            
         </div>
     </section>
 
@@ -720,33 +688,6 @@
                 reader.readAsDataURL(file);
             }
         }
-
-        // Fungsi Beralih Antara Tab "Daftar" dan "Cek"
-        function toggleGaransiTab(tab) {
-            const formDaftar = document.getElementById('form-daftar-garansi');
-            const formCek = document.getElementById('form-cek-garansi');
-            const successMsg = document.getElementById('success-message');
-            const tabDaftarBtn = document.getElementById('tab-daftar');
-            const tabCekBtn = document.getElementById('tab-cek');
-
-            if(tab === 'daftar') {
-                formDaftar.classList.remove('hidden');
-                formCek.classList.add('hidden');
-                successMsg.classList.add('hidden');
-                tabDaftarBtn.className = "px-6 py-3 font-bold text-brand border-b-2 border-brand transition-all";
-                tabCekBtn.className = "px-6 py-3 font-bold text-gray-500 hover:text-brand border-b-2 border-transparent transition-all";
-            } else {
-                formDaftar.classList.add('hidden');
-                formCek.classList.remove('hidden');
-                successMsg.classList.add('hidden');
-                tabCekBtn.className = "px-6 py-3 font-bold text-brand border-b-2 border-brand transition-all";
-                tabDaftarBtn.className = "px-6 py-3 font-bold text-gray-500 hover:text-brand border-b-2 border-transparent transition-all";
-            }
-            
-            // Bersihkan hasil cek sebelumnya
-            document.getElementById('cek-result').innerHTML = '';
-            document.getElementById('input_kode_akses').value = '';
-        }
     </script>
 
     <!-- FIREBASE DATABASE SCRIPT (Penyimpanan Real-time Garansi) -->
@@ -755,18 +696,21 @@
         import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // Konfigurasi Cloud Database KSA Semesta
         let firebaseConfig;
         let isCanvas = false;
         
-        // Pengecekan Lingkungan Website (Lokal vs Hosting)
-        if (typeof __firebase_config !== 'undefined') {
-            firebaseConfig = JSON.parse(__firebase_config);
-            isCanvas = true;
-        } else {
-            // CATATAN PENTING UNTUK ADMIN: 
-            // Jika nanti file ini diunggah ke GitHub Pages, Bapak/Tim IT wajib mengganti
-            // data di bawah ini dengan kode Firebase Project milik perusahaan agar database berfungsi.
+        // Memastikan __firebase_config tidak memicu error Syntax saat parsing
+        if (typeof __firebase_config !== 'undefined' && __firebase_config) {
+            try {
+                firebaseConfig = JSON.parse(__firebase_config);
+                isCanvas = true;
+            } catch (err) {
+                console.error("Gagal membaca konfigurasi sistem, menggunakan mode standar:", err);
+            }
+        } 
+        
+        // Jika konfigurasi tidak ada atau gagal dimuat, gunakan standar
+        if (!isCanvas) {
             firebaseConfig = {
                 apiKey: "ISI_DENGAN_API_KEY_PERUSAHAAN",
                 authDomain: "PROJECT-ID.firebaseapp.com",
@@ -783,16 +727,14 @@
             auth = getAuth(app);
             db = getFirestore(app);
             appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-            // Tempat penyimpanan tabel garansi
             colRef = isCanvas ? collection(db, 'artifacts', appId, 'public', 'data', 'garansi') : collection(db, 'garansi');
         } catch(e) {
             console.error("Kesalahan Koneksi Database:", e);
         }
 
         let currentUser = null;
-        let currentGaransiData = []; // Menyimpan data sementara di layar
+        let currentGaransiData = [];
 
-        // 1. Proses Koneksi Aman ke Database
         async function initAuth() {
             if (!auth) return;
             try {
@@ -807,25 +749,22 @@
         }
         initAuth();
 
-        // 2. Pantau Perubahan Data Live
         onAuthStateChanged(auth, (user) => {
             currentUser = user;
             if (user) {
-                fetchGaransi(); // Ambil data saat terhubung
+                fetchGaransi(); 
             }
         });
 
-        // 3. Mengambil Data Garansi
         function fetchGaransi() {
             if (!currentUser || !colRef) return;
             
             onSnapshot(colRef, (snapshot) => {
                 const data = [];
-                snapshot.forEach((doc) => {
-                    data.push({ id: doc.id, ...doc.data() });
+                snapshot.forEach((docItem) => {
+                    data.push({ id: docItem.id, ...docItem.data() });
                 });
                 
-                // Susun otomatis: Yang baru mendaftar akan tampil di urutan teratas
                 data.sort((a, b) => b.timestamp - a.timestamp);
                 currentGaransiData = data;
                 renderGaransiTable(data);
@@ -834,7 +773,6 @@
             });
         }
 
-        // 4. Menampilkan Data ke Tabel HTML
         window.refreshGaransiTable = () => renderGaransiTable(currentGaransiData);
         function renderGaransiTable(data) {
             const tbody = document.getElementById('garansi-table-body');
@@ -850,16 +788,15 @@
                 html += `
                 <tr class="border-b border-gray-200 hover:bg-green-50 transition-colors">
                     <td class="px-6 py-4 text-sm font-semibold">${index + 1}</td>
-                    <td class="px-6 py-4 font-bold text-gray-900 tracking-wider">${item.accessCode || '-'}</td>
                     <td class="px-6 py-4 font-bold text-brand uppercase tracking-wide">${item.jenis === 'pompa' ? 'Pompa Irigasi' : item.jenis}</td>
                     <td class="px-6 py-4 text-sm text-gray-800 font-medium">${item.spek}</td>
-                    <td class="px-6 py-4 text-sm text-gray-800">${item.cpcl}</td>
-                    <td class="px-6 py-4 text-sm font-semibold text-gray-600">${item.tanggal}</td>
-                    
-                    <!-- Kolom Ini Sengaja Disembunyikan (Hanya Muncul Jika Login Admin KSA) -->
+                    <td class="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">${item.cpcl}</td>
+                    <td class="px-6 py-4 text-sm font-semibold text-gray-600 whitespace-nowrap">${item.tanggal}</td>
+                    <td class="px-6 py-4 text-sm font-mono font-bold text-blue-700 tracking-wider">${item.kodeAkses || '-'}</td>
+                    <!-- Tombol Hapus (Hanya Admin) -->
                     <td class="px-6 py-4 text-center action-col ${window.isAdmin ? '' : 'hidden'}">
-                        <button onclick="deleteGaransi('${item.id}')" class="text-red-600 hover:text-white bg-red-50 hover:bg-red-600 border border-red-200 font-bold px-3 py-1.5 rounded transition-colors text-xs shadow-sm" title="Hapus Permanen dari Database">
-                            <i class="fas fa-trash-alt mr-1"></i> Hapus
+                        <button onclick="deleteGaransi('${item.id}')" class="text-red-600 hover:text-white bg-red-50 hover:bg-red-600 border border-red-200 font-bold px-3 py-1.5 rounded transition-colors text-xs shadow-sm" title="Hapus Permanen">
+                            <i class="fas fa-trash-alt"></i>
                         </button>
                     </td>
                 </tr>
@@ -867,6 +804,41 @@
             });
             tbody.innerHTML = html;
         }
+
+        // FUNGSI CEK STATUS GARANSI VIA KODE
+        window.cekGaransi = function(event) {
+            event.preventDefault();
+            const inputKode = document.getElementById('c_kode').value.trim().toUpperCase();
+            const resultDiv = document.getElementById('cek-result');
+
+            if (currentGaransiData.length === 0) {
+                resultDiv.innerHTML = `<div class="text-sm text-gray-500 mt-3 p-3 bg-gray-50 rounded-lg"><i class="fas fa-spinner fa-spin mr-2"></i> Sistem sedang memuat database. Harap tunggu sebentar...</div>`;
+                return;
+            }
+
+            const found = currentGaransiData.find(item => item.kodeAkses && item.kodeAkses.toUpperCase() === inputKode);
+
+            if (found) {
+                resultDiv.innerHTML = `
+                    <div class="bg-green-50 border border-green-200 p-5 rounded-xl mt-4 text-left animate-fade-in shadow-inner">
+                        <h4 class="font-bold text-green-800 mb-3 border-b border-green-200 pb-2"><i class="fas fa-check-circle text-green-600 mr-1"></i> STATUS: AKTIF (TERDAFTAR)</h4>
+                        <div class="grid grid-cols-2 gap-3 text-sm text-green-900">
+                            <div><span class="opacity-70 text-xs">Unit/Produk:</span><br><strong class="uppercase">${found.jenis === 'pompa' ? 'Pompa Irigasi' : found.jenis}</strong></div>
+                            <div><span class="opacity-70 text-xs">Spesifikasi/Tipe:</span><br><strong>${found.spek}</strong></div>
+                            <div class="col-span-2"><span class="opacity-70 text-xs">CPCL/Pemilik:</span><br><strong>${found.cpcl}</strong></div>
+                            <div class="col-span-2"><span class="opacity-70 text-xs">Tanggal Registrasi:</span><br><strong>${found.tanggal}</strong></div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                resultDiv.innerHTML = `
+                    <div class="bg-red-50 border border-red-200 p-4 rounded-xl mt-4 text-left animate-fade-in shadow-inner">
+                        <p class="text-sm text-red-700 font-bold"><i class="fas fa-exclamation-triangle mr-1"></i> KODE AKSES TIDAK VALID</p>
+                        <p class="text-xs text-red-500 mt-1">Pastikan kode yang Anda ketik benar (contoh: KSA-ABC12). Data tidak ditemukan dalam sistem kami.</p>
+                    </div>
+                `;
+            }
+        };
 
         // 5. Fungsi Kustomer Daftar Garansi
         window.submitGaransi = async function(event) {
@@ -882,8 +854,9 @@
             const tanggal = document.getElementById('g_tanggal').value;
             const btn = document.getElementById('g_submit_btn');
 
-            // Generate Kode Akses Unik (KSA- + 5 Huruf/Angka Acak)
-            const accessCode = 'KSA-' + Math.random().toString(36).substring(2, 7).toUpperCase();
+            // Generate Kode Akses Unik (KSA- + 6 Huruf/Angka Acak agar lebih aman)
+            const randomStr = Math.random().toString(36).substring(2, 8).toUpperCase();
+            const accessCode = 'KSA-' + randomStr;
 
             btn.disabled = true;
             btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Menyimpan ke Database...';
@@ -894,15 +867,13 @@
                     spek,
                     cpcl,
                     tanggal,
-                    accessCode, // Simpan kode unik ini ke server
+                    kodeAkses: accessCode,
                     timestamp: Date.now()
                 });
                 
-                // Ubah Tampilan Layar: Sembunyikan form, tampilkan Kode Akses
-                document.getElementById('form-daftar-garansi').classList.add('hidden');
-                document.getElementById('success-message').classList.remove('hidden');
-                document.getElementById('display-access-code').innerText = accessCode;
-
+                // Alert Penting Kepada Customer Untuk Menyimpan Kode
+                alert(`SUKSES!\n\nUnit Anda telah resmi terdaftar di sistem Purna Jual KSA Semesta.\n\nKODE AKSES ANDA: ${accessCode}\n\n*PENTING: Harap catat dan simpan KODE AKSES ini baik-baik. Anda membutuhkannya untuk mengecek status garansi sewaktu-waktu tanpa perlu login.`);
+                
                 event.target.reset(); 
             } catch (e) {
                 console.error(e);
@@ -913,45 +884,7 @@
             }
         };
 
-        // Fungsi Cek Garansi (Oleh Customer pakai Kode Akses)
-        window.cekGaransi = function(event) {
-            event.preventDefault();
-            const inputCode = document.getElementById('input_kode_akses').value.trim().toUpperCase();
-            const resultDiv = document.getElementById('cek-result');
-
-            // Cari data di local array berdasarkan Kode Akses
-            const foundData = currentGaransiData.find(d => d.accessCode === inputCode);
-
-            if (foundData) {
-                resultDiv.innerHTML = `
-                    <div class="bg-green-50 border border-green-200 p-6 rounded-xl mt-4 text-left shadow-inner">
-                        <h4 class="font-bold text-green-800 text-lg mb-4 border-b border-green-200 pb-2"><i class="fas fa-check-circle mr-2"></i> Data Garansi Ditemukan</h4>
-                        <div class="space-y-2">
-                            <p class="text-sm text-gray-700"><span class="font-semibold text-gray-900 inline-block w-32">Jenis Produk</span> : ${foundData.jenis === 'pompa' ? 'Pompa Irigasi' : foundData.jenis}</p>
-                            <p class="text-sm text-gray-700"><span class="font-semibold text-gray-900 inline-block w-32">Spesifikasi</span> : ${foundData.spek}</p>
-                            <p class="text-sm text-gray-700"><span class="font-semibold text-gray-900 inline-block w-32">Nama Penerima</span> : ${foundData.cpcl}</p>
-                            <p class="text-sm text-gray-700"><span class="font-semibold text-gray-900 inline-block w-32">Tanggal Daftar</span> : ${foundData.tanggal}</p>
-                            <div class="mt-4 pt-4 border-t border-green-200 flex items-center justify-between">
-                                <span class="font-bold text-gray-900">Status Sistem:</span> 
-                                <span class="bg-brand text-white px-3 py-1 rounded text-xs font-bold uppercase tracking-widest shadow">Garansi Aktif</span>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            } else {
-                resultDiv.innerHTML = `
-                    <div class="bg-red-50 border border-red-200 p-4 rounded-xl mt-4 text-left flex items-start gap-3 shadow-inner">
-                        <i class="fas fa-times-circle text-red-600 text-xl mt-0.5"></i>
-                        <div>
-                            <h4 class="font-bold text-red-800">Kode Tidak Ditemukan</h4>
-                            <p class="text-sm text-red-600 mt-1">Pastikan Kode Akses yang Anda masukkan sudah benar (Contoh: KSA-XXXXX).</p>
-                        </div>
-                    </div>
-                `;
-            }
-        };
-
-        // 6. Fungsi Hapus Data Khusus Perusahaan (Admin KSA)
+        // FUNGSI HAPUS GARANSI (HANYA ADMIN)
         window.deleteGaransi = async function(docId) {
             if (!window.isAdmin) {
                 alert("AKSES DITOLAK! Hanya Manajemen KSA yang diizinkan menghapus data dari server.");
@@ -961,7 +894,6 @@
                 try {
                     const docRef = isCanvas ? doc(db, 'artifacts', appId, 'public', 'data', 'garansi', docId) : doc(db, 'garansi', docId);
                     await deleteDoc(docRef);
-                    // Karena menggunakan onSnapshot (Real-time), tabel di HTML otomatis akan hilang tanpa perlu di-refresh!
                 } catch (error) {
                     console.error(error);
                     alert("Gagal menghapus data dari server.");
