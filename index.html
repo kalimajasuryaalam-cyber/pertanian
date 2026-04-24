@@ -45,7 +45,7 @@
         }
     </script>
     <style>
-        /* Custom scrollbar for better look */
+        /* Custom scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #f1f1f1; }
         ::-webkit-scrollbar-thumb { background: #16a34a; border-radius: 10px; }
@@ -98,6 +98,7 @@
                     <a href="#tentang" class="text-gray-700 hover:text-brand font-medium transition-colors">Tentang Kami</a>
                     <a href="#produk" class="text-gray-700 hover:text-brand font-medium transition-colors">Produk</a>
                     <a href="#layanan" class="text-gray-700 hover:text-brand font-medium transition-colors">Layanan</a>
+                    <a href="#garansi" class="text-gray-700 hover:text-brand font-medium transition-colors">Garansi</a>
                     <a href="#galeri" class="text-gray-700 hover:text-brand font-medium transition-colors">Galeri</a>
                     <a href="#kontak" class="text-gray-700 hover:text-brand font-medium transition-colors">Kontak</a>
                 </nav>
@@ -320,7 +321,7 @@
                     </div>
                     <img src="https://www.ksasemesta.com/images/1024/24406589/AEP0201811-G_Yl12fW-HdoafDd8sXvvQ.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 object-top">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent p-5 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-opacity">
-                        <h3 class="font-bold text-sm content-editable" contenteditable="false">Tim Lapangan KSA Semesta</h3>
+                        <h3 class="font-bold text-sm text-white content-editable" contenteditable="false">Tim Lapangan KSA Semesta</h3>
                     </div>
                 </div>
             </div>
@@ -349,6 +350,123 @@
                     <p class="text-gray-600 text-sm">Penyediaan suku cadang lengkap untuk kelancaran operasional.</p>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Registrasi Garansi Section -->
+    <section id="garansi" class="py-24 bg-brand/5 relative">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h4 class="text-brand font-bold uppercase tracking-wider mb-2">Layanan Purna Jual</h4>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900">Aktivasi Garansi Produk</h2>
+                <p class="text-gray-600 mt-4 text-lg">Daftarkan produk KSA Semesta yang Anda terima secara mandiri untuk mengaktifkan masa garansi resmi.</p>
+            </div>
+
+            <!-- Box Utama Garansi -->
+            <div class="bg-white rounded-3xl shadow-xl p-8 md:p-12 border border-brand/20 max-w-4xl mx-auto">
+                
+                <!-- Tab Menu (Daftar vs Cek) -->
+                <div class="flex flex-col sm:flex-row justify-center mb-10 border-b border-gray-200">
+                    <button type="button" onclick="toggleGaransiTab('daftar')" id="tab-daftar" class="px-6 py-3 font-bold text-brand border-b-2 border-brand transition-all">Pendaftaran Baru</button>
+                    <button type="button" onclick="toggleGaransiTab('cek')" id="tab-cek" class="px-6 py-3 font-bold text-gray-500 hover:text-brand border-b-2 border-transparent transition-all">Cek Status Garansi</button>
+                </div>
+
+                <!-- 1. Form Registrasi (Aktif secara default) -->
+                <form id="form-daftar-garansi" onsubmit="submitGaransi(event)" class="space-y-6">
+                    <!-- Jenis Produk -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Jenis Produk</label>
+                        <select id="g_jenis" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand outline-none bg-gray-50 text-gray-800 cursor-pointer">
+                            <option value="pompa" selected>Pompa Irigasi</option>
+                            <option value="traktor" disabled>Traktor Roda 4 (Segera Hadir)</option>
+                            <option value="drone" disabled>Drone Pertanian (Segera Hadir)</option>
+                            <option value="implement" disabled>Implement Traktor (Segera Hadir)</option>
+                        </select>
+                        <p class="text-xs text-gray-500 mt-2">*Fase awal pendaftaran garansi online ini difokuskan khusus untuk unit Pompa.</p>
+                    </div>
+
+                    <!-- Spesifikasi Produk -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Spesifikasi / Tipe Produk</label>
+                        <input type="text" id="g_spek" required placeholder="Contoh: Pompa Air Diesel 3 Inch" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand outline-none transition-shadow">
+                    </div>
+
+                    <!-- CPCL Penerima -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">CPCL Penerima (Calon Petani Calon Lokasi)</label>
+                        <input type="text" id="g_cpcl" required placeholder="Detail Nama Kelompok Tani / Instansi / Individu Lengkap" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand outline-none transition-shadow">
+                    </div>
+
+                    <!-- Tanggal Daftar -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Tanggal Penerimaan / Pendaftaran</label>
+                        <input type="date" id="g_tanggal" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand outline-none transition-shadow text-gray-700 cursor-pointer">
+                    </div>
+
+                    <div class="pt-4">
+                        <button type="submit" id="g_submit_btn" class="w-full bg-brand text-white font-bold py-4 rounded-lg hover:bg-brand-dark transition-all shadow-lg text-lg flex items-center justify-center gap-2">
+                            <i class="fas fa-shield-check"></i> Daftarkan Garansi
+                        </button>
+                    </div>
+                </form>
+
+                <!-- 2. Pesan Sukses & Kode Akses (Disembunyikan secara default) -->
+                <div id="success-message" class="hidden text-center py-8">
+                    <div class="w-20 h-20 bg-green-100 text-green-500 rounded-full flex items-center justify-center text-4xl mx-auto mb-6">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Pendaftaran Berhasil!</h3>
+                    <p class="text-gray-600 mb-6">Terima kasih, produk Anda telah tercatat di sistem kami. Ini adalah Kode Akses Anda:</p>
+                    <div class="bg-gray-100 p-6 rounded-xl inline-block border-2 border-dashed border-gray-400 mb-6 shadow-inner">
+                        <span id="display-access-code" class="text-4xl md:text-5xl font-black text-brand tracking-widest">KSA-XXXX</span>
+                    </div>
+                    <p class="text-red-500 font-bold text-sm md:text-base mb-8"><i class="fas fa-exclamation-triangle"></i> HARAP SIMPAN KODE INI untuk mengecek status garansi Anda nanti.</p>
+                    <button type="button" onclick="toggleGaransiTab('cek')" class="bg-gray-900 text-white px-8 py-3 rounded-lg font-bold hover:bg-gray-800 transition-all shadow-lg">Cek Status Saya Sekarang</button>
+                </div>
+
+                <!-- 3. Form Cek Garansi (Disembunyikan secara default) -->
+                <form id="form-cek-garansi" onsubmit="cekGaransi(event)" class="hidden space-y-6">
+                    <div class="text-center mb-6">
+                        <p class="text-gray-600">Masukkan <strong>Kode Akses</strong> yang Anda dapatkan saat pendaftaran untuk melihat informasi garansi Anda.</p>
+                    </div>
+                    <div>
+                        <input type="text" id="input_kode_akses" required placeholder="Contoh: KSA-A1B2C" class="w-full px-4 py-4 text-center text-xl md:text-2xl font-bold rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand outline-none transition-shadow uppercase tracking-widest text-brand">
+                    </div>
+                    <button type="submit" class="w-full bg-brand text-white font-bold py-4 rounded-lg hover:bg-brand-dark transition-all shadow-lg text-lg flex items-center justify-center gap-2">
+                        <i class="fas fa-search"></i> Cek Data Garansi
+                    </button>
+                    <!-- Hasil Cek akan Tampil Disini -->
+                    <div id="cek-result" class="mt-6"></div>
+                </form>
+
+            </div>
+
+            <!-- Tabel Database Garansi (Disembunyikan dari Publik, Hanya Untuk Admin) -->
+            <div id="admin-garansi-view" class="mt-16 bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-200 hidden">
+                <div class="p-6 bg-gray-900 text-white flex flex-col md:flex-row justify-between items-center gap-4">
+                    <h3 class="font-bold text-xl flex items-center gap-3"><i class="fas fa-server text-brand"></i> Database Status Garansi (Khusus Admin)</h3>
+                    <span class="text-sm bg-brand/20 text-brand-light px-4 py-1.5 rounded-full font-semibold border border-brand/50"><i class="fas fa-circle text-[8px] animate-pulse mr-1"></i> Live Update</span>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-gray-100 text-gray-700 border-b-2 border-gray-200">
+                                <th class="px-6 py-4 text-sm font-bold">No</th>
+                                <th class="px-6 py-4 text-sm font-bold text-brand">Kode Akses</th>
+                                <th class="px-6 py-4 text-sm font-bold">Produk</th>
+                                <th class="px-6 py-4 text-sm font-bold">Spesifikasi / Tipe</th>
+                                <th class="px-6 py-4 text-sm font-bold">CPCL Penerima</th>
+                                <th class="px-6 py-4 text-sm font-bold">Tanggal</th>
+                                <th class="px-6 py-4 text-sm font-bold text-center action-col hidden">Aksi (Admin)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="garansi-table-body">
+                            <tr><td colspan="6" class="px-6 py-8 text-center text-gray-500 font-medium"><i class="fas fa-spinner fa-spin mr-2"></i> Menghubungkan ke Database...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
         </div>
     </section>
 
@@ -483,6 +601,7 @@
                         <li><a href="#beranda" class="hover:text-brand transition-colors">Beranda</a></li>
                         <li><a href="#tentang" class="hover:text-brand transition-colors">Tentang Kami</a></li>
                         <li><a href="#produk" class="hover:text-brand transition-colors">Katalog Produk</a></li>
+                        <li><a href="#garansi" class="hover:text-brand transition-colors">Aktivasi Garansi</a></li>
                         <li><a href="#galeri" class="hover:text-brand transition-colors">Galeri Dokumentasi</a></li>
                     </ul>
                     <!-- Tombol Login Admin (Yakin537@) -->
@@ -508,21 +627,39 @@
         </div>
     </footer>
 
+    <!-- SCRIPT TAMPILAN & ADMIN -->
     <script>
-        let isAdmin = false;
+        window.isAdmin = false;
 
         function toggleAdminMode() {
             // Password Admin: Yakin537@
             const pass = prompt("Hanya Admin KSA: Masukkan Password Keamanan");
             if (pass === "Yakin537@") {
-                isAdmin = true;
-                alert("Login Berhasil! Akses edit kini terbuka untuk Produk, Galeri, dan Mitra.");
+                window.isAdmin = true;
+                alert("Login Berhasil! Akses Edit & Akses Hapus Database Garansi terbuka.");
                 document.querySelectorAll('.admin-tools').forEach(el => el.classList.remove('hidden'));
+                document.querySelectorAll('.action-col').forEach(el => el.classList.remove('hidden')); // Memunculkan tombol Hapus Garansi
                 document.querySelectorAll('.content-editable').forEach(el => el.contentEditable = "true");
-                document.getElementById('admin-notice').innerText = "Mode Edit Aktif: Gunakan tombol di foto produk, galeri, atau mitra untuk merubah konten.";
-                document.getElementById('admin-notice').classList.add('text-brand');
-                document.getElementById('admin-btn').innerHTML = '<i class="fas fa-check-circle"></i> Mode Admin Aktif';
-                document.getElementById('admin-btn').classList.add('text-brand');
+                
+                // Menampilkan Tabel Database Garansi
+                const garansiView = document.getElementById('admin-garansi-view');
+                if(garansiView) garansiView.classList.remove('hidden');
+
+                const notice = document.getElementById('admin-notice');
+                if (notice) {
+                    notice.innerText = "Mode Edit Aktif: Anda memegang kendali penuh (Admin).";
+                    notice.classList.add('text-brand');
+                }
+                const btn = document.getElementById('admin-btn');
+                if (btn) {
+                    btn.innerHTML = '<i class="fas fa-check-circle"></i> Mode Admin Aktif';
+                    btn.classList.add('text-brand');
+                }
+                
+                // Refresh tabel jika sudah termuat agar tombol Hapus muncul
+                if (typeof window.refreshGaransiTable === 'function') {
+                    window.refreshGaransiTable();
+                }
             } else if (pass !== null) {
                 alert("Password Salah! Akses Ditolak.");
             }
@@ -583,6 +720,254 @@
                 reader.readAsDataURL(file);
             }
         }
+
+        // Fungsi Beralih Antara Tab "Daftar" dan "Cek"
+        function toggleGaransiTab(tab) {
+            const formDaftar = document.getElementById('form-daftar-garansi');
+            const formCek = document.getElementById('form-cek-garansi');
+            const successMsg = document.getElementById('success-message');
+            const tabDaftarBtn = document.getElementById('tab-daftar');
+            const tabCekBtn = document.getElementById('tab-cek');
+
+            if(tab === 'daftar') {
+                formDaftar.classList.remove('hidden');
+                formCek.classList.add('hidden');
+                successMsg.classList.add('hidden');
+                tabDaftarBtn.className = "px-6 py-3 font-bold text-brand border-b-2 border-brand transition-all";
+                tabCekBtn.className = "px-6 py-3 font-bold text-gray-500 hover:text-brand border-b-2 border-transparent transition-all";
+            } else {
+                formDaftar.classList.add('hidden');
+                formCek.classList.remove('hidden');
+                successMsg.classList.add('hidden');
+                tabCekBtn.className = "px-6 py-3 font-bold text-brand border-b-2 border-brand transition-all";
+                tabDaftarBtn.className = "px-6 py-3 font-bold text-gray-500 hover:text-brand border-b-2 border-transparent transition-all";
+            }
+            
+            // Bersihkan hasil cek sebelumnya
+            document.getElementById('cek-result').innerHTML = '';
+            document.getElementById('input_kode_akses').value = '';
+        }
+    </script>
+
+    <!-- FIREBASE DATABASE SCRIPT (Penyimpanan Real-time Garansi) -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Konfigurasi Cloud Database KSA Semesta
+        let firebaseConfig;
+        let isCanvas = false;
+        
+        // Pengecekan Lingkungan Website (Lokal vs Hosting)
+        if (typeof __firebase_config !== 'undefined') {
+            firebaseConfig = JSON.parse(__firebase_config);
+            isCanvas = true;
+        } else {
+            // CATATAN PENTING UNTUK ADMIN: 
+            // Jika nanti file ini diunggah ke GitHub Pages, Bapak/Tim IT wajib mengganti
+            // data di bawah ini dengan kode Firebase Project milik perusahaan agar database berfungsi.
+            firebaseConfig = {
+                apiKey: "ISI_DENGAN_API_KEY_PERUSAHAAN",
+                authDomain: "PROJECT-ID.firebaseapp.com",
+                projectId: "PROJECT-ID",
+                storageBucket: "PROJECT-ID.firebasestorage.app",
+                messagingSenderId: "1234567890",
+                appId: "1:1234567890:web:abcdef123456"
+            };
+        }
+
+        let app, auth, db, appId, colRef;
+        try {
+            app = initializeApp(firebaseConfig);
+            auth = getAuth(app);
+            db = getFirestore(app);
+            appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+            // Tempat penyimpanan tabel garansi
+            colRef = isCanvas ? collection(db, 'artifacts', appId, 'public', 'data', 'garansi') : collection(db, 'garansi');
+        } catch(e) {
+            console.error("Kesalahan Koneksi Database:", e);
+        }
+
+        let currentUser = null;
+        let currentGaransiData = []; // Menyimpan data sementara di layar
+
+        // 1. Proses Koneksi Aman ke Database
+        async function initAuth() {
+            if (!auth) return;
+            try {
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    await signInWithCustomToken(auth, __initial_auth_token);
+                } else {
+                    await signInAnonymously(auth);
+                }
+            } catch (err) {
+                console.error("Gagal verifikasi login database:", err);
+            }
+        }
+        initAuth();
+
+        // 2. Pantau Perubahan Data Live
+        onAuthStateChanged(auth, (user) => {
+            currentUser = user;
+            if (user) {
+                fetchGaransi(); // Ambil data saat terhubung
+            }
+        });
+
+        // 3. Mengambil Data Garansi
+        function fetchGaransi() {
+            if (!currentUser || !colRef) return;
+            
+            onSnapshot(colRef, (snapshot) => {
+                const data = [];
+                snapshot.forEach((doc) => {
+                    data.push({ id: doc.id, ...doc.data() });
+                });
+                
+                // Susun otomatis: Yang baru mendaftar akan tampil di urutan teratas
+                data.sort((a, b) => b.timestamp - a.timestamp);
+                currentGaransiData = data;
+                renderGaransiTable(data);
+            }, (error) => {
+                console.error("Gagal mengambil tabel data:", error);
+            });
+        }
+
+        // 4. Menampilkan Data ke Tabel HTML
+        window.refreshGaransiTable = () => renderGaransiTable(currentGaransiData);
+        function renderGaransiTable(data) {
+            const tbody = document.getElementById('garansi-table-body');
+            if (!tbody) return;
+            
+            if (data.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="7" class="px-6 py-8 text-center text-gray-500 font-medium">Belum ada unit yang didaftarkan garansinya.</td></tr>';
+                return;
+            }
+
+            let html = '';
+            data.forEach((item, index) => {
+                html += `
+                <tr class="border-b border-gray-200 hover:bg-green-50 transition-colors">
+                    <td class="px-6 py-4 text-sm font-semibold">${index + 1}</td>
+                    <td class="px-6 py-4 font-bold text-gray-900 tracking-wider">${item.accessCode || '-'}</td>
+                    <td class="px-6 py-4 font-bold text-brand uppercase tracking-wide">${item.jenis === 'pompa' ? 'Pompa Irigasi' : item.jenis}</td>
+                    <td class="px-6 py-4 text-sm text-gray-800 font-medium">${item.spek}</td>
+                    <td class="px-6 py-4 text-sm text-gray-800">${item.cpcl}</td>
+                    <td class="px-6 py-4 text-sm font-semibold text-gray-600">${item.tanggal}</td>
+                    
+                    <!-- Kolom Ini Sengaja Disembunyikan (Hanya Muncul Jika Login Admin KSA) -->
+                    <td class="px-6 py-4 text-center action-col ${window.isAdmin ? '' : 'hidden'}">
+                        <button onclick="deleteGaransi('${item.id}')" class="text-red-600 hover:text-white bg-red-50 hover:bg-red-600 border border-red-200 font-bold px-3 py-1.5 rounded transition-colors text-xs shadow-sm" title="Hapus Permanen dari Database">
+                            <i class="fas fa-trash-alt mr-1"></i> Hapus
+                        </button>
+                    </td>
+                </tr>
+                `;
+            });
+            tbody.innerHTML = html;
+        }
+
+        // 5. Fungsi Kustomer Daftar Garansi
+        window.submitGaransi = async function(event) {
+            event.preventDefault();
+            if (!currentUser || !colRef) {
+                alert("Mohon tunggu sebentar, sistem sedang menghubungkan ke server...");
+                return;
+            }
+
+            const jenis = document.getElementById('g_jenis').value;
+            const spek = document.getElementById('g_spek').value;
+            const cpcl = document.getElementById('g_cpcl').value;
+            const tanggal = document.getElementById('g_tanggal').value;
+            const btn = document.getElementById('g_submit_btn');
+
+            // Generate Kode Akses Unik (KSA- + 5 Huruf/Angka Acak)
+            const accessCode = 'KSA-' + Math.random().toString(36).substring(2, 7).toUpperCase();
+
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Menyimpan ke Database...';
+
+            try {
+                await addDoc(colRef, {
+                    jenis,
+                    spek,
+                    cpcl,
+                    tanggal,
+                    accessCode, // Simpan kode unik ini ke server
+                    timestamp: Date.now()
+                });
+                
+                // Ubah Tampilan Layar: Sembunyikan form, tampilkan Kode Akses
+                document.getElementById('form-daftar-garansi').classList.add('hidden');
+                document.getElementById('success-message').classList.remove('hidden');
+                document.getElementById('display-access-code').innerText = accessCode;
+
+                event.target.reset(); 
+            } catch (e) {
+                console.error(e);
+                alert("Maaf, terjadi kesalahan saat mengirim data. Silakan coba lagi.");
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-shield-check"></i> Daftarkan Garansi';
+            }
+        };
+
+        // Fungsi Cek Garansi (Oleh Customer pakai Kode Akses)
+        window.cekGaransi = function(event) {
+            event.preventDefault();
+            const inputCode = document.getElementById('input_kode_akses').value.trim().toUpperCase();
+            const resultDiv = document.getElementById('cek-result');
+
+            // Cari data di local array berdasarkan Kode Akses
+            const foundData = currentGaransiData.find(d => d.accessCode === inputCode);
+
+            if (foundData) {
+                resultDiv.innerHTML = `
+                    <div class="bg-green-50 border border-green-200 p-6 rounded-xl mt-4 text-left shadow-inner">
+                        <h4 class="font-bold text-green-800 text-lg mb-4 border-b border-green-200 pb-2"><i class="fas fa-check-circle mr-2"></i> Data Garansi Ditemukan</h4>
+                        <div class="space-y-2">
+                            <p class="text-sm text-gray-700"><span class="font-semibold text-gray-900 inline-block w-32">Jenis Produk</span> : ${foundData.jenis === 'pompa' ? 'Pompa Irigasi' : foundData.jenis}</p>
+                            <p class="text-sm text-gray-700"><span class="font-semibold text-gray-900 inline-block w-32">Spesifikasi</span> : ${foundData.spek}</p>
+                            <p class="text-sm text-gray-700"><span class="font-semibold text-gray-900 inline-block w-32">Nama Penerima</span> : ${foundData.cpcl}</p>
+                            <p class="text-sm text-gray-700"><span class="font-semibold text-gray-900 inline-block w-32">Tanggal Daftar</span> : ${foundData.tanggal}</p>
+                            <div class="mt-4 pt-4 border-t border-green-200 flex items-center justify-between">
+                                <span class="font-bold text-gray-900">Status Sistem:</span> 
+                                <span class="bg-brand text-white px-3 py-1 rounded text-xs font-bold uppercase tracking-widest shadow">Garansi Aktif</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                resultDiv.innerHTML = `
+                    <div class="bg-red-50 border border-red-200 p-4 rounded-xl mt-4 text-left flex items-start gap-3 shadow-inner">
+                        <i class="fas fa-times-circle text-red-600 text-xl mt-0.5"></i>
+                        <div>
+                            <h4 class="font-bold text-red-800">Kode Tidak Ditemukan</h4>
+                            <p class="text-sm text-red-600 mt-1">Pastikan Kode Akses yang Anda masukkan sudah benar (Contoh: KSA-XXXXX).</p>
+                        </div>
+                    </div>
+                `;
+            }
+        };
+
+        // 6. Fungsi Hapus Data Khusus Perusahaan (Admin KSA)
+        window.deleteGaransi = async function(docId) {
+            if (!window.isAdmin) {
+                alert("AKSES DITOLAK! Hanya Manajemen KSA yang diizinkan menghapus data dari server.");
+                return;
+            }
+            if (confirm("PERHATIAN!\n\nApakah Anda Yakin ingin menghapus dokumen garansi ini secara permanen dari Database?")) {
+                try {
+                    const docRef = isCanvas ? doc(db, 'artifacts', appId, 'public', 'data', 'garansi', docId) : doc(db, 'garansi', docId);
+                    await deleteDoc(docRef);
+                    // Karena menggunakan onSnapshot (Real-time), tabel di HTML otomatis akan hilang tanpa perlu di-refresh!
+                } catch (error) {
+                    console.error(error);
+                    alert("Gagal menghapus data dari server.");
+                }
+            }
+        };
     </script>
 </body>
 </html>
