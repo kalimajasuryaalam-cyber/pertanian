@@ -9,10 +9,8 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- FontAwesome untuk Ikon -->
+    <!-- FontAwesome & Google Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <script>
@@ -27,7 +25,7 @@
                     animation: {
                         'slide-bg': 'slide 25s infinite linear',
                         'fade-in': 'fadeIn 0.5s ease-out forwards',
-                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite'
+                        'float': 'float 3s ease-in-out infinite'
                     },
                     keyframes: {
                         slide: {
@@ -40,6 +38,10 @@
                         fadeIn: {
                             '0%': { opacity: '0', transform: 'translateY(10px)' },
                             '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' }
                         }
                     }
                 }
@@ -47,74 +49,65 @@
         };
     </script>
     <style>
-        /* Custom scrollbar */
+        /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #f1f1f1; }
         ::-webkit-scrollbar-thumb { background: #16a34a; border-radius: 10px; }
         
-        .hero-slider-container {
-            display: flex;
-            width: 500%;
-            height: 100%;
-            animation: slide 25s infinite ease-in-out;
-        }
-        .hero-slide {
-            width: 20%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-        }
-        .glass-effect {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        .admin-edit-outline:focus {
-            outline: 2px dashed #16a34a;
-            padding: 2px;
-        }
+        /* Hero Slider Engine */
+        .hero-slider-container { display: flex; width: 500%; height: 100%; animation: slide 25s infinite ease-in-out; }
+        .hero-slide { width: 20%; height: 100%; background-size: cover; background-position: center; }
+        
+        /* Design Tokens */
+        .glass-effect { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); }
+        .premium-shadow { shadow-2xl shadow-brand/20; }
+        .admin-edit-outline:focus { outline: 3px dashed #16a34a; padding: 5px; border-radius: 12px; background: rgba(22, 163, 74, 0.05); }
+        
+        /* CMS Overlay */
+        .upload-overlay { position: absolute; inset: 0; background: rgba(0, 0, 0, 0.85); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 50; color: white; border-radius: inherit; }
+        .progress-circle { width: 80px; height: 80px; border-radius: 50%; background: conic-gradient(#16a34a var(--p), #333 0); display: flex; items-center; justify-content: center; }
+        .progress-circle::before { content: ""; width: 65px; height: 65px; background: #000; border-radius: 50%; position: absolute; }
     </style>
 </head>
 <body class="font-sans text-gray-800 bg-gray-50 antialiased selection:bg-brand selection:text-white">
 
-    <!-- Tombol WhatsApp Mengambang -->
+    <!-- WhatsApp Floating Button -->
     <a href="https://wa.me/6285150973789" target="_blank" rel="noopener noreferrer" 
-       class="fixed bottom-6 right-6 bg-green-500 text-white rounded-full w-16 h-16 flex items-center justify-center text-3xl shadow-2xl hover:bg-green-600 hover:scale-110 transition-all duration-300 z-50 animate-bounce">
+       class="fixed bottom-8 right-8 bg-green-500 text-white rounded-full w-16 h-16 flex items-center justify-center text-3xl shadow-2xl hover:bg-green-600 hover:scale-110 transition-all duration-300 z-50 animate-float">
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- Header / Navbar -->
-    <header class="fixed w-full top-0 bg-white/90 backdrop-blur-md shadow-sm z-40">
+    <!-- Navigation Header -->
+    <header class="fixed w-full top-0 bg-white/95 backdrop-blur-md shadow-sm z-40 border-b border-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                <div class="flex-shrink-0 flex items-center gap-3">
-                    <img class="h-12 w-12 rounded-full object-cover shadow-sm border-2 border-brand/20" src="https://www.ksasemesta.com/images/0/24384851/LogoKalimaja1-VOen73dOZJxAq7S_0egLJw.jpg" alt="Logo PT KSA">
+                <div class="flex-shrink-0 flex items-center gap-4">
+                    <img class="h-14 w-14 rounded-full object-cover border-2 border-brand/20 shadow-md" src="https://www.ksasemesta.com/images/0/24384851/LogoKalimaja1-VOen73dOZJxAq7S_0egLJw.jpg" alt="Logo PT KSA">
                     <div class="flex flex-col">
-                        <span class="font-black text-xl tracking-tighter text-gray-900 leading-none">PT KALIMAJA</span>
-                        <span class="font-bold text-xs text-brand tracking-widest uppercase">Surya Alam</span>
+                        <span class="font-black text-2xl tracking-tighter text-gray-900 leading-none uppercase italic">PT Kalimaja</span>
+                        <span class="font-bold text-[11px] text-brand tracking-[0.3em] uppercase leading-none mt-1">Surya Alam</span>
                     </div>
                 </div>
                 
-                <nav class="hidden md:flex space-x-8">
-                    <a href="#beranda" class="text-gray-700 hover:text-brand font-bold transition-colors">Beranda</a>
-                    <a href="#tentang" class="text-gray-700 hover:text-brand font-bold transition-colors">Tentang</a>
-                    <a href="#produk" class="text-gray-700 hover:text-brand font-bold transition-colors">Produk</a>
-                    <a href="#garansi" class="text-gray-700 hover:text-brand font-bold transition-colors">Garansi</a>
-                    <a href="#galeri" class="text-gray-700 hover:text-brand font-bold transition-colors">Galeri</a>
-                    <a href="#kontak" class="text-gray-700 hover:text-brand font-bold transition-colors">Kontak</a>
+                <nav class="hidden lg:flex space-x-10">
+                    <a href="#beranda" class="text-gray-900 hover:text-brand font-black text-sm uppercase tracking-widest transition-colors border-b-2 border-transparent hover:border-brand pb-1">Beranda</a>
+                    <a href="#tentang" class="text-gray-900 hover:text-brand font-black text-sm uppercase tracking-widest transition-colors border-b-2 border-transparent hover:border-brand pb-1">Tentang</a>
+                    <a href="#produk" class="text-gray-900 hover:text-brand font-black text-sm uppercase tracking-widest transition-colors border-b-2 border-transparent hover:border-brand pb-1">Produk</a>
+                    <a href="#garansi" class="text-brand font-black text-sm uppercase tracking-widest transition-colors border-b-2 border-brand pb-1">E-Warranty</a>
+                    <a href="#galeri" class="text-gray-900 hover:text-brand font-black text-sm uppercase tracking-widest transition-colors border-b-2 border-transparent hover:border-brand pb-1">Galeri</a>
                 </nav>
                 
                 <div class="hidden md:flex">
-                    <a href="#kontak" class="bg-brand text-white px-6 py-2.5 rounded-full font-bold hover:bg-brand-dark transition-all shadow-lg hover:shadow-brand/30">
-                        Hubungi Kami
+                    <a href="#kontak" class="bg-gray-900 text-white px-8 py-3 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-brand transition-all shadow-xl hover:shadow-brand/20">
+                        Hubungi Sales
                     </a>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Hero Section dengan Sliding Background -->
-    <section id="beranda" class="relative pt-20 h-[90vh] flex items-center overflow-hidden">
+    <!-- Hero Section Dynamic Slider -->
+    <section id="beranda" class="relative pt-20 h-[92vh] flex items-center overflow-hidden">
         <div class="absolute inset-0 z-0">
             <div class="hero-slider-container">
                 <div class="hero-slide" style="background-image: url('https://www.ksasemesta.com/images/1920/24386990/fultimediting-ebzzUZr8zCQMfLPLhOgXlQ.png');"></div>
@@ -123,396 +116,381 @@
                 <div class="hero-slide" style="background-image: url('https://www.ksasemesta.com/images/800x800/24386675/SELEHECANOPY-N84sPfJR8TI8DhkeS34zyw.webp');"></div>
                 <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1592982537447-6f2a6a0c5c10?q=80&w=2070');"></div>
             </div>
-            <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-black/90 via-black/50 to-transparent"></div>
         </div>
         
         <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 text-white">
-            <div class="max-w-3xl animate-fade-in">
-                <span class="inline-block py-1.5 px-4 rounded-full bg-brand/30 backdrop-blur-md text-brand-light font-bold text-xs tracking-widest mb-6 border border-brand/50 uppercase">Pioneer Mekanisasi Indonesia</span>
-                <h1 class="text-5xl md:text-7xl font-black leading-[1.1] mb-6 uppercase italic">
-                    Solusi Total <br><span class="text-accent">Pertanian Modern</span>
+            <div class="max-w-4xl animate-fade-in">
+                <span class="inline-block py-2 px-5 rounded-full bg-brand/30 backdrop-blur-md text-brand-light font-black text-xs tracking-[0.3em] mb-8 border border-brand/50 uppercase">Pioneer Mekanisasi Pertanian Indonesia</span>
+                <h1 class="text-6xl md:text-8xl font-black leading-[1] mb-8 uppercase italic tracking-tighter">
+                    Solusi Total <br><span class="text-accent underline decoration-brand decoration-8 underline-offset-8">Lahan Modern</span>
                 </h1>
-                <p class="text-lg md:text-xl text-gray-200 mb-10 leading-relaxed font-light">
-                    "Hasil panen maksimal dimulai dari mesin yang andal. Kami menyediakan alat pertanian tangguh dengan jaminan suku cadang yang selalu siap membantu Anda."
+                <p class="text-xl md:text-2xl text-gray-200 mb-12 leading-relaxed font-light italic max-w-3xl">
+                    "Hasil panen maksimal dimulai dari mesin yang andal. Kami menyediakan alat pertanian tangguh dengan jaminan suku cadang yang selalu siap membantu Anda di setiap musim."
                 </p>
-                <div class="flex flex-col sm:flex-row gap-5">
-                    <a href="#produk" class="bg-brand text-white px-10 py-5 rounded-2xl font-black text-lg hover:bg-brand-dark transition-all shadow-2xl flex items-center justify-center gap-3">
-                        <i class="fas fa-shopping-cart"></i> LIHAT KATALOG
+                <div class="flex flex-col sm:flex-row gap-6">
+                    <a href="#produk" class="bg-brand text-white px-12 py-6 rounded-3xl font-black text-xl hover:bg-brand-dark transition-all shadow-2xl flex items-center justify-center gap-4 group">
+                        <i class="fas fa-shopping-cart group-hover:scale-125 transition-transform"></i> LIHAT KATALOG UNIT
                     </a>
-                    <a href="#garansi" class="glass-effect text-white px-10 py-5 rounded-2xl font-black text-lg hover:bg-white hover:text-black transition-all flex items-center justify-center gap-3">
-                        <i class="fas fa-shield-check"></i> AKTIVASI GARANSI
+                    <a href="#garansi" class="glass-effect text-white px-12 py-6 rounded-3xl font-black text-xl hover:bg-white hover:text-black transition-all flex items-center justify-center gap-4">
+                        <i class="fas fa-shield-check"></i> PORTAL E-GARANSI
                     </a>
                 </div>
             </div>
         </div>
-        
-        <!-- Stats Overlay -->
-        <div class="absolute bottom-10 left-0 w-full hidden lg:block z-10">
-            <div class="max-w-7xl mx-auto px-8 flex gap-12 text-white/80 text-sm font-bold tracking-widest uppercase">
-                <div class="flex items-center gap-2"><span class="text-accent text-2xl">10+</span> Years Experience</div>
-                <div class="flex items-center gap-2"><span class="text-accent text-2xl">500+</span> Satisfied Farmers</div>
-                <div class="flex items-center gap-2"><span class="text-accent text-2xl">100%</span> Technical Support</div>
-            </div>
-        </div>
     </section>
 
-    <!-- Poin Keunggulan -->
-    <section class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+    <!-- Value Proposition -->
+    <section class="py-32 bg-white relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16">
                 <div class="group">
-                    <div class="w-16 h-16 bg-gray-50 text-brand rounded-3xl flex items-center justify-center text-3xl mb-6 group-hover:bg-brand group-hover:text-white transition-all duration-500 shadow-sm">
+                    <div class="w-20 h-20 bg-gray-900 text-brand rounded-[2rem] flex items-center justify-center text-4xl mb-8 group-hover:bg-brand group-hover:text-white transition-all shadow-xl rotate-3 group-hover:rotate-0">
                         <i class="fas fa-shield-alt"></i>
                     </div>
-                    <h3 class="font-black text-xl text-gray-900 mb-3 uppercase tracking-tighter">Durabilitas Ekstrem</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed font-medium">Material tangguh standar industri untuk penggunaan nonstop di lahan pertanian yang paling ekstrem sekalipun.</p>
+                    <h3 class="font-black text-2xl text-gray-900 mb-4 uppercase tracking-tighter italic">Durabilitas Ekstrem</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed font-bold">Dibuat dengan standar industri untuk penggunaan nonstop di lahan pertanian Indonesia yang paling ekstrem sekalipun.</p>
                 </div>
                 <div class="group">
-                    <div class="w-16 h-16 bg-gray-50 text-brand rounded-3xl flex items-center justify-center text-3xl mb-6 group-hover:bg-brand group-hover:text-white transition-all duration-500 shadow-sm">
+                    <div class="w-20 h-20 bg-gray-900 text-brand rounded-[2rem] flex items-center justify-center text-4xl mb-8 group-hover:bg-brand group-hover:text-white transition-all shadow-xl -rotate-3 group-hover:rotate-0">
                         <i class="fas fa-tools"></i>
                     </div>
-                    <h3 class="font-black text-xl text-gray-900 mb-3 uppercase tracking-tighter">Perawatan Mudah</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed font-medium">Jaminan ketersediaan suku cadang dan tim teknisi ahli yang siap memberikan kunjungan servis berkala ke lokasi.</p>
+                    <h3 class="font-black text-2xl text-gray-900 mb-4 uppercase tracking-tighter italic">Servis & Suku Cadang</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed font-bold">Jaminan ketersediaan komponen cadangan dan tim teknisi ahli yang siap memberikan kunjungan servis langsung ke lokasi.</p>
                 </div>
                 <div class="group">
-                    <div class="w-16 h-16 bg-gray-50 text-brand rounded-3xl flex items-center justify-center text-3xl mb-6 group-hover:bg-brand group-hover:text-white transition-all duration-500 shadow-sm">
+                    <div class="w-20 h-20 bg-gray-900 text-brand rounded-[2rem] flex items-center justify-center text-4xl mb-8 group-hover:bg-brand group-hover:text-white transition-all shadow-xl rotate-6 group-hover:rotate-0">
                         <i class="fas fa-gas-pump"></i>
                     </div>
-                    <h3 class="font-black text-xl text-gray-900 mb-3 uppercase tracking-tighter">Efisiensi Biaya</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed font-medium">Selesaikan pengolahan lahan 1 hektar hanya dalam hitungan jam dengan konsumsi bahan bakar yang sangat minimal.</p>
+                    <h3 class="font-black text-2xl text-gray-900 mb-4 uppercase tracking-tighter italic">Efisiensi Biaya</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed font-bold">Selesaikan pengolahan lahan hektaran dalam hitungan jam dengan konsumsi bahan bakar yang sangat minimal dan efisien.</p>
                 </div>
                 <div class="group">
-                    <div class="w-16 h-16 bg-gray-50 text-brand rounded-3xl flex items-center justify-center text-3xl mb-6 group-hover:bg-brand group-hover:text-white transition-all duration-500 shadow-sm">
+                    <div class="w-20 h-20 bg-gray-900 text-brand rounded-[2rem] flex items-center justify-center text-4xl mb-8 group-hover:bg-brand group-hover:text-white transition-all shadow-xl -rotate-6 group-hover:rotate-0">
                         <i class="fas fa-chart-line"></i>
                     </div>
-                    <h3 class="font-black text-xl text-gray-900 mb-3 uppercase tracking-tighter">Hasil Maksimal</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed font-medium">Meningkatkan kuantitas dan kualitas panen Anda melalui teknologi presisi tinggi yang tepat guna dan akurat.</p>
+                    <h3 class="font-black text-2xl text-gray-900 mb-4 uppercase tracking-tighter italic">Hasil Maksimal</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed font-bold">Meningkatkan kuantitas dan kualitas panen Bapak melalui teknologi presisi tinggi yang akurat dan tepat guna.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Tentang Kami -->
-    <section id="tentang" class="py-24 bg-gray-50 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="flex flex-col lg:flex-row items-center gap-20">
+    <!-- Company Profile Section (Restored Detailed Content) -->
+    <section id="tentang" class="py-32 bg-gray-50 overflow-hidden border-y border-gray-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center gap-24">
                 <div class="lg:w-1/2 relative">
-                    <div class="absolute -top-10 -left-10 w-40 h-40 bg-brand/10 rounded-full blur-3xl animate-pulse"></div>
-                    <img src="https://www.ksasemesta.com/images/1024/24406589/AEP0201811-G_Yl12fW-HdoafDd8sXvvQ.jpg" alt="Tim KSA Semesta" class="relative z-10 rounded-[2.5rem] shadow-2xl border-8 border-white">
-                    <div class="absolute -bottom-8 -right-8 bg-gray-900 p-8 rounded-3xl text-white shadow-2xl z-20 hidden md:block">
-                        <p class="text-3xl font-black text-brand mb-1">100%</p>
-                        <p class="text-xs font-bold tracking-widest uppercase">Dedikasi Untuk Petani</p>
+                    <div class="absolute -top-12 -left-12 w-48 h-48 bg-brand/10 rounded-full blur-[100px] animate-pulse"></div>
+                    <img src="https://www.ksasemesta.com/images/1024/24406589/AEP0201811-G_Yl12fW-HdoafDd8sXvvQ.jpg" alt="Tim PT KSA" class="relative z-10 rounded-[4rem] shadow-2xl border-8 border-white transform -rotate-2 hover:rotate-0 transition-transform duration-700">
+                    <div class="absolute -bottom-12 -right-12 bg-gray-900 p-12 rounded-[3rem] text-white shadow-2xl z-20 hidden md:block border-b-8 border-brand">
+                        <p class="text-6xl font-black text-brand mb-2 italic tracking-tighter">100%</p>
+                        <p class="text-xs font-black tracking-[0.4em] uppercase opacity-60">Dedikasi Untuk Mekanisasi</p>
                     </div>
                 </div>
                 <div class="lg:w-1/2">
-                    <h4 class="text-brand font-black uppercase tracking-[0.3em] mb-4 text-sm">Profil Perusahaan</h4>
-                    <h2 class="text-4xl md:text-5xl font-black text-gray-900 mb-8 uppercase italic">PT Kalimaja <br><span class="text-brand">Surya Alam</span></h2>
-                    <p class="text-gray-600 text-lg mb-6 leading-relaxed font-medium text-justify">
-                        Kami hadir sebagai mitra terpercaya dalam penyediaan alat dan mesin pertanian yang dirancang untuk mendukung produktivitas, efisiensi, dan keberlanjutan pertanian Indonesia.
+                    <h4 class="text-brand font-black uppercase tracking-[0.4em] mb-6 text-sm italic">Pioneer Mekanisasi Indonesia</h4>
+                    <h2 class="text-5xl md:text-7xl font-black text-gray-900 mb-10 uppercase italic leading-[0.95] tracking-tighter">PT Kalimaja <br><span class="text-brand">Surya Alam</span></h2>
+                    <p class="text-gray-600 text-xl mb-8 leading-relaxed font-medium text-justify">
+                        Kami hadir sebagai mitra terpercaya dalam penyediaan alat dan mesin pertanian yang dirancang untuk mendukung peningkatan produktivitas, efisiensi, dan keberlanjutan pertanian Indonesia.
                     </p>
-                    <p class="text-gray-600 text-lg mb-10 leading-relaxed font-medium text-justify">
-                        Seiring perkembangan teknologi, PT Kalimaja Surya Alam berkomitmen menghadirkan solusi mekanisasi yang tangguh, tepat guna, dan mudah diaplikasikan di lapangan. Melalui produk unggulan seperti mesin pengolahan tanah, drone, dan pompa air, kami berupaya membantu mitra kerja mewujudkan pertanian modern.
+                    <div class="bg-white p-8 rounded-[2.5rem] shadow-xl border-l-8 border-brand mb-12">
+                        <p class="text-gray-700 text-lg leading-relaxed font-bold italic">
+                            "Seiring perkembangan teknologi dan tantangan sektor pertanian yang semakin kompleks, PT Kalimaja Surya Alam berkomitmen menghadirkan solusi mekanisasi yang tangguh, tepat guna, dan mudah diaplikasikan di lapangan."
+                        </p>
+                    </div>
+                    <p class="text-gray-500 text-lg mb-12 leading-relaxed font-medium text-justify">
+                        Melalui produk-produk unggulan seperti mesin pengolahan tanah, alat panen, pompa air, serta berbagai implement pertanian lainnya, kami berupaya membantu petani, pelaku usaha, dan mitra kerja dalam mewujudkan proses pertanian yang lebih modern dan berdaya saing global.
                     </p>
-                    <a href="https://wa.me/6285150973789" class="inline-flex items-center gap-4 text-brand font-black text-xl hover:translate-x-3 transition-transform uppercase tracking-tighter">
-                        Mari Berkolaborasi <i class="fas fa-long-arrow-right"></i>
+                    <a href="#kontak" class="inline-flex items-center gap-6 bg-gray-900 text-white px-12 py-5 rounded-3xl font-black text-xl hover:bg-brand transition-all uppercase tracking-tighter italic shadow-2xl group">
+                        Bangun Kemitraan <i class="fas fa-long-arrow-right group-hover:translate-x-3 transition-transform"></i>
                     </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Produk Katalog -->
-    <section id="produk" class="py-24 bg-white">
+    <!-- Product Catalog (Full Specifications Restored) -->
+    <section id="produk" class="py-32 bg-white">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-20">
-                <h2 class="text-4xl md:text-5xl font-black text-gray-900 uppercase italic">Katalog <span class="text-brand">Unggulan</span></h2>
-                <p class="text-gray-500 mt-4 max-w-2xl mx-auto text-lg font-medium italic">"Lebih dari sekadar penyedia alat, kami menawarkan solusi mekanisasi yang memudahkan pekerjaan lahan Anda."</p>
+            <div class="text-center mb-24">
+                <h2 class="text-5xl md:text-7xl font-black text-gray-900 uppercase italic tracking-tighter">Solusi <span class="text-brand underline decoration-brand decoration-8 underline-offset-8">Unggulan</span></h2>
+                <p class="text-gray-400 mt-10 max-w-4xl mx-auto text-xl font-bold italic uppercase tracking-widest">"Meningkatkan produktivitas dengan efisiensi teknologi terbaru."</p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Produk 1 -->
-                <div class="bg-white rounded-[2rem] overflow-hidden shadow-xl border border-gray-100 group">
-                    <div class="h-64 overflow-hidden relative">
-                        <img src="https://www.ksasemesta.com/images/800x800/20997001/WhatsAppImage2025-10-14at11.20.392-yKSVNn5W93-j9YOtNVifjA.jpeg" alt="Pompa" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                        <div class="absolute top-4 left-4 bg-brand text-white text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest shadow-lg">Best Seller</div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+                <!-- Unit 1: Pompa -->
+                <div class="bg-white rounded-[3.5rem] overflow-hidden shadow-2xl border border-gray-100 group hover:-translate-y-4 transition-all duration-500">
+                    <div class="h-72 overflow-hidden relative">
+                        <img src="https://www.ksasemesta.com/images/800x800/20997001/WhatsAppImage2025-10-14at11.20.392-yKSVNn5W93-j9YOtNVifjA.jpeg" class="w-full h-full object-cover group-hover:scale-125 transition-transform duration-1000">
+                        <div class="absolute top-8 left-8 bg-brand text-white text-[11px] font-black px-5 py-2 rounded-full uppercase tracking-[0.2em] shadow-xl">High Performance</div>
                     </div>
-                    <div class="p-8">
-                        <h3 class="font-black text-xl mb-3 text-gray-900 uppercase tracking-tighter">Pompa Irigasi</h3>
-                        <p class="text-sm text-gray-500 mb-8 leading-relaxed font-medium">Mesin bensin & diesel dengan daya hisap ekstrem. Tersedia ukuran 3, 4, dan 6 inci untuk segala kondisi lapangan.</p>
-                        <a href="https://ksasemesta.com/produk/pompa-irigasi" target="_blank" class="block text-center py-3 bg-gray-900 text-white font-black rounded-xl hover:bg-brand transition-all uppercase text-xs tracking-widest">Lihat Detail</a>
-                    </div>
-                </div>
-                <!-- Produk 2 -->
-                <div class="bg-white rounded-[2rem] overflow-hidden shadow-xl border border-gray-100 group">
-                    <div class="h-64 overflow-hidden relative">
-                        <img src="https://www.ksasemesta.com/images/800x800/24386675/SELEHECANOPY-N84sPfJR8TI8DhkeS34zyw.webp" alt="Traktor" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                    </div>
-                    <div class="p-8">
-                        <h3 class="font-black text-xl mb-3 text-gray-900 uppercase tracking-tighter">Traktor Roda 4</h3>
-                        <p class="text-sm text-gray-500 mb-8 leading-relaxed font-medium">Tenaga kuda besar untuk pengolahan tanah berat. Konstruksi baja kuat, stabil, dan manuver yang sangat lincah.</p>
-                        <a href="https://ksasemesta.com/produk/traktor-roda-4" target="_blank" class="block text-center py-3 bg-gray-900 text-white font-black rounded-xl hover:bg-brand transition-all uppercase text-xs tracking-widest">Lihat Detail</a>
+                    <div class="p-10 text-center">
+                        <h3 class="font-black text-3xl mb-4 text-gray-900 uppercase tracking-tighter italic leading-tight">Pompa Irigasi</h3>
+                        <p class="text-sm text-gray-500 mb-10 leading-relaxed font-bold italic">Dirancang dengan daya hisap kuat, debit air besar, dan performa stabil. Tersedia dalam ukuran 3 inci, 4 inci, dan 6 inci (Mesin Bensin & Diesel).</p>
+                        <div class="border-t-2 border-dashed border-gray-100 pt-8 mt-auto">
+                            <a href="https://ksasemesta.com/produk/pompa-irigasi" target="_blank" class="block py-4 bg-gray-900 text-white font-black rounded-2xl hover:bg-brand transition-all uppercase text-xs tracking-widest italic shadow-xl">Detail Spesifikasi</a>
+                        </div>
                     </div>
                 </div>
-                <!-- Produk 3 -->
-                <div class="bg-white rounded-[2rem] overflow-hidden shadow-xl border border-gray-100 group">
-                    <div class="h-64 overflow-hidden relative flex items-center justify-center bg-gray-50 p-6">
-                        <img src="https://www.ksasemesta.com/images/800x800/17444583/drone-rB2cGzMN8HZXTWEFyBjMtQ.png" alt="Drone" class="w-full h-auto object-contain group-hover:scale-110 transition-transform duration-700">
+                <!-- Unit 2: Traktor -->
+                <div class="bg-white rounded-[3.5rem] overflow-hidden shadow-2xl border border-gray-100 group hover:-translate-y-4 transition-all duration-500">
+                    <div class="h-72 overflow-hidden relative">
+                        <img src="https://www.ksasemesta.com/images/800x800/24386675/SELEHECANOPY-N84sPfJR8TI8DhkeS34zyw.webp" class="w-full h-full object-cover group-hover:scale-125 transition-transform duration-1000">
                     </div>
-                    <div class="p-8">
-                        <h3 class="font-black text-xl mb-3 text-gray-900 uppercase tracking-tighter">Drone Pertanian</h3>
-                        <p class="text-sm text-gray-500 mb-8 leading-relaxed font-medium">Penyemprotan pupuk dan pestisida presisi dengan kendali pintar. Menghemat waktu kerja 5x lebih cepat.</p>
-                        <a href="https://ksasemesta.com/produk/drone-pertanian" target="_blank" class="block text-center py-3 bg-gray-900 text-white font-black rounded-xl hover:bg-brand transition-all uppercase text-xs tracking-widest">Lihat Detail</a>
+                    <div class="p-10 text-center">
+                        <h3 class="font-black text-3xl mb-4 text-gray-900 uppercase tracking-tighter italic leading-tight">Traktor Roda 4</h3>
+                        <p class="text-sm text-gray-500 mb-10 leading-relaxed font-bold italic">Solusi andal untuk mekanisasi modern dengan tenaga besar, stabilitas tinggi, dan efisiensi kerja maksimal di segala medan lahan mulai sawah hingga perkebunan.</p>
+                        <div class="border-t-2 border-dashed border-gray-100 pt-8 mt-auto">
+                            <a href="https://ksasemesta.com/produk/traktor-roda-4" target="_blank" class="block py-4 bg-gray-900 text-white font-black rounded-2xl hover:bg-brand transition-all uppercase text-xs tracking-widest italic shadow-xl">Detail Spesifikasi</a>
+                        </div>
                     </div>
                 </div>
-                <!-- Produk 4 -->
-                <div class="bg-white rounded-[2rem] overflow-hidden shadow-xl border border-gray-100 group">
-                    <div class="h-64 overflow-hidden relative">
-                        <img src="https://www.ksasemesta.com/images/800x800/24406811/WhatsAppImage2026-03-29at14.06.31-Aqon4-VeHDC3KrOVrTc9Bg.jpeg" alt="Implement" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                <!-- Unit 3: Drone -->
+                <div class="bg-white rounded-[3.5rem] overflow-hidden shadow-2xl border border-gray-100 group hover:-translate-y-4 transition-all duration-500">
+                    <div class="h-72 overflow-hidden relative flex items-center justify-center bg-gray-50 p-12">
+                        <img src="https://www.ksasemesta.com/images/800x800/17444583/drone-rB2cGzMN8HZXTWEFyBjMtQ.png" class="w-full h-auto object-contain group-hover:scale-110 transition-transform duration-700">
                     </div>
-                    <div class="p-8">
-                        <h3 class="font-black text-xl mb-3 text-gray-900 uppercase tracking-tighter">Implement Traktor</h3>
-                        <p class="text-sm text-gray-500 mb-8 leading-relaxed font-medium">Berbagai aksesoris bajak, rotavator, dan pendukung traktor lainnya untuk memastikan pengolahan lahan optimal.</p>
-                        <a href="https://ksasemesta.com/produk/implement-traktor" target="_blank" class="block text-center py-3 bg-gray-900 text-white font-black rounded-xl hover:bg-brand transition-all uppercase text-xs tracking-widest">Lihat Detail</a>
+                    <div class="p-10 text-center">
+                        <h3 class="font-black text-3xl mb-4 text-gray-900 uppercase tracking-tighter italic leading-tight">Drone Pertanian</h3>
+                        <p class="text-sm text-gray-500 mb-10 leading-relaxed font-bold italic">"Efisiensi di genggaman Anda. Dirancang untuk pemupukan dan penyemprotan presisi, menjangkau seluruh lahan lebih cepat dengan penggunaan bahan kimia lebih hemat."</p>
+                        <div class="border-t-2 border-dashed border-gray-100 pt-8 mt-auto">
+                            <a href="https://ksasemesta.com/produk/drone-pertanian" target="_blank" class="block py-4 bg-gray-900 text-white font-black rounded-2xl hover:bg-brand transition-all uppercase text-xs tracking-widest italic shadow-xl">Detail Spesifikasi</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Unit 4: Implement -->
+                <div class="bg-white rounded-[3.5rem] overflow-hidden shadow-2xl border border-gray-100 group hover:-translate-y-4 transition-all duration-500">
+                    <div class="h-72 overflow-hidden relative">
+                        <img src="https://www.ksasemesta.com/images/800x800/24406811/WhatsAppImage2026-03-29at14.06.31-Aqon4-VeHDC3KrOVrTc9Bg.jpeg" class="w-full h-full object-cover group-hover:scale-125 transition-transform duration-1000">
+                    </div>
+                    <div class="p-10 text-center">
+                        <h3 class="font-black text-3xl mb-4 text-gray-900 uppercase tracking-tighter italic leading-tight">Implement Traktor</h3>
+                        <p class="text-sm text-gray-500 mb-10 leading-relaxed font-bold italic">"Maksimalkan tenaga traktor Anda dengan implement yang presisi. Dibuat untuk performa berat namun minim perawatan, memastikan pengolahan lahan lebih cepat."</p>
+                        <div class="border-t-2 border-dashed border-gray-100 pt-8 mt-auto">
+                            <a href="https://ksasemesta.com/produk/implement-traktor" target="_blank" class="block py-4 bg-gray-900 text-white font-black rounded-2xl hover:bg-brand transition-all uppercase text-xs tracking-widest italic shadow-xl">Detail Spesifikasi</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Layanan -->
-    <section class="py-24 bg-gray-900 text-white">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h4 class="text-brand font-black uppercase tracking-widest mb-4">Service & Support</h4>
-                <h2 class="text-4xl md:text-5xl font-black uppercase italic tracking-tighter">Layanan Purna Jual <span class="text-brand">Profesional</span></h2>
+    <!-- Portal E-Garansi Center -->
+    <section id="garansi" class="py-32 bg-gray-900 text-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-24">
+                <h4 class="text-brand font-black uppercase tracking-[0.4em] mb-6 text-sm">Customer After-Sales Service</h4>
+                <h2 class="text-5xl md:text-7xl font-black uppercase italic tracking-tighter text-white uppercase">Portal Aktivasi <span class="text-brand">E-Warranty</span></h2>
+                <p class="text-gray-400 mt-6 font-bold uppercase text-xs tracking-[0.5em]">Layanan Registrasi & Validasi Garansi Unit KSA Secara Mandiri</p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-gray-800/50 p-10 rounded-[2.5rem] border border-gray-700 hover:border-brand transition-all group">
-                    <div class="w-16 h-16 bg-brand/20 text-brand rounded-2xl flex items-center justify-center text-3xl mb-8 group-hover:scale-110 transition-transform"><i class="fas fa-graduation-cap"></i></div>
-                    <h3 class="text-2xl font-black mb-4 uppercase">Konsultasi & Pelatihan</h3>
-                    <p class="text-gray-400 font-medium leading-relaxed">Program pelatihan teknis terpadu untuk memastikan operasional mekanisasi Anda berjalan optimal dan efisien.</p>
+            <div class="grid lg:grid-cols-2 gap-20 items-start">
+                <!-- Cek Status Card -->
+                <div class="bg-gray-800 p-14 rounded-[4rem] border border-gray-700 shadow-2xl shadow-brand/10">
+                    <h5 class="font-black text-3xl mb-10 uppercase italic text-brand tracking-tighter">Cek Status Unit</h5>
+                    <div class="flex gap-4 mb-10">
+                        <input type="text" id="c_kode" placeholder="Ketik Kode (KSA-XXXXXX)" class="flex-1 px-8 py-6 rounded-3xl bg-gray-900 border-2 border-gray-700 outline-none focus:border-brand font-mono font-black text-brand text-center text-2xl placeholder:text-gray-700 uppercase tracking-widest">
+                        <button onclick="cekGaransi()" class="bg-brand text-white px-10 rounded-3xl hover:bg-brand-dark transition-all shadow-xl shadow-brand/30"><i class="fas fa-search text-2xl"></i></button>
+                    </div>
+                    <div id="cek-result"></div>
                 </div>
-                <div class="bg-gray-800/50 p-10 rounded-[2.5rem] border border-gray-700 hover:border-brand transition-all group">
-                    <div class="w-16 h-16 bg-brand/20 text-brand rounded-2xl flex items-center justify-center text-3xl mb-8 group-hover:scale-110 transition-transform"><i class="fas fa-wrench"></i></div>
-                    <h3 class="text-2xl font-black mb-4 uppercase">Repair & Service</h3>
-                    <p class="text-gray-400 font-medium leading-relaxed">Tim teknisi ahli kami siap memberikan perawatan berkala dan perbaikan cepat langsung di lapangan lahan Bapak.</p>
+                
+                <!-- Registration Card -->
+                <div class="bg-white p-14 rounded-[4rem] shadow-2xl text-gray-900 relative">
+                    <div class="absolute -top-6 right-12 bg-accent text-gray-900 px-8 py-3 rounded-full font-black text-xs uppercase shadow-xl tracking-widest italic animate-pulse">Baru Terima Unit?</div>
+                    <h5 class="font-black text-3xl mb-10 uppercase italic border-b-8 border-gray-50 pb-8 leading-none tracking-tighter">Pendaftaran Aktivasi</h5>
+                    <form onsubmit="submitGaransi(event)" class="space-y-8">
+                        <div class="grid grid-cols-2 gap-8">
+                            <div class="col-span-1">
+                                <label class="block text-xs font-black uppercase text-gray-400 mb-3 ml-2 tracking-widest">Kategori Alat</label>
+                                <select id="g_jenis" class="w-full px-6 py-5 rounded-3xl border-2 border-gray-100 bg-gray-50 font-black outline-none focus:border-brand transition-all cursor-pointer">
+                                    <option value="Pompa Irigasi">Pompa Irigasi</option>
+                                    <option value="Traktor Roda 4">Traktor Roda 4</option>
+                                    <option value="Drone Pertanian">Drone Pertanian</option>
+                                    <option value="Implement">Implement Traktor</option>
+                                </select>
+                            </div>
+                            <div class="col-span-1">
+                                <label class="block text-xs font-black uppercase text-gray-400 mb-3 ml-2 tracking-widest">Seri / Model</label>
+                                <input type="text" id="g_spek" required placeholder="Contoh: 4 Inch Diesel" class="w-full px-6 py-5 rounded-3xl border-2 border-gray-100 bg-gray-50 font-black outline-none focus:border-brand transition-all">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-black uppercase text-gray-400 mb-3 ml-2 tracking-widest">Nama CPCL / Pemilik Sah</label>
+                            <input type="text" id="g_cpcl" required placeholder="Kelompok Tani / Dinas / Individu" class="w-full px-6 py-5 rounded-3xl border-2 border-gray-100 bg-gray-50 font-black outline-none focus:border-brand transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-black uppercase text-gray-400 mb-3 ml-2 tracking-widest">Tanggal Penyerahan Unit</label>
+                            <input type="date" id="g_tanggal" required class="w-full px-6 py-5 rounded-3xl border-2 border-gray-100 bg-gray-50 font-black outline-none focus:border-brand transition-all text-gray-700">
+                        </div>
+                        <button type="submit" id="g_btn" class="w-full bg-brand text-white py-7 rounded-[2.5rem] font-black text-2xl shadow-2xl shadow-brand/20 hover:bg-brand-dark transition-all uppercase italic tracking-tighter">AKTIVASI & TERBITKAN KODE <i class="fas fa-barcode ml-3"></i></button>
+                    </form>
                 </div>
-                <div class="bg-gray-800/50 p-10 rounded-[2.5rem] border border-gray-700 hover:border-brand transition-all group">
-                    <div class="w-16 h-16 bg-brand/20 text-brand rounded-2xl flex items-center justify-center text-3xl mb-8 group-hover:scale-110 transition-transform"><i class="fas fa-cogs"></i></div>
-                    <h3 class="text-2xl font-black mb-4 uppercase">Suku Cadang Asli</h3>
-                    <p class="text-gray-400 font-medium leading-relaxed">Menjamin kelancaran operasional melalui penyediaan suku cadang berkualitas tinggi yang lengkap dan mudah diakses.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CMS Garansi Portal -->
-    <section id="garansi" class="py-24 bg-brand/5 relative">
-        <div class="max-w-4xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-black text-gray-900 uppercase italic">Portal Garansi <span class="text-brand">KSA</span></h2>
-                <p class="text-gray-500 mt-2 font-bold uppercase tracking-widest text-xs">Simpan Kode Akses Anda untuk Cek Status Kapan Saja</p>
-            </div>
-            
-            <!-- Area Cek Kode -->
-            <div class="bg-white p-8 rounded-3xl border-2 border-dashed border-brand/30 mb-12 text-center shadow-inner">
-                <h4 class="font-black text-gray-900 mb-4 uppercase tracking-tighter">Masukkan Kode Akses Anda</h4>
-                <div class="flex gap-2 max-w-md mx-auto">
-                    <input type="text" id="c_kode" placeholder="CONTOH: KSA-X9B2MQ" class="flex-1 px-6 py-4 rounded-2xl border-2 border-gray-200 outline-none focus:border-brand font-mono font-black text-center text-brand uppercase text-xl placeholder:text-gray-300 placeholder:font-sans">
-                    <button onclick="cekGaransi()" class="bg-gray-900 text-white px-8 rounded-2xl hover:bg-brand transition-all shadow-xl"><i class="fas fa-search text-xl"></i></button>
-                </div>
-                <div id="cek-result"></div>
-            </div>
-
-            <!-- Form Pendaftaran Baru -->
-            <div class="bg-white p-10 md:p-14 rounded-[3rem] shadow-2xl border-t-8 border-brand">
-                <h4 class="text-2xl font-black text-gray-900 mb-8 border-b-4 border-gray-50 pb-6 uppercase italic"><i class="fas fa-file-signature text-brand mr-3"></i>Aktivasi Unit Baru</h4>
-                <form onsubmit="submitGaransi(event)" class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="md:col-span-1">
-                        <label class="block text-sm font-black text-gray-700 mb-3 uppercase tracking-wider">Jenis Produk</label>
-                        <select id="g_jenis" class="w-full px-5 py-4 rounded-xl border-2 border-gray-100 bg-gray-50 font-bold outline-none focus:border-brand transition-all cursor-pointer">
-                            <option value="Pompa Irigasi">Pompa Irigasi</option>
-                            <option value="Traktor Roda 4">Traktor Roda 4</option>
-                            <option value="Drone Pertanian">Drone Pertanian</option>
-                            <option value="Implement">Implement Traktor</option>
-                        </select>
-                    </div>
-                    <div class="md:col-span-1">
-                        <label class="block text-sm font-black text-gray-700 mb-3 uppercase tracking-wider">Tipe/Spesifikasi</label>
-                        <input type="text" id="g_spek" required placeholder="Misal: Diesel 3 Inch" class="w-full px-5 py-4 rounded-xl border-2 border-gray-100 bg-gray-50 font-bold outline-none focus:border-brand transition-all">
-                    </div>
-                    <div class="md:col-span-2">
-                        <label class="block text-sm font-black text-gray-700 mb-3 uppercase tracking-wider">CPCL Penerima / Pemilik</label>
-                        <input type="text" id="g_cpcl" required placeholder="Nama Kelompok Tani / Instansi / Individu" class="w-full px-5 py-4 rounded-xl border-2 border-gray-100 bg-gray-50 font-bold outline-none focus:border-brand transition-all">
-                    </div>
-                    <div class="md:col-span-2">
-                        <label class="block text-sm font-black text-gray-700 mb-3 uppercase tracking-wider">Tanggal Serah Terima</label>
-                        <input type="date" id="g_tanggal" required class="w-full px-5 py-4 rounded-xl border-2 border-gray-100 bg-gray-50 font-bold outline-none focus:border-brand transition-all">
-                    </div>
-                    <div class="md:col-span-2 pt-4">
-                        <button type="submit" id="g_btn" class="w-full bg-brand text-white py-5 rounded-2xl font-black text-xl shadow-2xl hover:bg-brand-dark transition-all uppercase tracking-tighter">
-                            DAFTARKAN UNIT SEKARANG <i class="fas fa-check-double ml-3"></i>
-                        </button>
-                    </div>
-                </form>
             </div>
 
-            <!-- Tabel Admin (Hidden) -->
-            <div id="admin-garansi-view" class="mt-24 hidden animate-fade-in">
-                <div class="flex justify-between items-center mb-8">
-                    <h4 class="font-black text-2xl uppercase italic text-gray-900 underline decoration-brand decoration-4">Database Master Garansi</h4>
-                    <span class="bg-gray-100 text-gray-600 px-4 py-2 rounded-full text-xs font-black uppercase">Live Sync</span>
+            <!-- Admin Live Table (Visible only when logged in) -->
+            <div id="admin-garansi-view" class="mt-32 hidden animate-fade-in">
+                <div class="flex justify-between items-end mb-12">
+                    <h4 class="font-black text-4xl uppercase italic text-brand underline decoration-brand decoration-8 underline-offset-[12px] tracking-tighter">Database Induk Garansi</h4>
+                    <span class="bg-gray-800 text-brand px-8 py-3 rounded-full text-xs font-black uppercase tracking-[0.3em] border border-brand/20 shadow-xl">Admin Central Live Sync</span>
                 </div>
-                <div class="overflow-x-auto rounded-[2rem] border shadow-2xl">
-                    <table class="w-full text-left bg-white text-sm">
-                        <thead class="bg-gray-900 text-white font-black uppercase tracking-widest italic">
+                <div class="overflow-x-auto rounded-[3.5rem] border border-gray-700 bg-gray-800 shadow-2xl border-t-8 border-t-brand">
+                    <table class="w-full text-left text-xs uppercase font-black tracking-tight">
+                        <thead class="bg-black text-brand italic">
                             <tr>
-                                <th class="p-6">No</th>
-                                <th class="p-6">Unit</th>
-                                <th class="p-6">Pemilik (CPCL)</th>
-                                <th class="p-6">Tanggal</th>
-                                <th class="p-6 text-accent">KODE</th>
-                                <th class="p-6">Aksi</th>
+                                <th class="p-10">No</th>
+                                <th class="p-10">Spesifikasi Unit</th>
+                                <th class="p-10">Pemilik (CPCL)</th>
+                                <th class="p-10">Kode Akses</th>
+                                <th class="p-10 text-center">Kelola Data</th>
                             </tr>
                         </thead>
-                        <tbody id="garansi-table-body" class="font-bold text-gray-700"></tbody>
+                        <tbody id="garansi-table-body" class="text-white border-t border-gray-700">
+                            <!-- Populated by Firebase -->
+                        </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CMS Galeri Grid -->
-    <section id="galeri" class="py-24 bg-gray-900 text-white">
+    <!-- CMS Galeri Field Documentation -->
+    <section id="galeri" class="py-32 bg-white">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-12">
                 <div>
-                    <h4 class="text-brand font-black uppercase tracking-[0.4em] mb-4 text-xs">Dokumentasi Lapangan</h4>
-                    <h2 class="text-4xl md:text-5xl font-black uppercase italic tracking-tighter">Galeri Kegiatan <span class="text-white">KSA</span></h2>
+                    <h4 class="text-brand font-black uppercase tracking-[0.5em] mb-6 text-sm italic">Documentation Archive</h4>
+                    <h2 class="text-5xl md:text-8xl font-black uppercase italic tracking-tighter text-gray-900 leading-none">Galeri <br><span class="text-brand">Kegiatan Lapangan</span></h2>
                 </div>
                 <div class="admin-tools hidden">
-                    <button onclick="addGalleryItem()" class="bg-accent text-gray-900 px-8 py-4 rounded-2xl font-black flex items-center gap-3 shadow-xl hover:scale-105 transition-all">
-                        <i class="fas fa-plus-circle text-xl"></i> TAMBAH KOTAK FOTO
-                    </button>
+                    <button onclick="addGalleryItem()" class="bg-accent text-gray-900 px-14 py-6 rounded-3xl font-black uppercase italic shadow-2xl hover:scale-105 transition-all flex items-center gap-5 border-b-8 border-accent-dark"><i class="fas fa-plus-circle text-3xl"></i> TAMBAH DOKUMENTASI BARU</button>
                 </div>
             </div>
             
-            <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="col-span-full py-20 text-center text-gray-500">
-                    <i class="fas fa-circle-notch fa-spin text-4xl mb-4"></i>
-                    <p class="font-bold">Menghubungkan ke Cloud Storage...</p>
+            <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+                <div class="col-span-full py-32 text-center text-gray-300 font-black uppercase italic tracking-[0.4em] border-8 border-dashed border-gray-50 rounded-[4rem]">
+                    <i class="fas fa-cloud-download-alt text-6xl mb-8 text-brand/10"></i><br>
+                    Menghubungkan ke Cloud Storage...
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CMS Mitra Partnership -->
-    <section class="py-24 bg-white border-b">
+    <!-- CMS Partnership Network -->
+    <section class="py-24 bg-gray-50 border-y overflow-hidden">
         <div class="max-w-7xl mx-auto px-6 text-center">
-            <div class="flex justify-center items-center gap-4 mb-16">
-                <h3 class="text-sm font-black uppercase tracking-[0.5em] text-gray-400 italic">Mitra Kerjasama Strategis</h3>
+            <div class="flex justify-center items-center gap-8 mb-20">
+                <h3 class="text-xs font-black uppercase tracking-[0.8em] text-gray-400 italic">Strategic Business Partnership Network</h3>
                 <div class="admin-tools hidden">
-                    <button onclick="addPartnerItem()" class="bg-brand text-white px-5 py-2 rounded-full font-black text-[10px] uppercase shadow-lg">+ Tambah Mitra</button>
+                    <button onclick="addPartnerItem()" class="bg-brand text-white px-8 py-3 rounded-full font-black text-[11px] uppercase shadow-xl tracking-widest">+ TAMBAH MITRA</button>
                 </div>
             </div>
-            <div id="partner-grid" class="flex flex-wrap justify-center items-center gap-16 grayscale opacity-60 hover:grayscale-0 transition-all duration-700">
+            <div id="partner-grid" class="flex flex-wrap justify-center items-center gap-24 grayscale opacity-40 hover:grayscale-0 transition-all duration-1000">
                 <!-- Logika CMS -->
             </div>
         </div>
     </section>
 
-    <!-- Kontak -->
-    <section id="kontak" class="py-24 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="bg-white rounded-[3rem] shadow-2xl overflow-hidden flex flex-col lg:flex-row border border-gray-100">
-                <div class="bg-gray-900 text-white lg:w-5/12 p-12 lg:p-16 relative overflow-hidden">
-                    <div class="absolute -top-24 -right-24 w-80 h-80 bg-brand/20 rounded-full blur-[100px]"></div>
-                    <h3 class="text-4xl font-black mb-8 italic uppercase tracking-tighter">Hubungi <span class="text-brand">Kami</span></h3>
-                    <p class="text-gray-400 mb-12 text-lg font-medium leading-relaxed">Dapatkan konsultasi mekanisasi khusus dan penawaran harga terbaik dari tim ahli kami.</p>
-                    <div class="space-y-10 relative z-10">
-                        <div class="flex items-start gap-6">
-                            <div class="w-12 h-12 bg-brand/20 text-brand rounded-xl flex items-center justify-center text-xl shrink-0"><i class="fas fa-map-marker-alt"></i></div>
+    <!-- Premium Contact & Support -->
+    <section id="kontak" class="py-32 bg-white relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="bg-white rounded-[5rem] shadow-2xl overflow-hidden flex flex-col lg:flex-row border border-gray-100">
+                <!-- Dark Info Panel -->
+                <div class="bg-gray-900 text-white lg:w-5/12 p-20 relative overflow-hidden">
+                    <div class="absolute -top-40 -right-40 w-[500px] h-[500px] bg-brand/20 rounded-full blur-[150px] animate-pulse"></div>
+                    <h3 class="text-5xl font-black mb-12 italic uppercase tracking-tighter leading-tight">Stay <br><span class="text-brand underline decoration-brand decoration-4">Connected</span></h3>
+                    <p class="text-gray-400 mb-16 text-xl font-medium leading-relaxed italic">Diskusikan kebutuhan mekanisasi Bapak dengan tim teknis ahli kami untuk efisiensi operasional lahan yang optimal.</p>
+                    
+                    <div class="space-y-16 relative z-10">
+                        <div class="flex items-start gap-10 group">
+                            <div class="w-20 h-20 bg-white/5 text-brand rounded-[2.2rem] flex items-center justify-center text-4xl shrink-0 group-hover:bg-brand group-hover:text-white transition-all shadow-xl"><i class="fas fa-map-marker-alt"></i></div>
                             <div>
-                                <h4 class="font-black text-xs uppercase tracking-widest text-brand mb-1">Alamat Kantor</h4>
-                                <p class="text-gray-300 font-bold">Jl. Mekar Wangi, Dangdang Cisauk<br>Kab. Tangerang, 15324</p>
+                                <h4 class="font-black text-sm uppercase tracking-[0.3em] text-brand mb-3 italic underline underline-offset-8 decoration-2">Kantor Pusat</h4>
+                                <p class="text-gray-200 font-black text-2xl leading-snug">Jl. Mekar Wangi, Dangdang Cisauk<br>Kab. Tangerang, 15324</p>
                             </div>
                         </div>
-                        <div class="flex items-start gap-6">
-                            <div class="w-12 h-12 bg-brand/20 text-brand rounded-xl flex items-center justify-center text-xl shrink-0"><i class="fas fa-phone-alt"></i></div>
+                        <div class="flex items-start gap-10 group">
+                            <div class="w-20 h-20 bg-white/5 text-brand rounded-[2.2rem] flex items-center justify-center text-4xl shrink-0 group-hover:bg-brand group-hover:text-white transition-all shadow-xl"><i class="fas fa-phone-alt"></i></div>
                             <div>
-                                <h4 class="font-black text-xs uppercase tracking-widest text-brand mb-1">Saluran Informasi</h4>
-                                <p class="text-gray-300 font-bold">+62 851 5097 3789</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-6">
-                            <div class="w-12 h-12 bg-brand/20 text-brand rounded-xl flex items-center justify-center text-xl shrink-0"><i class="fas fa-envelope"></i></div>
-                            <div>
-                                <h4 class="font-black text-xs uppercase tracking-widest text-brand mb-1">Email Resmi</h4>
-                                <p class="text-gray-300 font-bold">kalimajasuryaalam@gmail.com</p>
+                                <h4 class="font-black text-sm uppercase tracking-[0.3em] text-brand mb-3 italic underline underline-offset-8 decoration-2">Hotline Service</h4>
+                                <p class="text-gray-200 font-black text-3xl leading-snug">+62 851 5097 3789</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="lg:w-7/12 p-12 lg:p-16">
-                    <h3 class="text-2xl font-black text-gray-900 mb-8 uppercase italic">Kirim Pesan Langsung</h3>
-                    <form onsubmit="event.preventDefault(); alert('Terima kasih! Pesan Anda akan segera dijawab oleh tim kami.');" class="space-y-6">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <input type="text" required placeholder="Nama Lengkap" class="w-full px-6 py-4 rounded-xl border-2 border-gray-100 bg-gray-50 font-bold outline-none focus:border-brand">
-                            <input type="tel" required placeholder="Nomor HP/WA" class="w-full px-6 py-4 rounded-xl border-2 border-gray-100 bg-gray-50 font-bold outline-none focus:border-brand">
+                
+                <!-- White Form Panel -->
+                <div class="lg:w-7/12 p-20">
+                    <h3 class="text-4xl font-black text-gray-900 mb-14 uppercase italic tracking-tighter">Minta Penawaran <span class="text-brand">Harga</span></h3>
+                    <form onsubmit="event.preventDefault(); alert('Pesan Bapak terkirim! Tim KSA akan segera menghubungi via WhatsApp.');" class="space-y-10">
+                        <div class="grid grid-cols-2 gap-10">
+                            <div class="col-span-1">
+                                <label class="block text-xs font-black uppercase text-gray-300 mb-4 ml-4 tracking-widest">Nama Lengkap Bapak</label>
+                                <input type="text" required placeholder="Contoh: Bpk. Surya" class="w-full px-8 py-6 rounded-[2rem] border-2 border-gray-50 bg-gray-50 font-black outline-none focus:border-brand transition-all text-xl">
+                            </div>
+                            <div class="col-span-1">
+                                <label class="block text-xs font-black uppercase text-gray-300 mb-4 ml-4 tracking-widest">Nomor WhatsApp Aktif</label>
+                                <input type="tel" required placeholder="08xxxxxxxxxx" class="w-full px-8 py-6 rounded-[2rem] border-2 border-gray-50 bg-gray-50 font-black outline-none focus:border-brand transition-all text-xl">
+                            </div>
                         </div>
-                        <textarea rows="5" required placeholder="Ceritakan kebutuhan Bapak..." class="w-full px-6 py-4 rounded-xl border-2 border-gray-100 bg-gray-50 font-bold outline-none focus:border-brand resize-none"></textarea>
-                        <button type="submit" class="w-full bg-brand text-white py-5 rounded-2xl font-black text-lg shadow-xl hover:bg-brand-dark transition-all uppercase italic tracking-tighter">KIRIM PESAN SEKARANG</button>
+                        <div>
+                            <label class="block text-xs font-black uppercase text-gray-300 mb-4 ml-4 tracking-widest">Spesifikasi Unit/Alat Yang Bapak Butuhkan</label>
+                            <textarea rows="6" required placeholder="Ceritakan kebutuhan Bapak secara detail..." class="w-full px-10 py-8 rounded-[3rem] border-2 border-gray-50 bg-gray-50 font-black outline-none focus:border-brand resize-none transition-all text-xl"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-gray-900 text-white py-8 rounded-[3rem] font-black text-2xl shadow-2xl hover:bg-brand transition-all uppercase italic tracking-tighter shadow-brand/10">SUBMIT KE TIM AHLI KSA <i class="fas fa-paper-plane ml-3"></i></button>
                     </form>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer Premium -->
-    <footer class="bg-gray-900 py-24 text-gray-500">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-16">
+    <!-- Footer Corporate -->
+    <footer class="bg-gray-900 py-32 text-gray-500 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-24">
             <div class="md:col-span-2">
-                <div class="flex items-center gap-3 mb-8">
-                    <img class="h-14 w-14 rounded-full object-cover border-2 border-white/10" src="https://www.ksasemesta.com/images/0/24384851/LogoKalimaja1-VOen73dOZJxAq7S_0egLJw.jpg" alt="Logo">
-                    <span class="text-2xl font-black text-white italic tracking-tighter uppercase">PT KSA SEMESTA</span>
+                <div class="flex items-center gap-5 mb-12">
+                    <img class="h-20 w-20 rounded-full object-cover border-4 border-brand/20 shadow-2xl" src="https://www.ksasemesta.com/images/0/24384851/LogoKalimaja1-VOen73dOZJxAq7S_0egLJw.jpg" alt="Logo">
+                    <div class="flex flex-col">
+                        <span class="text-4xl font-black text-white italic tracking-tighter uppercase leading-none">PT KSA SEMESTA</span>
+                        <span class="text-xs font-black tracking-[0.6em] text-brand uppercase mt-3 leading-none italic">Modern Agriculture Solution</span>
+                    </div>
                 </div>
-                <p class="text-lg leading-relaxed mb-10 max-w-md">"Mewujudkan kemajuan sektor pertanian nasional melalui teknologi mekanisasi yang tangguh, efisien, dan berkelanjutan."</p>
-                <div class="flex gap-6 text-2xl text-gray-400">
-                    <a href="#" class="hover:text-brand transition-all"><i class="fab fa-facebook-f"></i></a>
+                <p class="text-2xl leading-relaxed mb-14 max-w-lg italic font-light text-gray-400">"Mewujudkan kemajuan sektor pertanian nasional melalui teknologi mekanisasi yang tangguh, efisien, dan berkelanjutan untuk kesejahteraan petani."</p>
+                <div class="flex gap-10 text-3xl text-gray-600">
+                    <a href="#" class="hover:text-brand transition-all"><i class="fab fa-facebook"></i></a>
                     <a href="#" class="hover:text-brand transition-all"><i class="fab fa-instagram"></i></a>
                     <a href="#" class="hover:text-brand transition-all"><i class="fab fa-youtube"></i></a>
-                    <a href="#" class="hover:text-brand transition-all"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
             <div>
-                <h4 class="text-white font-black text-sm uppercase tracking-widest mb-8 italic underline decoration-brand decoration-2">Navigasi</h4>
-                <ul class="space-y-4 font-bold">
+                <h4 class="text-white font-black text-xs uppercase tracking-[0.4em] mb-12 italic underline underline-offset-8 decoration-brand decoration-4">Peta Navigasi</h4>
+                <ul class="space-y-8 font-black uppercase text-[11px] tracking-[0.2em]">
                     <li><a href="#beranda" class="hover:text-white transition-all">Beranda Utama</a></li>
-                    <li><a href="#tentang" class="hover:text-white transition-all">Tentang Perusahaan</a></li>
-                    <li><a href="#produk" class="hover:text-white transition-all">Katalog Produk</a></li>
-                    <li><a href="#garansi" class="hover:text-white transition-all">Pusat Garansi</a></li>
-                    <li><button id="admin-btn" onclick="toggleAdminMode()" class="text-gray-800 hover:text-brand transition-all uppercase tracking-widest text-[9px] flex items-center gap-2"><i class="fas fa-user-shield"></i> Akses Manajemen</button></li>
+                    <li><a href="#tentang" class="hover:text-white transition-all">Profil Korporasi</a></li>
+                    <li><a href="#produk" class="hover:text-white transition-all">Katalog Mesin</a></li>
+                    <li><a href="#garansi" class="hover:text-white transition-all text-brand">Pusat E-Warranty</a></li>
+                    <li><button id="admin-btn" onclick="toggleAdminMode()" class="text-gray-800 hover:text-brand transition-all flex items-center gap-4"><i class="fas fa-lock"></i> Manajemen Login</button></li>
                 </ul>
             </div>
             <div>
-                <h4 class="text-white font-black text-sm uppercase tracking-widest mb-8 italic underline decoration-brand decoration-2">Kantor Kami</h4>
-                <p class="font-bold leading-loose">Jl. Mekar Wangi, Dangdang Cisauk<br>Kab. Tangerang, Banten 15324<br>Indonesia</p>
+                <h4 class="text-white font-black text-xs uppercase tracking-[0.4em] mb-12 italic underline underline-offset-8 decoration-brand decoration-4">Hubungi Kami</h4>
+                <p class="font-black leading-loose text-xs uppercase italic text-gray-400 tracking-[0.2em]">Jl. Mekar Wangi, Dangdang Cisauk<br>Kab. Tangerang, Banten 15324<br><br>kalimajasuryaalam@gmail.com</p>
             </div>
         </div>
-        <div class="max-w-7xl mx-auto px-6 border-t border-gray-800 mt-20 pt-10 text-center text-xs font-bold uppercase tracking-[0.4em]">
-            &copy; 2026 PT Kalimaja Surya Alam. All Rights Reserved.
+        <div class="max-w-7xl mx-auto px-6 border-t border-gray-800 mt-32 pt-12 text-center text-[11px] font-black uppercase tracking-[1em] text-gray-700 italic">
+            &copy; 2026 PT Kalimaja Surya Alam. Official Corporate Portfolio System.
         </div>
     </footer>
 
-    <!-- Script Utama (Firebase Terintegrasi) -->
+    <!-- Firebase Integrated Engine -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
         import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
         import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, doc, updateDoc } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
         import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-storage.js";
 
-        // CONFIG FIREBASE BOS - KSA PERTANIAN
+        // KREDENSIAL PROYEK KSA-PERTANIAN
         const firebaseConfig = {
             apiKey: "AIzaSyCh_wy9P3BHrgc3VkN-YKkLLjhSHw5LwdY",
             authDomain: "ksa-pertanian.firebaseapp.com",
@@ -528,175 +506,183 @@
         const db = getFirestore(app);
         const storage = getStorage(app);
 
-        // State Global
         let currentGaransiData = [];
         let currentGalleryData = [];
         window.isAdmin = false;
 
-        // Login Otomatis (Anonim)
-        signInAnonymously(auth).catch(e => console.error("Koneksi Auth Ditolak."));
+        // Login Anonim (Wajib Aktif di Console)
+        signInAnonymously(auth).catch(e => console.error("Koneksi Firebase Auth Ditolak."));
 
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                fetchData();
+                fetchDataFromCloud();
             }
         });
 
-        // ==========================================
-        // SISTEM AMBIL DATA CLOUD
-        // ==========================================
-        function fetchData() {
-            // 1. Garansi Data
+        // ------------------------------------------
+        // CLOUD SYNC ENGINE
+        // ------------------------------------------
+        function fetchDataFromCloud() {
+            // Garansi Stream
             onSnapshot(collection(db, 'garansi'), (snap) => {
                 const data = [];
                 snap.forEach(d => data.push({id: d.id, ...d.data()}));
                 data.sort((a,b) => b.timestamp - a.timestamp);
                 currentGaransiData = data;
-                renderGaransi();
-            }, (err) => handleAuthError(err, 'Garansi'));
+                renderGaransiModule();
+            }, (e) => handleCloudError(e, 'Garansi'));
 
-            // 2. Galeri Data
+            // Galeri Stream
             onSnapshot(collection(db, 'gallery'), (snap) => {
                 const data = [];
                 snap.forEach(d => data.push({id: d.id, ...d.data()}));
                 data.sort((a,b) => a.timestamp - b.timestamp);
                 currentGalleryData = data;
-                renderGallery();
-            }, (err) => handleAuthError(err, 'Galeri'));
+                renderGalleryModule();
+            }, (e) => handleCloudError(e, 'Galeri'));
 
-            // 3. Mitra Data
+            // Mitra Stream
             onSnapshot(collection(db, 'partners'), (snap) => {
                 const data = [];
                 snap.forEach(d => data.push({id: d.id, ...d.data()}));
-                renderPartners(data);
-            }, (err) => handleAuthError(err, 'Mitra'));
+                renderPartnersModule(data);
+            }, (e) => handleCloudError(e, 'Mitra'));
         }
 
-        function handleAuthError(err, section) {
+        function handleCloudError(err, section) {
             if (err.code === 'permission-denied') {
-                const area = section === 'Garansi' ? document.getElementById('garansi-table-body') : document.getElementById('gallery-grid');
-                if (area) {
-                    area.innerHTML = `<div class="col-span-full p-10 bg-red-50 text-red-600 rounded-3xl text-center font-bold">
-                        <i class="fas fa-lock-alt text-4xl mb-4"></i><br>
-                        Akses ${section} Ditolak Firebase.<br>
-                        Pastikan Rules di Firebase Console sudah 'allow read, write: if true;'
-                    </div>`;
-                }
+                const target = section === 'Garansi' ? document.getElementById('garansi-table-body') : document.getElementById('gallery-grid');
+                if (target) target.innerHTML = `<div class="col-span-full p-16 bg-red-50 text-red-700 rounded-[3rem] text-center font-black uppercase italic border-4 border-red-200 shadow-2xl shadow-red-200/50 italic">Akses Cloud ${section} Ditolak Google.<br><br><span class="text-xs font-bold opacity-60">Buka Firebase Console -> Firestore -> Rules -> allow read, write: if true;</span></div>`;
             }
         }
 
-        // ==========================================
-        // SISTEM RENDER UI
-        // ==========================================
-        function renderGaransi() {
+        // ------------------------------------------
+        // PREMIUM RENDERING ENGINE
+        // ------------------------------------------
+        function renderGaransiModule() {
             const body = document.getElementById('garansi-table-body');
             if(!body) return;
             body.innerHTML = currentGaransiData.map((item, i) => `
-                <tr class="border-b hover:bg-green-50 transition-colors">
-                    <td class="p-6">${i+1}</td>
-                    <td class="p-6 uppercase tracking-tighter">${item.jenis} - ${item.spek}</td>
-                    <td class="p-6 italic">${item.cpcl}</td>
-                    <td class="p-6">${item.tanggal}</td>
-                    <td class="p-6 text-blue-700 font-black">${item.kodeAkses}</td>
-                    <td class="p-6">
-                        <button onclick="deleteDocItem('garansi', '${item.id}')" class="text-red-400 hover:text-red-600 ${window.isAdmin?'':'hidden'}"><i class="fas fa-trash-alt"></i></button>
-                    </td>
+                <tr class="border-b border-gray-700 hover:bg-brand/10 transition-all">
+                    <td class="p-10 font-black opacity-30">${i+1}</td>
+                    <td class="p-10"><span class="text-brand font-black text-lg">${item.jenis}</span><br><span class="text-[10px] text-gray-500 font-bold tracking-widest">${item.spek}</span></td>
+                    <td class="p-10 italic font-black text-gray-200 tracking-tighter text-sm">${item.cpcl}</td>
+                    <td class="p-10 text-brand font-black italic tracking-[0.2em] text-lg">${item.kodeAkses}</td>
+                    <td class="p-10 text-center"><button onclick="deleteDocItem('garansi', '${item.id}')" class="text-red-500 bg-red-500/10 p-5 rounded-2xl hover:bg-red-500 hover:text-white transition-all ${window.isAdmin?'':'hidden'}"><i class="fas fa-trash-alt text-xl"></i></button></td>
                 </tr>
-            `).join('') || '<tr><td colspan="6" class="p-20 text-center text-gray-300 uppercase italic font-black">Database Masih Kosong</td></tr>';
+            `).join('') || '<tr><td colspan="5" class="p-32 text-center font-black opacity-20 italic text-4xl tracking-tighter">Database Masih Kosong</td></tr>';
         }
 
-        function renderGallery() {
+        function renderGalleryModule() {
             const grid = document.getElementById('gallery-grid');
             if(!grid) return;
             grid.innerHTML = currentGalleryData.map(item => `
-                <div class="relative h-72 rounded-[2rem] overflow-hidden group bg-gray-800 shadow-2xl border-4 border-gray-800 hover:border-brand transition-all">
-                    <img src="${item.imageUrl || 'https://via.placeholder.com/800x800/222/555?text=KLIK+UPLOAD'}" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-125">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent p-6 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-all duration-500">
-                        <h3 class="font-black text-white italic uppercase tracking-tighter admin-edit-outline outline-none" ${window.isAdmin?'contenteditable="true"':''} onblur="updateTitle('gallery','${item.id}',this.innerText)">${item.title || 'Judul Kegiatan...'}</h3>
+                <div class="relative h-80 rounded-[3.5rem] overflow-hidden group bg-gray-800 shadow-2xl border-4 border-gray-100 hover:border-brand transition-all duration-700">
+                    <img src="${item.imageUrl || 'https://via.placeholder.com/800x800/222/555?text=KSA+UPLOAD'}" class="w-full h-full object-cover transition-transform duration-[2000ms] group-hover:scale-150">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent p-12 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-all duration-500">
+                        <h3 class="font-black text-white italic uppercase tracking-tighter admin-edit-outline outline-none text-lg" ${window.isAdmin?'contenteditable="true"':''} onblur="updateTitle('gallery','${item.id}',this.innerText)">${item.title || 'Klik Edit Deskripsi...'}</h3>
                     </div>
-                    <!-- Admin Panel -->
-                    <div class="admin-tools absolute top-4 right-4 flex flex-col gap-2 ${window.isAdmin?'':'hidden'}">
-                        <label class="bg-brand text-white p-3 rounded-2xl cursor-pointer text-xs font-black shadow-2xl hover:scale-105 active:scale-95 transition-all">UPLOAD <input type="file" class="hidden" onchange="uploadFile(event,'gallery','${item.id}')"></label>
-                        <button onclick="deleteDocItem('gallery', '${item.id}')" class="bg-red-600 text-white p-3 rounded-2xl text-xs font-black shadow-2xl hover:scale-105 active:scale-95 transition-all">HAPUS</button>
+                    <!-- Manajemen Overlay -->
+                    <div class="absolute top-8 right-8 flex flex-col gap-4 ${window.isAdmin?'':'hidden'}">
+                        <label class="bg-brand text-white p-5 rounded-3xl cursor-pointer text-[10px] font-black shadow-2xl hover:scale-110 active:scale-90 transition-all border-b-4 border-brand-dark">UPLOAD <input type="file" class="hidden" onchange="uploadFile(event,'gallery','${item.id}')"></label>
+                        <button onclick="deleteDocItem('gallery', '${item.id}')" class="bg-red-600 text-white p-5 rounded-3xl text-[10px] font-black shadow-2xl hover:scale-110 active:scale-90 transition-all border-b-4 border-red-800">HAPUS</button>
                     </div>
-                    <div id="prog-${item.id}" class="absolute inset-0 bg-brand/80 hidden flex items-center justify-center text-white font-black text-2xl italic">0%</div>
+                    <!-- Indikator Unggah -->
+                    <div id="prog-${item.id}" class="upload-overlay hidden">
+                        <div class="progress-circle" style="--p:0%">
+                            <span id="p-text-${item.id}" class="text-2xl font-black italic relative z-10">0%</span>
+                        </div>
+                        <p class="text-[10px] font-black uppercase mt-6 tracking-[0.4em] animate-pulse">Menyimpan Online...</p>
+                    </div>
                 </div>
-            `).join('') || `<div class="col-span-full py-20 text-center text-gray-600 font-bold uppercase italic tracking-widest border-4 border-dashed border-gray-800 rounded-3xl">Belum ada foto galeri. ${window.isAdmin?'Klik tombol tambah di atas.':''}</div>`;
+            `).join('') || `<div class="col-span-full py-32 text-center text-gray-400 font-black uppercase italic tracking-widest border-8 border-dashed rounded-[4rem] opacity-30">Galeri Masih Kosong. ${window.isAdmin?'Gunakan Manajemen.':''}</div>`;
         }
 
-        function renderPartners(data) {
+        function renderPartnersModule(data) {
             const grid = document.getElementById('partner-grid');
             if(!grid) return;
             grid.innerHTML = data.map(item => `
-                <div class="relative p-6 bg-white rounded-3xl shadow-sm border group hover:shadow-xl transition-all">
-                    <img src="${item.imageUrl || 'https://via.placeholder.com/150x60/eee/333?text=MITRA'}" class="h-10 md:h-12 object-contain">
-                    <div class="admin-tools absolute -top-4 -right-4 flex flex-col gap-1 ${window.isAdmin?'':'hidden'}">
-                        <label class="bg-brand text-white p-2 rounded-xl cursor-pointer text-[9px] font-black">GANTI <input type="file" class="hidden" onchange="uploadFile(event,'partners','${item.id}')"></label>
-                        <button onclick="deleteDocItem('partners', '${item.id}')" class="bg-red-500 text-white p-2 rounded-xl text-[9px] font-black">HAPUS</button>
+                <div class="relative p-12 bg-white rounded-[3rem] shadow-sm border border-gray-50 group hover:shadow-2xl transition-all">
+                    <img src="${item.imageUrl || 'https://via.placeholder.com/150x60/eee/333?text=MITRA'}" class="h-12 md:h-16 object-contain">
+                    <div class="absolute -top-4 -right-4 flex flex-col gap-2 ${window.isAdmin?'':'hidden'}">
+                        <label class="bg-brand text-white p-3 rounded-2xl cursor-pointer text-[9px] font-black shadow-xl">GANTI <input type="file" class="hidden" onchange="uploadFile(event,'partners','${item.id}')"></label>
+                        <button onclick="deleteDocItem('partners', '${item.id}')" class="bg-red-500 text-white p-3 rounded-2xl text-[9px] font-black shadow-xl">HAPUS</button>
                     </div>
+                    <div id="prog-${item.id}" class="absolute inset-0 bg-white/95 hidden flex items-center justify-center text-brand font-black italic text-[11px] animate-pulse uppercase tracking-[0.5em]">Synchronizing...</div>
                 </div>
             `).join('');
         }
 
-        // ==========================================
-        // LOGIKA ADMIN & CMS
-        // ==========================================
+        // ------------------------------------------
+        // MANAGEMENT ACTIONS (Password: Yakin537@)
+        // ------------------------------------------
         window.toggleAdminMode = function() {
-            const pass = prompt("Masukan Sandi Akses Manajemen:");
+            const pass = prompt("Sandi Keamanan Manajemen Strategis KSA:");
             if (pass === "Yakin537@") {
                 window.isAdmin = true;
-                alert("SISTEM CMS AKTIF!\nBapak sekarang bisa menambah, menghapus, dan upload foto permanen.");
+                alert("SISTEM MANAJEMEN CMS AKTIF!\nBapak sekarang memegang kendali penuh atas foto lapangan dan database garansi.");
                 document.querySelectorAll('.admin-tools').forEach(el => el.classList.remove('hidden'));
                 document.getElementById('admin-garansi-view').classList.remove('hidden');
-                document.getElementById('admin-btn').innerHTML = '<i class="fas fa-check-circle text-brand"></i> MANAJEMEN AKTIF';
-                renderGallery(); // Re-render for buttons
-                renderGaransi();
-                // Refresh Mitra manually
-                fetchData();
-            } else if (pass !== null) { alert("Sandi Salah! Akses Ditolak."); }
+                document.getElementById('admin-btn').innerHTML = '<i class="fas fa-check-circle text-brand"></i> MANAJEMEN LOGIN: BERHASIL';
+                fetchDataFromCloud(); 
+            } else if (pass !== null) { alert("Sandi Akses Ditolak! Harap Hubungi Admin IT."); }
         };
 
-        window.addGalleryItem = async () => addDoc(collection(db, 'gallery'), {imageUrl: '', title: 'JUDUL KEGIATAN BARU', timestamp: Date.now()});
+        window.addGalleryItem = async () => addDoc(collection(db, 'gallery'), {imageUrl: '', title: 'DOKUMENTASI BARU PT KSA', timestamp: Date.now()});
         window.addPartnerItem = async () => addDoc(collection(db, 'partners'), {imageUrl: '', timestamp: Date.now()});
-        window.deleteDocItem = async (col, id) => { if(confirm("Hapus Permanen?")) deleteDoc(doc(db, col, id)); };
+        window.deleteDocItem = async (col, id) => { if(confirm("Hapus Data Ini Secara Permanen Dari Cloud?")) deleteDoc(doc(db, col, id)); };
         window.updateTitle = async (col, id, val) => updateDoc(doc(db, col, id), {title: val});
 
+        // RE-ENGINEERED UPLOAD SYSTEM (STABLE)
         window.uploadFile = async (e, col, id) => {
             const file = e.target.files[0];
             if(!file) return;
+
             const progDiv = document.getElementById(`prog-${id}`);
+            const pText = document.getElementById(`p-text-${id}`);
+            const pContainer = progDiv.querySelector('.progress-circle');
+
             if(progDiv) progDiv.classList.remove('hidden');
 
-            const sRef = ref(storage, `ksa/${col}/${Date.now()}_${file.name}`);
-            const task = uploadBytesResumable(sRef, file);
+            try {
+                // Alur Penyimpanan Folder KSA
+                const sRef = ref(storage, `ksa_cloud_data/${col}/${Date.now()}_${file.name}`);
+                const task = uploadBytesResumable(sRef, file);
 
-            task.on('state_changed', 
-                (snap) => { 
-                    const p = Math.round((snap.bytesTransferred / snap.totalBytes) * 100);
-                    if(progDiv) progDiv.innerText = p + '%';
-                },
-                (err) => { 
-                    alert("UPLOAD GAGAL! Periksa Rules Storage.");
-                    if(progDiv) progDiv.classList.add('hidden');
-                },
-                async () => {
-                    const url = await getDownloadURL(task.snapshot.ref);
-                    await updateDoc(doc(db, col, id), {imageUrl: url});
-                    if(progDiv) progDiv.classList.add('hidden');
-                    alert("Foto Berhasil Disimpan Permanen!");
-                }
-            );
+                task.on('state_changed', 
+                    (snap) => { 
+                        const p = Math.round((snap.bytesTransferred / snap.totalBytes) * 100);
+                        if(pText) pText.innerText = p + '%';
+                        if(pContainer) pContainer.style.setProperty('--p', p + '%');
+                    },
+                    (err) => { 
+                        console.error(err);
+                        alert("UNABLE TO SYNC! Bapak harus membuka 'Gembok' Rules di Storage Firebase Console Bapak.");
+                        if(progDiv) progDiv.classList.add('hidden');
+                    },
+                    async () => {
+                        const url = await getDownloadURL(task.snapshot.ref);
+                        // Kunci link permanen ke Firestore
+                        await updateDoc(doc(db, col, id), {imageUrl: url});
+                        if(progDiv) progDiv.classList.add('hidden');
+                        alert("Data Berhasil Dimutakhirkan!");
+                    }
+                );
+            } catch (err) {
+                alert("Gangguan Jaringan Cloud. Silakan coba sesaat lagi.");
+            }
         };
 
-        // ==========================================
-        // LOGIKA GARANSI (Input & Search)
-        // ==========================================
+        // ------------------------------------------
+        // E-WARRANTY LOGIC
+        // ------------------------------------------
         window.submitGaransi = async (e) => {
             e.preventDefault();
             const btn = document.getElementById('g_btn');
             btn.disabled = true;
-            btn.innerText = "MENGIRIM KE SERVER...";
-
+            btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> ENCRYPTING DATA...';
+            
+            // Random Generator KSA-XXXXXX
             const kode = 'KSA-' + Math.random().toString(36).substring(2, 8).toUpperCase();
             const data = {
                 jenis: document.getElementById('g_jenis').value,
@@ -709,14 +695,10 @@
 
             try {
                 await addDoc(collection(db, 'garansi'), data);
-                alert(`REGISTRASI SUKSES!\n\nUnit Bapak sudah resmi terdaftar.\n\nKODE AKSES: ${kode}\n\n*PENTING: Harap simpan kode ini untuk cek garansi di website.`);
+                alert(`REGISTRASI SUKSES!\n\nUnit Bapak sudah resmi teraktivasi di sistem.\n\nNOMOR KODE: ${kode}\n\n*Simpan nomor ini untuk validasi masa garansi!`);
                 e.target.reset();
-            } catch (err) {
-                alert("Gagal. Periksa Rules Firestore.");
-            } finally {
-                btn.disabled = false;
-                btn.innerText = "DAFTARKAN GARANSI SEKARANG";
-            }
+            } catch (err) { alert("Sinkronisasi Gagal. Periksa Rules Firestore."); }
+            finally { btn.disabled = false; btn.innerHTML = 'DAFTARKAN & DAPATKAN KODE'; }
         };
 
         window.cekGaransi = () => {
@@ -726,17 +708,17 @@
             
             const found = currentGaransiData.find(d => d.kodeAkses === k);
             if(found) {
-                res.innerHTML = `<div class="mt-8 p-8 bg-green-50 text-green-900 rounded-[2rem] border-2 border-green-200 shadow-2xl animate-fade-in text-left">
-                    <h5 class="font-black text-xl mb-4 italic uppercase tracking-tighter text-brand"><i class="fas fa-check-circle mr-2"></i>Unit Garansi Aktif</h5>
-                    <div class="grid grid-cols-2 gap-4 text-xs font-bold uppercase opacity-80">
-                        <div>Produk: <span class="text-gray-900 ml-1">${found.jenis}</span></div>
-                        <div>Tipe: <span class="text-gray-900 ml-1">${found.spek}</span></div>
-                        <div class="col-span-2 mt-2">Pemilik: <span class="text-gray-900 ml-1 italic">${found.cpcl}</span></div>
-                        <div class="col-span-2">Tgl Daftar: <span class="text-gray-900 ml-1">${found.tanggal}</span></div>
+                res.innerHTML = `<div class="mt-10 p-12 bg-green-50 text-green-900 rounded-[3rem] border-4 border-green-200 shadow-2xl animate-fade-in text-left shadow-green-100">
+                    <h5 class="font-black text-3xl mb-6 italic uppercase tracking-tighter text-brand leading-none"><i class="fas fa-check-circle mr-4"></i>Unit Garansi Aktif</h5>
+                    <div class="grid grid-cols-2 gap-8 text-[11px] font-black uppercase opacity-90 tracking-widest">
+                        <div>Kategori Unit: <br><span class="text-gray-900 font-black text-lg italic tracking-tight">${found.jenis}</span></div>
+                        <div>Model/Tipe: <br><span class="text-gray-900 font-black text-lg italic tracking-tight">${found.spek}</span></div>
+                        <div class="col-span-2 mt-4 border-t border-green-200 pt-6">Pemilik Sah (CPCL): <br><span class="text-gray-900 font-black text-2xl italic tracking-tighter underline decoration-brand">${found.cpcl}</span></div>
+                        <div class="col-span-2 text-gray-400 font-bold uppercase mt-2">Terdaftar Sejak: ${found.tanggal}</div>
                     </div>
                 </div>`;
-            } else {
-                res.innerHTML = `<div class="mt-8 p-6 bg-red-50 text-red-700 rounded-2xl border-2 border-red-100 font-bold text-sm">Maaf, Kode Akses Tidak Ditemukan.</div>`;
+            } else { 
+                res.innerHTML = `<div class="mt-10 p-8 bg-red-50 text-red-700 rounded-3xl font-black text-xs uppercase tracking-[0.3em] border-4 border-red-100 italic animate-bounce">Akses Ditolak: Kode Tidak Valid</div>`; 
             }
         };
     </script>
