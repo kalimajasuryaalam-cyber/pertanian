@@ -593,6 +593,8 @@
                     const imgEl = document.getElementById('img-tentang');
                     if (imgEl) imgEl.src = docSnap.data().imageUrl;
                 }
+            }, (error) => {
+                console.error("Error Fetch Tentang Kami:", error);
             });
         }
 
@@ -791,6 +793,7 @@
                             alert("Gagal sinkronisasi link gambar ke database.");
                         } finally {
                             if(loadingDiv) loadingDiv.classList.add('hidden');
+                            event.target.value = ''; // Reset input
                         }
                     }
                 );
@@ -798,6 +801,7 @@
                 console.error(e);
                 alert("Terjadi kesalahan saat memulai unggah gambar.");
                 if(loadingDiv) loadingDiv.classList.add('hidden');
+                event.target.value = ''; // Reset input
             }
         };
 
@@ -809,10 +813,14 @@
 
             const loadingDiv = document.getElementById('loading-tentang');
             const progressTxt = document.getElementById('progress-tentang');
+            
             if(loadingDiv) loadingDiv.classList.remove('hidden');
+            if(progressTxt) progressTxt.innerText = '0%';
 
             try {
-                const filename = `settings/tentang_${Date.now()}_${file.name}`;
+                // Menghilangkan karakter aneh pada nama file yang dapat membuat error Firebase
+                const safeFilename = file.name.replace(/[^a-zA-Z0-9.]/g, "_");
+                const filename = `settings/tentang_${Date.now()}_${safeFilename}`;
                 const sRef = storageRef(storage, filename);
                 const uploadTask = uploadBytesResumable(sRef, file);
 
@@ -823,12 +831,14 @@
                     }, 
                     (error) => {
                         console.error("Storage Error:", error);
-                        alert("Gagal Unggah Foto! Pastikan Rules Firebase Storage mengizinkan write.");
+                        alert("Gagal Unggah Foto!\nPastikan aturan/Rules Firebase STORAGE Anda adalah: allow read, write: if true;");
                         if(loadingDiv) loadingDiv.classList.add('hidden');
+                        event.target.value = ''; // Reset Input
                     }, 
                     async () => {
                         try {
                             const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+                            
                             // Simpan link gambar ke database Firestore
                             try {
                                 await updateDoc(doc(db, 'settings', 'tentang_image'), { imageUrl: downloadURL });
@@ -836,21 +846,27 @@
                                 // Jika dokumen belum ada di database, gunakan setDoc untuk membuat pertama kali
                                 await setDoc(doc(db, 'settings', 'tentang_image'), { imageUrl: downloadURL });
                             }
+
+                            // Paksa gambar di layar langsung berubah tanpa harus merefresh halaman
+                            const imgEl = document.getElementById('img-tentang');
+                            if (imgEl) imgEl.src = downloadURL;
                             
                             // Tampilkan Notifikasi Sukses ke Admin
-                            window.showCloudToast("Foto 'Tentang Kami' Berhasil Diperbarui di Cloud!");
+                            window.showCloudToast("Foto 'Tentang Kami' Berhasil Diperbarui!");
                         } catch (e) {
                             console.error("Firestore Update Error:", e);
-                            alert("Gagal sinkronisasi link gambar ke database.");
+                            alert("Gambar sukses diunggah, tapi ditolak oleh Database. Cek Rules Firestore Anda.");
                         } finally {
                             if(loadingDiv) loadingDiv.classList.add('hidden');
+                            event.target.value = ''; // Reset Input
                         }
                     }
                 );
             } catch (e) {
-                console.error(e);
-                alert("Terjadi kesalahan saat memulai unggah gambar.");
+                console.error("System Error:", e);
+                alert("Terjadi kesalahan sistem saat memulai unggah gambar.");
                 if(loadingDiv) loadingDiv.classList.add('hidden');
+                event.target.value = ''; // Reset Input
             }
         };
 
