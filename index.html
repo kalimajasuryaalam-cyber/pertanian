@@ -69,7 +69,13 @@
         }
     </style>
 </head>
-<body class="font-sans text-gray-800 bg-gray-50 antialiased selection:bg-brand selection:text-white">
+<body class="font-sans text-gray-800 bg-gray-50 antialiased selection:bg-brand selection:text-white relative">
+
+    <!-- Cloud Sync Toast Notification (Untuk Admin) -->
+    <div id="cloud-toast" class="fixed top-5 left-1/2 -translate-x-1/2 bg-green-600 text-white px-6 py-3 rounded-full shadow-2xl z-50 transform -translate-y-32 transition-transform duration-300 flex items-center gap-3 font-bold">
+        <i class="fas fa-cloud-upload-alt text-xl animate-bounce"></i> 
+        <span id="toast-msg">Tersimpan Permanen di Server</span>
+    </div>
 
     <!-- Tombol WhatsApp Mengambang -->
     <a href="https://wa.me/6285150973789" target="_blank" rel="noopener noreferrer" 
@@ -85,7 +91,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <div class="flex-shrink-0 flex items-center gap-3">
-                    <img class="h-12 w-12 rounded-full object-cover shadow-sm border-2 border-white" src="https://www.ksasemesta.com/images/0/24384851/LogoKalimaja1-VOen73dOZJxAq7S_0egLJw.jpg" alt="Logo PT KSA">
+                    <img class="h-12 w-12 rounded-full object-cover shadow-sm border-2 border-white" src="https://www.ksasemesta.com/images/0/24384851/LogoKalimaja1-VOen73dOZJxAq7S_0egLJw.jpg" alt="Logo PT Kalimaja">
                     <span class="font-bold text-xl tracking-tight text-gray-900 hidden sm:block">Kalimaja Surya Alam</span>
                 </div>
                 
@@ -108,7 +114,7 @@
         </div>
     </header>
 
-    <!-- Hero Section dengan Sliding Background -->
+    <!-- Hero Section -->
     <section id="beranda" class="relative pt-20 pb-32 min-h-[90vh] flex items-center overflow-hidden">
         <div class="absolute inset-0 z-0">
             <div class="hero-slider-container">
@@ -203,7 +209,6 @@
             </div>
             
             <div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Produk 1 -->
                 <div class="bg-white rounded-2xl overflow-hidden shadow-md border group relative flex flex-col">
                     <div class="h-56 overflow-hidden">
                         <img src="https://www.ksasemesta.com/images/800x800/20997001/WhatsAppImage2025-10-14at11.20.392-yKSVNn5W93-j9YOtNVifjA.jpeg" alt="Pompa Irigasi" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
@@ -214,7 +219,6 @@
                         <a href="javascript:void(0)" class="product-link block text-center py-2 bg-gray-50 text-brand font-bold rounded-lg border border-brand/20 hover:bg-brand hover:text-white transition-colors">Lihat Detail</a>
                     </div>
                 </div>
-                <!-- Produk 2 -->
                 <div class="bg-white rounded-2xl overflow-hidden shadow-md border group relative flex flex-col">
                     <div class="h-56 overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1578589759494-b2586dcbe196?q=80&w=800&auto=format&fit=crop" alt="Alat Berat" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
@@ -225,7 +229,6 @@
                         <a href="javascript:void(0)" class="product-link block text-center py-2 bg-gray-50 text-brand font-bold rounded-lg border border-brand/20 hover:bg-brand hover:text-white transition-colors">Lihat Detail</a>
                     </div>
                 </div>
-                <!-- Produk 3 -->
                 <div class="bg-white rounded-2xl overflow-hidden shadow-md border group relative flex flex-col">
                     <div class="h-56 overflow-hidden flex items-center justify-center bg-gray-100 p-4">
                         <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800&auto=format&fit=crop" alt="Hydraulic System" class="w-full h-full object-cover group-hover:scale-110 transition-all">
@@ -236,7 +239,6 @@
                         <a href="javascript:void(0)" class="product-link block text-center py-2 bg-gray-50 text-brand font-bold rounded-lg border border-brand/20 hover:bg-brand hover:text-white transition-colors">Lihat Detail</a>
                     </div>
                 </div>
-                <!-- Produk 4 -->
                 <div class="bg-white rounded-2xl overflow-hidden shadow-md border group relative flex flex-col">
                     <div class="h-56 overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1537552528761-0df08ce458a2?q=80&w=800&auto=format&fit=crop" alt="Spare Part Industri" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
@@ -337,7 +339,7 @@
             <div id="admin-garansi-view" class="mt-16 bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-200 hidden">
                 <div class="p-6 bg-gray-900 text-white flex flex-col md:flex-row justify-between items-center gap-4">
                     <h3 class="font-bold text-xl flex items-center gap-3"><i class="fas fa-server text-brand"></i> Database Status Garansi (Khusus Admin)</h3>
-                    <span class="text-sm bg-brand/20 text-brand-light px-4 py-1.5 rounded-full font-semibold border border-brand/50"><i class="fas fa-circle text-[8px] animate-pulse mr-1"></i> Live Update</span>
+                    <span class="text-sm bg-brand/20 text-brand-light px-4 py-1.5 rounded-full font-semibold border border-brand/50"><i class="fas fa-circle text-[8px] animate-pulse mr-1"></i> Live Update (Server)</span>
                 </div>
                 <div class="overflow-x-auto">
                     <table class="w-full text-left border-collapse">
@@ -377,7 +379,6 @@
                 </div>
             </div>
             
-            <!-- Grid Galeri akan diisi otomatis oleh Firebase -->
             <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 <div class="col-span-full py-10 text-center text-gray-500"><i class="fas fa-spinner fa-spin mr-2"></i> Memuat Galeri...</div>
             </div>
@@ -397,7 +398,6 @@
                 </div>
             </div>
             
-            <!-- Grid Mitra akan diisi otomatis oleh Firebase -->
             <div id="partner-grid" class="flex flex-wrap justify-center items-center gap-12 opacity-80 hover:opacity-100 transition-all duration-500">
                 <div class="w-full py-4 text-center text-gray-400"><i class="fas fa-spinner fa-spin mr-2"></i> Memuat Mitra...</div>
             </div>
@@ -510,15 +510,31 @@
         let currentPartnerData = [];
         let isFetched = false;
 
-        // Hubungkan ke server KSA (Mencoba login anonim, namun jika gagal tidak memblokir akses ke database jika Rules = public)
+        // FUNGSI NOTIFIKASI CLOUD (Memastikan Admin tahu data sudah aman di Server)
+        window.showCloudToast = function(message) {
+            const toast = document.getElementById('cloud-toast');
+            const msgSpan = document.getElementById('toast-msg');
+            msgSpan.innerText = message;
+            
+            // Tampilkan (Geser ke bawah)
+            toast.classList.remove('-translate-y-32');
+            toast.classList.add('translate-y-0');
+            
+            // Sembunyikan setelah 3 detik
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0');
+                toast.classList.add('-translate-y-32');
+            }, 3000);
+        };
+
+        // Hubungkan ke server KSA 
         const initAuth = async () => {
-            try { await signInAnonymously(auth); } catch (err) { console.error("Info: Login Anonim Gagal atau Belum Diaktifkan di Firebase Anda.", err); }
+            try { await signInAnonymously(auth); } catch (err) { console.error("Info: Login Anonim Gagal.", err); }
         };
         initAuth();
 
-        // Paksa ambil data tanpa harus menunggu login selesai (karena kunci bapak adalah: allow read, write: if true)
+        // Ambil Data Live
         fetchDynamicData();
-
         onAuthStateChanged(auth, (user) => {
             if (!isFetched) {
                 isFetched = true;
@@ -527,7 +543,7 @@
         });
 
         // ==========================================
-        // SISTEM FETCH DATA (Garansi, Galeri, Mitra)
+        // SISTEM FETCH DATA LIVESYNC (Cloud -> Lokal)
         // ==========================================
         function fetchDynamicData() {
             // 1. Fetch Garansi
@@ -537,28 +553,15 @@
                 data.sort((a, b) => b.timestamp - a.timestamp);
                 currentGaransiData = data;
                 renderGaransiTable(data);
-            }, (error) => {
-                console.error("Error Garansi:", error);
-                const tbody = document.getElementById('garansi-table-body');
-                if (tbody) tbody.innerHTML = `<tr><td colspan="7" class="px-6 py-8 text-center text-red-600 bg-red-50 font-medium border border-red-200">
-                    <i class="fas fa-lock mb-2 text-3xl"></i><br>
-                    <strong>Akses Database Ditolak oleh Firebase</strong><br><br>
-                    Pastikan Anda sudah mengubah aturan/Rules di Firestore Database Anda menjadi:<br>
-                    <code>allow read, write: if true;</code>
-                </td></tr>`;
             });
 
             // 2. Fetch Galeri
             onSnapshot(collection(db, 'gallery'), (snapshot) => {
                 const data = [];
                 snapshot.forEach(d => data.push({ id: d.id, ...d.data() }));
-                data.sort((a, b) => a.timestamp - b.timestamp); // Sort by old to new
+                data.sort((a, b) => a.timestamp - b.timestamp);
                 currentGalleryData = data;
                 renderGalleryGrid(data);
-            }, (error) => {
-                console.error("Error Galeri:", error);
-                const grid = document.getElementById('gallery-grid');
-                if (grid) grid.innerHTML = '<div class="col-span-full py-10 text-center text-red-500 font-bold"><i class="fas fa-exclamation-triangle mr-2"></i>Koneksi Galeri Ditolak Firebase. Cek Rules Firestore Anda.</div>';
             });
 
             // 3. Fetch Mitra
@@ -568,17 +571,12 @@
                 data.sort((a, b) => a.timestamp - b.timestamp);
                 currentPartnerData = data;
                 renderPartnerGrid(data);
-            }, (error) => {
-                console.error("Error Mitra:", error);
-                const grid = document.getElementById('partner-grid');
-                if (grid) grid.innerHTML = '<div class="w-full py-4 text-center text-red-500 font-bold"><i class="fas fa-exclamation-triangle mr-2"></i>Koneksi Mitra Ditolak. Cek Rules Firestore Anda.</div>';
             });
         }
 
         // ==========================================
-        // RENDER UI (Menampilkan HTML dari Database)
+        // RENDER UI 
         // ==========================================
-        
         window.refreshUI = function() {
             renderGaransiTable(currentGaransiData);
             renderGalleryGrid(currentGalleryData);
@@ -638,7 +636,7 @@
 
                     <img src="${imgUrl}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent p-5 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-opacity">
-                        <h3 class="font-bold text-sm text-white outline-none" ${window.isAdmin ? 'contenteditable="true"' : ''} onblur="updateTitleDoc('gallery', '${item.id}', this.innerText)">${item.title || 'Judul Kegiatan...'}</h3>
+                        <h3 class="font-bold text-sm text-white outline-none" ${window.isAdmin ? 'contenteditable="true"' : ''} onblur="updateTitleDoc('gallery', '${item.id}', this.innerText, '${item.title}')">${item.title || 'Judul Kegiatan...'}</h3>
                     </div>
                 </div>`;
             });
@@ -675,24 +673,24 @@
         }
 
         // ==========================================
-        // FUNGSI ADMIN (Login, Upload, Tambah, Hapus)
+        // FUNGSI ADMIN (Sinkronisasi ke Cloud Server)
         // ==========================================
         window.toggleAdminMode = function() {
-            const pass = prompt("Hanya Admin KSA: Masukkan Password Keamanan");
+            const pass = prompt("Hanya Admin Kalimaja: Masukkan Password Keamanan");
             if (pass === "Yakin537@") {
                 window.isAdmin = true;
-                alert("Mode Full CMS Aktif!\nAnda kini bisa mengunggah foto Galeri & Mitra permanen ke database.");
+                alert("Mode Admin Aktif!\nSemua data yang Anda tambahkan/unggah sekarang akan otomatis tersimpan ke Cloud Server (Online Permanen).");
                 
                 document.querySelectorAll('.admin-tools').forEach(el => el.classList.remove('hidden'));
                 const garansiView = document.getElementById('admin-garansi-view');
                 if(garansiView) garansiView.classList.remove('hidden');
 
                 const notice = document.getElementById('admin-notice');
-                if (notice) notice.innerText = "Mode Edit & Upload Database Permanen Aktif.";
+                if (notice) notice.innerText = "Sistem Live Sync Cloud Server Aktif.";
                 const btn = document.getElementById('admin-btn');
-                if (btn) btn.innerHTML = '<i class="fas fa-check-circle"></i> Mode Admin Aktif';
+                if (btn) btn.innerHTML = '<i class="fas fa-check-circle text-green-500"></i> Mode Cloud Server Aktif';
                 
-                window.refreshUI(); // Render ulang agar tombol hapus / upload muncul di konten db
+                window.refreshUI();
             } else if (pass !== null) {
                 alert("Password Salah! Akses Ditolak.");
             }
@@ -702,33 +700,38 @@
             if(!window.isAdmin) return;
             try {
                 await addDoc(collection(db, 'gallery'), { imageUrl: '', title: 'Judul Baru (Klik Edit)', timestamp: Date.now() });
-            } catch(e) { alert("Gagal menambah kotak Galeri. Pastikan Rules Firestore mengizinkan 'allow write: if true;'."); }
+                window.showCloudToast("Kotak Galeri Berhasil Dibuat di Cloud");
+            } catch(e) { alert("Gagal menambah kotak. Cek Rules Firestore Anda."); }
         };
 
         window.addPartnerItem = async function() {
             if(!window.isAdmin) return;
             try {
                 await addDoc(collection(db, 'partners'), { imageUrl: '', timestamp: Date.now() });
-            } catch(e) { alert("Gagal menambah kotak Mitra. Pastikan Rules Firestore mengizinkan 'allow write: if true;'."); }
+                window.showCloudToast("Kotak Mitra Berhasil Dibuat di Cloud");
+            } catch(e) { alert("Gagal menambah kotak. Cek Rules Firestore Anda."); }
         };
 
         window.deleteDataDoc = async function(colName, docId) {
             if(!window.isAdmin) return;
-            if(confirm("Yakin menghapus item ini permanen dari Database?")) {
+            if(confirm("Yakin menghapus item ini permanen dari Database Server?")) {
                 try {
                     await deleteDoc(doc(db, colName, docId));
-                } catch(e) { alert("Gagal menghapus. Pastikan Rules Firestore mengizinkan Delete."); }
+                    window.showCloudToast("Data Terhapus Permanen dari Server");
+                } catch(e) { alert("Gagal menghapus."); }
             }
         };
 
-        window.updateTitleDoc = async function(colName, docId, newTitle) {
+        window.updateTitleDoc = async function(colName, docId, newTitle, oldTitle) {
             if(!window.isAdmin) return;
+            if(newTitle.trim() === oldTitle) return; // Jangan request server kalau teks tidak berubah
             try {
                 await updateDoc(doc(db, colName, docId), { title: newTitle });
+                window.showCloudToast("Teks Berhasil Disimpan ke Cloud");
             } catch(e) { console.error("Gagal update judul:", e); }
         };
 
-        // FUNGSI INTI: UPLOAD FILE GAMBAR KE FIREBASE STORAGE
+        // FUNGSI INTI: UPLOAD FILE GAMBAR KE FIREBASE STORAGE (LANGSUNG ONLINE)
         window.uploadImageToStorage = async function(event, colName, docId) {
             const file = event.target.files[0];
             if (!file) return;
@@ -750,16 +753,20 @@
                     }, 
                     (error) => {
                         console.error("Storage Error:", error);
-                        alert("Gagal Unggah Foto!\n\nPastikan Anda sudah mengubah Aturan (Rules) Firebase STORAGE menjadi:\nallow read, write: if true;");
+                        alert("Gagal Unggah Foto! Pastikan Rules Firebase Storage mengizinkan write.");
                         if(loadingDiv) loadingDiv.classList.add('hidden');
                     }, 
                     async () => {
                         try {
                             const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+                            // Simpan link gambar ke database Firestore
                             await updateDoc(doc(db, colName, docId), { imageUrl: downloadURL });
+                            
+                            // Tampilkan Notifikasi Sukses ke Admin
+                            window.showCloudToast("Foto Berhasil Diunggah Permanen ke Cloud!");
                         } catch (e) {
                             console.error("Firestore Update Error:", e);
-                            alert("Foto berhasil diunggah, tapi gagal dihubungkan ke Database. Pastikan Aturan (Rules) FIRESTORE DATABASE Anda adalah:\nallow read, write: if true;");
+                            alert("Gagal sinkronisasi link gambar ke database.");
                         } finally {
                             if(loadingDiv) loadingDiv.classList.add('hidden');
                         }
@@ -767,7 +774,7 @@
                 );
             } catch (e) {
                 console.error(e);
-                alert("Terjadi kesalahan sistem saat memulai unggah gambar.");
+                alert("Terjadi kesalahan saat memulai unggah gambar.");
                 if(loadingDiv) loadingDiv.classList.add('hidden');
             }
         };
@@ -784,7 +791,6 @@
             const cpcl = document.getElementById('g_cpcl').value;
             const tanggal = document.getElementById('g_tanggal').value;
 
-            // Generate Kode Akses Unik
             const randomStr = Math.random().toString(36).substring(2, 8).toUpperCase();
             const accessCode = 'KSA-' + randomStr;
 
@@ -793,20 +799,13 @@
 
             try {
                 await addDoc(collection(db, 'garansi'), {
-                    jenis,
-                    spek,
-                    cpcl,
-                    tanggal,
-                    kodeAkses: accessCode,
-                    timestamp: Date.now()
+                    jenis, spek, cpcl, tanggal, kodeAkses: accessCode, timestamp: Date.now()
                 });
                 
-                alert("SUKSES!\n\nUnit Anda telah resmi terdaftar di sistem Purna Jual Kalimaja.\n\nKODE AKSES ANDA: " + accessCode + "\n\n*PENTING: Harap catat dan simpan KODE AKSES ini baik-baik. Anda membutuhkannya untuk mengecek status garansi sewaktu-waktu tanpa perlu login.");
-                
+                alert("SUKSES!\n\nUnit Anda telah resmi terdaftar di sistem Purna Jual Kalimaja.\n\nKODE AKSES ANDA: " + accessCode + "\n\n*PENTING: Harap catat dan simpan KODE AKSES ini baik-baik.");
                 event.target.reset(); 
             } catch (e) {
-                console.error(e);
-                alert("GAGAL MENYIMPAN: Akses Firebase ditolak. Pastikan Rules Firestore Anda sudah diatur menjadi 'allow read, write: if true;' di Console Firebase.");
+                alert("GAGAL MENYIMPAN. Pastikan Rules Firestore Anda sudah diatur.");
             } finally {
                 btn.disabled = false;
                 btn.innerHTML = '<i class="fas fa-shield-check"></i> Daftarkan Garansi';
@@ -819,7 +818,7 @@
             const resultDiv = document.getElementById('cek-result');
 
             if (currentGaransiData.length === 0) {
-                resultDiv.innerHTML = '<div class="text-sm text-gray-500 mt-3 p-3 bg-gray-50 rounded-lg"><i class="fas fa-spinner fa-spin mr-2"></i> Sistem sedang memuat database atau Akses Ditolak Firebase. Cek koneksi & Rules Anda.</div>';
+                resultDiv.innerHTML = '<div class="text-sm text-gray-500 mt-3 p-3 bg-gray-50 rounded-lg"><i class="fas fa-spinner fa-spin mr-2"></i> Sistem sedang memuat database...</div>';
                 return;
             }
 
